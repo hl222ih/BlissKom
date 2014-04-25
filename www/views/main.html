@@ -1,3 +1,20 @@
 <div id="test"></div>
 <div>{{greeting}}</div>
 <div ng-repeat="item in items">{{item.name}}</div>
+<div ng-repeat="glossUnit in glossUnits" style="display: inline-block">
+  <p style="display: inline-block;">
+      <a ng-href="#">
+          <img ng-src="img/contentImg/{{glossUnit.mainImage.url}}" style="max-width: 80px;"/>
+      </a>
+  </p>
+</div>
+<div ng-repeat="glossUnit in glossUnits">
+    <bk-gloss-unit-mini data-bk-pageid="1"/>
+</div>
+<div class="app">
+    <h1>Apache Cordova</h1>
+    <div id="deviceready" class="blink">
+        <p class="event listening">Connecting to Device, hold on! (Main)</p>
+        <p class="event received">Device is Ready, yay!</p>
+    </div>
+</div>
