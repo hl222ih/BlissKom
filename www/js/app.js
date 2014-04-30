@@ -1,41 +1,4 @@
-//Constructor for GlossUnit objects.
-//If the inserted data object includes erronous properties, they will be neglected.
-//If the inserted data object lacks some properties, the corresponding properties
-//will get a null value.
-function GlossUnit(data) {
-    this.filename = data.filename;
-    this.glossSubUnitsLeft = this.createArrayOfGlossSubUnits(data.glossSubUnitsLeft);
-    this.glossSubUnitsRight = this.createArrayOfGlossSubUnits(data.glossSubUnitsRight);
-    this.glossText = data.glossText;
-    this.glossId = data.glossId;
-    this.text = data.text;
-    this.partOfSpeech = data.partOfSpeech;
-    this.comment = data.comment;
-    this.pageLinkUrl = data.pageLinkUrl;
-    this.backgroundColor = data.backGroundColor ? data.backGroundColor : '#FFFFFF';
-};
-
-GlossUnit.prototype.isPageLink = !!this.pageUrl; //returns true if pageUrl is truthy
-GlossUnit.prototype.hasModifiedText = (this.glossText !== this.text);
-GlossUnit.prototype.createArrayOfGlossSubUnits = function(arrayData) {
-        var glossSubUnits = [],
-            i = 0;
-    
-        if (arrayData) {
-            for (; i < arrayData.length ; i = i+1) {
-                glossSubUnits.push(new GlossSubUnit(arrayData[i]));
-            }
-        }
-        return glossSubUnits;
-    };
-
-function GlossSubUnit(data) {
-    this.filename = data.filename;
-    this.text = data.text;
-    this.comment = data.comment;
-}
-
-angular.module("blissKom", ["ui.router", "firebase"])
+var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/main');
         $stateProvider
@@ -60,9 +23,77 @@ angular.module("blissKom", ["ui.router", "firebase"])
             
 //services (BLL-code and contact with database)
 
+//alltså, vill få in mina "lösa" konstruktorer här på nåt sätt...
+//blissKom.factory("GlossSubUnit", function() {
+//    
+//    function GlossSubUnit(data) {
+//        this.filename = data.filename;
+//        this.text = data.text;
+//        this.comment = data.comment;
+//    };
+//    
+//    return GlossSubUnit;
+//});
+//blissKom.service("glossService", function() {
+    
+    
+blissKom.factory("glossFactory", function() {       
+    //Constructor for GlossUnit objects.
+    //If the inserted data object includes erronous properties, they will be neglected.
+    //If the inserted data object lacks some properties, the corresponding properties
+    //will be undefined.
+    function GlossUnit(data) {
+        this.filename = data.filename;
+        this.glossSubUnitsLeft = this.createArrayOfGlossSubUnits(data.glossSubUnitsLeft);
+        this.glossSubUnitsRight = this.createArrayOfGlossSubUnits(data.glossSubUnitsRight);
+        this.glossText = data.glossText;
+        this.glossId = data.glossId;
+        this.text = data.text;
+        this.partOfSpeech = data.partOfSpeech;
+        this.comment = data.comment;
+        this.pageLinkUrl = data.pageLinkUrl;
+        this.backgroundColor = data.backGroundColor ? data.backGroundColor : '#FFFFFF';
+    };
+
+    GlossUnit.prototype = {
+        isPageLink: !!this.pageUrl, //returns true if pageUrl is truthy
+        hasModifiedText: this.glossText !== this.text,
+        createArrayOfGlossSubUnits: function(arrayData) {
+            var glossSubUnits = [],
+                i = 0;
+
+            if (arrayData) {
+                for (; i < arrayData.length ; i = i+1) {
+                    glossSubUnits.push(new GlossSubUnit(arrayData[i]));
+                }
+            }
+            return glossSubUnits;
+        }
+    };
+
+    //Constructor for GlossSubUnit objects.
+    //If the inserted data object includes erronous properties, they will be neglected.
+    //If the inserted data object lacks some properties, the corresponding properties
+    //will become undefined.
+    function GlossSubUnit(data) {
+        this.filename = data.filename;
+        this.text = data.text;
+        this.comment = data.comment;
+    };
+
+    //factory's all functions
+    var gloss = { 
+        //testfunktion.
+        createGlossUnit: function(data) { 
+            return new GlossUnit(data); 
+        }
+    };
+    return gloss;
+
+});
+
 //controllers
-angular.module("blissKom")
-    .controller("MainController", function($scope, $firebase) { 
+blissKom.controller("MainController", function($scope, $firebase, glossFactory) { 
        // $scope.init().updateNavigationPage(2);
         $scope.greeting = "hello world!";
         $scope.items = {
@@ -81,9 +112,10 @@ angular.module("blissKom")
         };
         $scope.updateNavigationPage = function(pageId) {
             if (pageId === 2) {
+            switchStyleSheet(pageId);
             $scope.glossUnits = [
-                new GlossUnit(
-                {
+                //new GlossUnit(
+                glossFactory.createGlossUnit({
                     filename: 'hej.svg',
                     glossSubUnitsLeft: [new GlossSubUnit({ filename: 'vad.svg', comment: ''})], //valbart 
                     glossSubUnitsRight: [],
@@ -92,7 +124,8 @@ angular.module("blissKom")
                     text: 'hej',
                     comment: ''
                 }),
-                new GlossUnit({
+                //new GlossUnit(
+                glossFactory.createGlossUnit({
                     filename: 'heta.svg',
                     glossSubUnitsLeft: [],
                     glossSubUnitsRight: [new GlossSubUnit({ filename: 'du.svg', comment: ''})],
@@ -101,7 +134,8 @@ angular.module("blissKom")
                     text: 'heta',
                     comment: ''
                 }),
-                new GlossUnit({
+               //new GlossUnit(
+                glossFactory.createGlossUnit({
                     filename: 'heta.svg',
                     glossSubUnitsLeft: [],
                     glossSubUnitsRight: [new GlossSubUnit({ filename: 'du.svg', comment: ''})],
@@ -113,7 +147,7 @@ angular.module("blissKom")
                     pageLinkUrl: 'some state'
                 })];
             } else {
-                $scope.glossUnits = [ new GlossUnit({filename: 'du.svg', glossSubUnitsLeft: [{filename: 'test.svg'}]}), new GlossUnit({filename: 'du.svg'}), new GlossUnit({filename: 'hej.svg'}) ];
+                $scope.glossUnits = [ glossFactory.createGlossUnit({filename: 'du.svg', glossSubUnitsLeft: [{filename: 'test.svg'}]}), glossFactory.createGlossUnit({filename: 'du.svg'}), glossFactory.createGlossUnit({filename: 'hej.svg'}) ];
             }
             
         };
@@ -176,3 +210,37 @@ function test() {
 //       console.log(snapshot)
 //    });
 };
+
+function switchStyleSheet(pageId) {
+    var sheet = document.getElementById('pageStyle');
+//    var parentOfSheet = sheet.parentNode;
+//    parentOfSheet.removeChild(sheet);
+//    var newSheet = document.createElement('style');
+    if (sheet)
+    {
+        sheet.innerHTML = "";
+        var unitStyles = getPageCssSettings(pageId);
+        for (var i = 0; i < unitStyles.length; i++) {
+            sheet.innerHTML += "#unit" + unitStyles[i].position + " {\n";
+            sheet.innerHTML += "display: block;\nposition: absolute;\n";
+            sheet.innerHTML += "left: " + unitStyles[i].left + "%;\n";        
+            sheet.innerHTML += "top: " + unitStyles[i].top + "%;\n";     
+            sheet.innerHTML += "width: " + unitStyles[i].width + "%;\n";     
+            sheet.innerHTML += "height: " + unitStyles[i].height + "%;\n";  
+            sheet.innerHTML += "background: red; border: 1px solid blue;\n";
+            sheet.innerHTML += "}\n";
+        }
+    }
+//    parentOfSheet.appendChild(newSheet);
+};
+
+function getPageCssSettings(pageId) {
+    var unitStyles = [];
+    //lite testdata
+    unitStyles.push({position: 1, width: 10, height: 10, left: 1, top: 1});
+    unitStyles.push({position: 2, width: 10, height: 10, left: 11, top: 11});
+    unitStyles.push({position: 3, width: 10, height: 10, left: 22, top: 22});
+    unitStyles.push({position: 4, width: 10, height: 10, left: 33, top: 33});
+    unitStyles.push({position: 5, width: 20, height: 20, left: 44, top: 44});
+    return unitStyles;
+}
