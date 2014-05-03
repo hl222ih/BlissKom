@@ -10,30 +10,17 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
                         controller: 'MainCtrl'
                     },
                     'extra': {
-                        template: '<div>include some extra content</div>'
+                        template: '<div>include some extra content</div>',
+                        controller: 'MainCtrl'
                     }
                 }
             })
-            .state('device', {
-                url: '/device',
+            .state('/device', {
+                url: 'device',
                 templateUrl: 'views/device.html',
-                controller: 'MainCtrl'
+                controller: 'DeviceCtrl'
             });
     });
-            
-//services (BLL-code and contact with database)
-
-//blissKom.service("glossService", function() {
-    
-
-    
-//filters
-//
-
-
-//directives
-//
-
 
 //test-code
 //just for testing, does the application react to battery status change?

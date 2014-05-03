@@ -1,5 +1,8 @@
 <div>
-    <a ng-href="#" style="">
-        <img ng-src="img/contentImg/{{glossUnit.filename}}"  ng-click="updateNavigationPage(2)" style="max-width: 80px; border: 1px solid black"/>
+    <a data-ng-href="#" style="">
+        <img id="unit{{glossUnit.position}}" 
+             class="glossUnits" 
+             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{glossUnit.filename}}"  
+             data-ng-click="updateNavigationPage('startsida')"/>
     </a>        
 </div>

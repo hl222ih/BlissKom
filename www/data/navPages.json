@@ -1,0 +1,108 @@
+[
+    {
+        "pageName": "startsida",
+        "pageCss": "five-eight",
+        "glossData": [
+            {
+                "position": 1,
+                "text": "hej",
+                "path": "bliss",
+                "filename": "hello,greetings.svg",
+                "glossId": 14702,
+                "glossText": "hej, goddag",
+                "comment": "",
+                "partOfSpeech": "expression",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "hej",
+                        "path": "rt",
+                        "filename": "hej.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 2,
+                "text": "hej",
+                "path": "bliss",
+                "filename": "hej.svg",
+                "glossId": 12,
+                "glossText": "hej-blabla",
+                "comment": "",
+                "partOfSpeech": "expression",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "hej",
+                        "path": "rt",
+                        "filename": "vad.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 3,
+                "text": "hej",
+                "path": "bliss",
+                "filename": "hello,greetings.svg",
+                "glossId": 12,
+                "glossText": "hej-blabla",
+                "comment": "",
+                "partOfSpeech": "expression",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "hej",
+                        "path": "rt",
+                        "filename": "vad.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 4,
+                "text": "hej",
+                "path": "bliss",
+                "filename": "hej.svg",
+                "glossId": 12,
+                "glossText": "hej-blabla",
+                "comment": "",
+                "partOfSpeech": "expression",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "hej",
+                        "path": "rt",
+                        "filename": "vad.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 5,
+                "text": "hej",
+                "path": "bliss",
+                "filename": "hej.svg",
+                "glossId": 12,
+                "glossText": "hej-blabla",
+                "comment": "",
+                "partOfSpeech": "expression",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "hej",
+                        "path": "rt",
+                        "filename": "vad.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            }
+        ]
+    }
+]

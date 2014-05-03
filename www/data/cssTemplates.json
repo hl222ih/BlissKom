@@ -1,0 +1,188 @@
+)]}',
+[
+    {
+        "name": "five-eight",
+        "settings": [
+            {
+                "position": 1,
+                "top": 1,
+                "left": 1,
+                "width": 17,
+                "height": 17
+            },
+            {
+                "position": 2,
+                "top": 1,
+                "left": 19,
+                "width": 17,
+                "height": 17
+            },
+            {
+                "position": 3,
+                "top": 1,
+                "left": 41.5,
+                "width": 17,
+                "height": 17
+            },
+            {
+                "position": 4,
+                "top": 1,
+                "left": 64,
+                "width": 17,
+                "height": 17
+            },
+            {
+                "position": 5,
+                "top": 1,
+                "left": 82,
+                "width": 17,
+                "height": 17
+            },
+            {
+                "position": 6,
+                "top": 55,
+                "left": 1,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 7,
+                "top": 55,
+                "left": 24,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 8,
+                "top": 55,
+                "left": 55,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 9,
+                "top": 55,
+                "left": 78,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 10,
+                "top": 78,
+                "left": 1,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 11,
+                "top": 78,
+                "left": 24,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 12,
+                "top": 78,
+                "left": 55,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 13,
+                "top": 78,
+                "left": 78,
+                "width": 21,
+                "height": 21
+            }
+        ]
+    },
+    {
+        "name": "four-eight",
+        "settings": [
+            {
+                "position": 1,
+                "top": 1,
+                "left": 1,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 2,
+                "top": 1,
+                "left": 24,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 3,
+                "top": 1,
+                "left": 55,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 4,
+                "top": 1,
+                "left": 78,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 5,
+                "top": 55,
+                "left": 1,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 6,
+                "top": 55,
+                "left": 24,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 7,
+                "top": 55,
+                "left": 55,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 8,
+                "top": 55,
+                "left": 78,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 9,
+                "top": 78,
+                "left": 1,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 10,
+                "top": 78,
+                "left": 24,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 11,
+                "top": 78,
+                "left": 55,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 12,
+                "top": 78,
+                "left": 78,
+                "width": 21,
+                "height": 21
+            }
+        ]
+    }
+]
