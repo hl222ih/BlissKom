@@ -1,8 +1,8 @@
 <div>
     <a data-ng-href="#" style="">
         <img id="unit{{glossUnit.position}}" 
-             class="glossUnits" 
+             class="glossUnits {{glossUnit.partOfSpeech}}" 
              data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{glossUnit.filename}}"  
-             data-ng-click="updateNavigationPage('startsida')"/>
+             data-ng-click="updateNavigationPage('startsida')" />
     </a>        
 </div>

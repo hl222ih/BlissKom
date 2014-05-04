@@ -25,82 +25,54 @@
             },
             {
                 "position": 2,
-                "text": "hej",
+                "text": "adjektiv",
                 "path": "bliss",
-                "filename": "hej.svg",
-                "glossId": 12,
-                "glossText": "hej-blabla",
-                "comment": "",
-                "partOfSpeech": "expression",
-                "pageLinkUrl": "",
-                "glossSubUnitsLeft": [
-                    {
-                        "text": "hej",
-                        "path": "rt",
-                        "filename": "vad.svg",
-                        "comment": ""
-                    }
-                ],
+                "filename": "feeling,emotion,sensation.svg",
+                "glossId": 14164,
+                "glossText": "känsla",
+                "comment": "sidlänk",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "adjektiv",
+                "glossSubUnitsLeft": [],
                 "glossSubUnitsRight": []
             },
             {
                 "position": 3,
-                "text": "hej",
+                "text": "att göra",
                 "path": "bliss",
-                "filename": "hello,greetings.svg",
-                "glossId": 12,
-                "glossText": "hej-blabla",
-                "comment": "",
-                "partOfSpeech": "expression",
-                "pageLinkUrl": "",
-                "glossSubUnitsLeft": [
-                    {
-                        "text": "hej",
-                        "path": "rt",
-                        "filename": "vad.svg",
-                        "comment": ""
-                    }
-                ],
+                "filename": "do,act-(to).svg",
+                "glossId": 13860,
+                "glossText": "göra",
+                "comment": "sidlänk",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "attgora",
+                "glossSubUnitsLeft": [],
                 "glossSubUnitsRight": []
             },
             {
                 "position": 4,
-                "text": "hej",
+                "text": "fordon",
                 "path": "bliss",
-                "filename": "hej.svg",
-                "glossId": 12,
-                "glossText": "hej-blabla",
-                "comment": "",
-                "partOfSpeech": "expression",
-                "pageLinkUrl": "",
-                "glossSubUnitsLeft": [
-                    {
-                        "text": "hej",
-                        "path": "rt",
-                        "filename": "vad.svg",
-                        "comment": ""
-                    }
-                ],
+                "filename": "vehicle,carriage,railway_car.svg",
+                "glossId": 18010,
+                "glossText": "fordon, vagn",
+                "comment": "sidlänk",
+                "partOfSpeech": "noun",
+                "pageLinkUrl": "fordon",
+                "glossSubUnitsLeft": [],
                 "glossSubUnitsRight": []
             },
             {
                 "position": 5,
-                "text": "hej",
+                "text": "platser",
                 "path": "bliss",
-                "filename": "hej.svg",
-                "glossId": 12,
-                "glossText": "hej-blabla",
-                "comment": "",
-                "partOfSpeech": "expression",
-                "pageLinkUrl": "",
-                "glossSubUnitsLeft": [
-                    {
-                        "text": "hej",
-                        "path": "rt",
-                        "filename": "vad.svg",
-                        "comment": ""
-                    }
-                ],
+                "filename": "place,area,location,space.svg",
+                "glossId": 16193,
+                "glossText": "plats, ställe",
+                "comment": "sidlänk",
+                "partOfSpeech": "noun",
+                "pageLinkUrl": "platser",
+                "glossSubUnitsLeft": [],
                 "glossSubUnitsRight": []
             }
         ]

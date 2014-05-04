@@ -5,18 +5,18 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, glossFac
         navPageService.getNavPages()
             .then(function (response) {
                 $scope.navPages = response.data;
-                navPageService.getCssTemplates()
+                navPageService.getPosColors()
                     .then(function (response) {
-                        $scope.cssTemplates = response.data;
+                        $scope.partOfSpeechColors = response.data;
                         navPageService.getCssTemplates()
                             .then(function (response) {
-                                $scope.partOfSpeechColor = response.data;
+                                $scope.cssTemplates = response.data;
                                 $scope.updateNavigationPage();
                             }, function (response) {
-                                alert("Ett fel inträffade. Kunde inte ladda färginställningarna.");
+                                alert("Ett fel inträffade. Kunde inte ladda sidornas stilmallar.");
                             });
                     }, function (response) {
-                        alert("Ett fel inträffade. Kunde inte ladda sidornas stilmallar.");
+                        alert("Ett fel inträffade. Kunde inte ladda färginställningarna.");
                     });
             }, function (response) {
                 alert("Ett fel inträffade. Kunde inte ladda orduppsättningen.");
