@@ -28,7 +28,7 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 
 function onBatteryStatus(info) {
     window.alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
-    var testdiv = document.getElementById("test");
-    testdiv.innerHTML = "Testet funkade!";
+ //   var testdiv = document.getElementById("test");
+  //  testdiv.innerHTML = "Testet funkade!";
 };
 

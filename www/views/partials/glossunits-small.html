@@ -1,8 +1,14 @@
 <div>
-    <a data-ng-href="#" style="">
-        <img id="unit{{glossUnit.position}}" 
-             class="glossUnits {{glossUnit.partOfSpeech}}" 
-             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{glossUnit.filename}}"  
-             data-ng-click="updateNavigationPage('startsida')" />
+    <a id="unit{{glossUnit.position}}" 
+       class="glossUnits {{glossUnit.partOfSpeech}}"  
+       data-ng-click="updateNavigationPage(glossUnit.pageLinkUrl)"
+       data-ng-href="#" style="">
+        <img style="height: 100%;"
+             data-ng-if="glossUnit.path === 'custom'"
+             data-ng-src="img/custom/{{glossUnit.filename}}"  
+             data-ng-click="updateNavigationPage(glossUnit.pageLinkUrl)" />
+        <img style="height: 100%;"
+             data-ng-if="glossUnit.path === 'bliss'"
+             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{glossUnit.filename}}" />
     </a>        
 </div>

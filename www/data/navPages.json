@@ -1,6 +1,7 @@
 [
     {
         "pageName": "startsida",
+        "pageUrl": "startsida",
         "pageCss": "five-eight",
         "glossData": [
             {
@@ -72,6 +73,603 @@
                 "comment": "sidlänk",
                 "partOfSpeech": "noun",
                 "pageLinkUrl": "platser",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 6,
+                "text": "personer",
+                "path": "bliss",
+                "filename": "person,human_being,individual,human.svg",
+                "glossId": 16161,
+                "glossText": "person, människa",
+                "comment": "sidlänk",
+                "partOfSpeech": "person",
+                "pageLinkUrl": "personer",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 7,
+                "text": "familj",
+                "path": "bliss",
+                "filename": "family_(cohabiting).svg",
+                "glossId": 14145,
+                "glossText": "familj, makar, sambopar (könsneutral)",
+                "comment": "sidlänk",
+                "partOfSpeech": "person",
+                "pageLinkUrl": "familj",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 9,
+                "text": "tidsbegrepp",
+                "path": "bliss",
+                "filename": "time.svg",
+                "glossId": 17732,
+                "glossText": "tid",
+                "comment": "sidlänk",
+                "partOfSpeech": "noun",
+                "pageLinkUrl": "tidsbegrepp",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 10,
+                "text": "personfoton",
+                "path": "bliss",
+                "filename": "photograph,photo,pic.svg",
+                "glossId": 16169,
+                "glossText": "foto, kort",
+                "comment": "sidlänk",
+                "partOfSpeech": "person",
+                "pageLinkUrl": "personfoton",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 11,
+                "text": "småord/funktionsord",
+                "path": "bliss",
+                "filename": "word.svg",
+                "glossId": 18272,
+                "glossText": "ord",
+                "comment": "sidlänk",
+                "partOfSpeech": "noun",
+                "pageLinkUrl": "smaordfunktionsord",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 12,
+                "text": "saker",
+                "path": "bliss",
+                "filename": "thing,object.svg",
+                "glossId": 17717,
+                "glossText": "sak, föremål",
+                "comment": "sidlänk",
+                "partOfSpeech": "noun",
+                "pageLinkUrl": "saker",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 13,
+                "text": "mat och dryck",
+                "path": "bliss",
+                "filename": "food.svg",
+                "glossId": 14377,
+                "glossText": "mat, livsmedel",
+                "comment": "sidlänk",
+                "partOfSpeech": "noun",
+                "pageLinkUrl": "matochdryck",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            }
+        ]
+    },
+    {
+        "pageName": "att göra",
+        "pageUrl": "attgora",
+        "pageCss": "four-eight",
+        "glossData": [
+            {
+                "position": 1,
+                "text": "gå",
+                "path": "bliss",
+                "filename": "walk,go-(to).svg",
+                "glossId": 18031,
+                "glossText": "gå",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "gå",
+                        "path": "rt",
+                        "filename": "gå.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 2,
+                "text": "åka",
+                "path": "bliss",
+                "filename": "ride-(to).svg",
+                "glossId": 16509,
+                "glossText": "åka",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "åka",
+                        "path": "rt",
+                        "filename": "åka.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 3,
+                "text": "äta",
+                "path": "bliss",
+                "filename": "eat-(to).svg",
+                "glossId": 13906,
+                "glossText": "äta",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "äta",
+                        "path": "rt",
+                        "filename": "äta.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 4,
+                "text": "dricka",
+                "path": "bliss",
+                "filename": "drink-(to).svg",
+                "glossId": 13882,
+                "glossText": "dricka",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "dricka",
+                        "path": "rt",
+                        "filename": "dricka.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 5,
+                "text": "städa",
+                "path": "bliss",
+                "filename": "hello,greetings.svg",
+                "glossId": 13357,
+                "glossText": "städa, göra ren",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "städa",
+                        "path": "rt",
+                        "filename": "städa.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 6,
+                "text": "diska",
+                "path": "bliss",
+                "filename": "wash_up,do_the_dishes-(to).svg",
+                "glossId": 23705,
+                "glossText": "diska",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "diska",
+                        "path": "rt",
+                        "filename": "diska.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 7,
+                "text": "byta",
+                "path": "bliss",
+                "filename": "exchange,substitute,trade-(to).svg",
+                "glossId": 14118,
+                "glossText": "byta",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "byta",
+                        "path": "rt",
+                        "filename": "byta.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 8,
+                "text": "duscha",
+                "path": "bliss",
+                "filename": "shower-(to).svg",
+                "glossId": 16969,
+                "glossText": "duscha",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "duscha",
+                        "path": "rt",
+                        "filename": "duscha.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 9,
+                "text": "baka",
+                "path": "bliss",
+                "filename": "bake,cook,roast-(to).svg",
+                "glossId": 12619,
+                "glossText": "baka, grädda, steka (i ugn)",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "baka",
+                        "path": "rt",
+                        "filename": "baka.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 10,
+                "text": "laga mat",
+                "path": "bliss",
+                "filename": "cook-(to).svg",
+                "glossId": 13408,
+                "glossText": "laga mat",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "laga mat",
+                        "path": "rt",
+                        "filename": "laga mat 3.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 11,
+                "text": "köpa",
+                "path": "bliss",
+                "filename": "buy,purchase-(to).svg",
+                "glossId": 13099,
+                "glossText": "köpa, handla",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "köpa",
+                        "path": "rt",
+                        "filename": "köpa.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 12,
+                "text": "bada, tvätta",
+                "path": "bliss",
+                "filename": "wash,bathe,bath-(to).svg",
+                "glossId": 18038,
+                "glossText": "bada, tvätta",
+                "comment": "",
+                "partOfSpeech": "action",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "bada",
+                        "path": "rt",
+                        "filename": "bada.svg",
+                        "comment": ""
+                    },
+                    {
+                        "text": "tvätta",
+                        "path": "rt",
+                        "filename": "tvätta.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            }
+        ]
+    },
+    {
+        "pageName": "adjektiv",
+        "pageUrl": "adjektiv",
+        "pageCss": "eight-four",
+        "glossData": [
+            {
+                "position": 1,
+                "text": "glad",
+                "path": "bliss",
+                "filename": "happy,glad,gladly,happily.svg",
+                "glossId": 14676,
+                "glossText": "glad, lycklig",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "glad",
+                        "path": "rt",
+                        "filename": "glad.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 2,
+                "text": "ledsen",
+                "path": "bliss",
+                "filename": "sad,sadly,unhappily,unhappy.svg",
+                "glossId": 16702,
+                "glossText": "ledsen, olycklig",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "ledsen",
+                        "path": "rt",
+                        "filename": "ledsen.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 3,
+                "text": "ny",
+                "path": "bliss",
+                "filename": "new.svg",
+                "glossId": 15710,
+                "glossText": "ny",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "ny",
+                        "path": "rt",
+                        "filename": "ny.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 4,
+                "text": "gammal",
+                "path": "bliss",
+                "filename": "old,elderly.svg",
+                "glossId": 15916,
+                "glossText": "gammal, äldre (motsats ung)",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "gammal",
+                        "path": "rt",
+                        "filename": "gammal.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 5,
+                "text": "arg",
+                "path": "bliss",
+                "filename": "angry,angrily,mad.svg",
+                "glossId": 12337,
+                "glossText": "arg, ilsken",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "arg",
+                        "path": "rt",
+                        "filename": "arg.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 8,
+                "text": "trasig",
+                "path": "bliss",
+                "filename": "broken.svg",
+                "glossId": 12907,
+                "glossText": "trasig, sönder, avbruten",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "trasig",
+                        "path": "rt",
+                        "filename": "trasig.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 9,
+                "text": "frisk",
+                "path": "bliss",
+                "filename": "healthy,well.svg",
+                "glossId": 14691,
+                "glossText": "frisk, kry",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "frisk",
+                        "path": "rt",
+                        "filename": "frisk.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 10,
+                "text": "sjuk",
+                "path": "bliss",
+                "filename": "sick,ill.svg",
+                "glossId": 16973,
+                "glossText": "sjuk",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "sjuk",
+                        "path": "rt",
+                        "filename": "sjuk.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 11,
+                "text": "hungrig",
+                "path": "bliss",
+                "filename": "hungry.svg",
+                "glossId": 14912,
+                "glossText": "hungrig",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "hungrig",
+                        "path": "rt",
+                        "filename": "hungrig.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 12,
+                "text": "törstig",
+                "path": "bliss",
+                "filename": "thirsty.svg",
+                "glossId": 17719,
+                "glossText": "köpa, handla",
+                "comment": "",
+                "partOfSpeech": "description",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [
+                    {
+                        "text": "törstig",
+                        "path": "rt",
+                        "filename": "törstig.svg",
+                        "comment": ""
+                    }
+                ],
+                "glossSubUnitsRight": []
+            }
+        ]
+    },
+    {
+        "pageName": "personfoton",
+        "pageUrl": "personfoton",
+        "pageCss": "tall-five-five",
+        "glossData": [
+            {
+                "position": 1,
+                "text": "Greger",
+                "path": "custom",
+                "filename": "character1.png",
+                "glossId": "",
+                "glossText": "",
+                "comment": "",
+                "partOfSpeech": "",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 2,
+                "text": "Peter",
+                "path": "custom",
+                "filename": "character2.png",
+                "glossId": "",
+                "glossText": "",
+                "comment": "",
+                "partOfSpeech": "",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []
+            },
+            {
+                "position": 3,
+                "text": "Nils",
+                "path": "custom",
+                "filename": "character3.png",
+                "glossId": "",
+                "glossText": "",
+                "comment": "",
+                "partOfSpeech": "",
+                "pageLinkUrl": "",
                 "glossSubUnitsLeft": [],
                 "glossSubUnitsRight": []
             }

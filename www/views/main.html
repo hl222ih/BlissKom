@@ -8,9 +8,13 @@
       </a>
   </p>
 </div>-->
+<div id="navHeader">
+    <div id="navPageName">{{navPage.pageName}}</div>
+</div>
+
 <div id="navBody">
     <bk-nav-style></bk-nav-style>
-    <div ng-repeat="glossUnit in glossUnits">
+    <div data-ng-repeat="glossUnit in glossUnits">
         <bk-gloss-unit-mini data-bk-pageid="1"/>
     </div>
 <!--    <img id="unit1" class="testUnit" alt="" src="img/contentImg/hej.svg" />
