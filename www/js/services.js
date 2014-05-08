@@ -3,7 +3,7 @@ blissKom.factory("glossFactory", function() {
     //If the inserted data object includes erronous properties, they will be neglected.
     //If the inserted data object lacks some properties, the corresponding properties
     //will become undefined.
-    GlossSubUnit = function(data) {
+    var GlossSubUnit = function(data) {
         this.path = data.path;
         this.filename = data.filename;
         this.text = data.text;
@@ -14,7 +14,7 @@ blissKom.factory("glossFactory", function() {
     //If the inserted data object includes erronous properties, they will be neglected.
     //If the inserted data object lacks some properties, the corresponding properties
     //will be undefined.
-    GlossUnit = function(data) {
+    var GlossUnit = function(data) {
         this.position = data.position;
         this.text = data.text;
         this.path = data.path;
@@ -46,16 +46,12 @@ blissKom.factory("glossFactory", function() {
 
     //factory's all functions
     return { 
-        //testfunktion.
-        createGlossUnit: function(data) { 
-            return new GlossUnit(data); 
-        },
-        createGlossUnits: function(data) { 
+        createGlossUnits: function(glossDataArray) { 
             var i = 0,
                 glossUnits = [];
             
-            for (;i < data.length; i++) {
-                glossUnits.push(new GlossUnit(data[i]));
+            for (;i < glossDataArray.length; i++) {
+                glossUnits.push(new GlossUnit(glossDataArray[i]));
             }
             return glossUnits; 
         }
@@ -63,11 +59,10 @@ blissKom.factory("glossFactory", function() {
 });
 
 blissKom.service("navPageService", function($http) {       
-    
     var getJson = function(jsonFile) {
         return $http.get('data/' + jsonFile);
     };
-    
+        
     this.getCssTemplates = function() { 
         return getJson('cssTemplates.json');
     };
@@ -84,10 +79,7 @@ blissKom.service("navPageService", function($http) {
         })[0];
             
             
-//            $scope.cssTemplates
-//            var pageCssSettings = pageCssesSettings[pageCssName];
         var allCss = "";
-//cssTemplate["settings"] ger undef
         for (var i = 0; i < cssTemplate.settings.length; i++) {
             var currentObj = cssTemplate.settings[i];
             var someCss = "\n    #unit" + currentObj["position"] + " {\n"
@@ -101,12 +93,6 @@ blissKom.service("navPageService", function($http) {
         };
         return allCss;
     };
-//        getPageCssName: function (pageId) {
-//            var pageCssName
-//            
-//            return pageCssName;
-//        }
-//    };
 });
 
 blissKom.service("databaseService", function() {
@@ -136,4 +122,18 @@ blissKom.service("databaseService", function() {
     };
 });
 
-
+blissKom.service("dataServiceProvider", function ($http, $q) {
+    this.getInitData = function() {
+        return $q.all([
+            $http.get('data/' + 'cssTemplates.json'),
+            $http.get('data/' + 'navPages.json'),
+            $http.get('data/' + 'posColors.json')
+        ]).then(function (responses) {
+            return {
+                cssTemplates: responses[0].data,
+                navPages: responses[1].data,
+                posColors: responses[2].data
+            };
+        });
+    };
+});

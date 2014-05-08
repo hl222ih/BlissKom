@@ -1,44 +1,24 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, glossFactory, databaseService, navPageService) { 
-        $scope.cssTemplates = [];
-        $scope.navPages = [];
-        $scope.partOfSpeechColors = {};
+blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, glossFactory, databaseService, navPageService, dataServiceProvider) { 
         databaseService.updateLocalBlissCollection();
-        navPageService.getNavPages()
-            .then(function (response) {
-                $scope.navPages = response.data;
-                navPageService.getPosColors()
-                    .then(function (response) {
-                        $scope.partOfSpeechColors = response.data;
-                        navPageService.getCssTemplates()
-                            .then(function (response) {
-                                $scope.cssTemplates = response.data;
-                                $scope.updateNavigationPage('startsida');
-                            }, function (response) {
-                                alert("Ett fel inträffade. Kunde inte ladda sidornas stilmallar.");
-                            });
-                    }, function (response) {
-                        alert("Ett fel inträffade. Kunde inte ladda färginställningarna.");
-                    });
-            }, function (response) {
-                alert("Ett fel inträffade. Kunde inte ladda orduppsättningen.");
-            });
-                
+        $rootScope.cssTemplates;  // = dataServiceProvider.cssTemplates;
+        $rootScope.navPages; // = dataServiceProvider.navPages;
+        $rootScope.partOfSpeechColors; // = dataServiceProvider.posColors;
 
-        $scope.greeting = "hello world!";
-        $scope.items = {
-            1: {
-                name: '1',
-                type: 'type1'
-            },
-            2: {
-                name: '2',
-                type: 'type2'
-            },
-            4: {
-                name: '5',
-                type: 'type4'
-            }
-        };
+//        $scope.greeting = "hello world!";
+//        $scope.items = {
+//            1: {
+//                name: '1',
+//                type: 'type1'
+//            },
+//            2: {
+//                name: '2',
+//                type: 'type2'
+//            },
+//            4: {
+//                name: '5',
+//                type: 'type4'
+//            }
+//        };
         $scope.updateNavigationPage = function(pageUrl) {
             //if (pageId === 2) {
             //switchStyleSheet(pageId);
@@ -46,34 +26,27 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, glossFac
                     pageUrl = "startsida";
                 }
 
-            var currentNavPage = $scope.navPages.filter(function (nObj) {
-                return nObj.pageUrl === pageUrl;
-            })[0];
-
+            if ($rootScope.navPages) {
+                var currentNavPage = $rootScope.navPages.filter(function (nObj) {
+                    return nObj.pageUrl === pageUrl;
+                })[0];
+            }
             if (!currentNavPage) {
-                alert("Något gick fel. Sidan kunde inte hittas.");
+                alert("Sidan kunde inte hittas.");
                 return;
             }
-
-
-            $scope.unitStyles = navPageService.getPageCss($scope.cssTemplates, currentNavPage.pageCss);
-            $scope.glossUnits = glossFactory.createGlossUnits(currentNavPage.glossData);
+            $scope.unitStyles = navPageService.getPageCss($rootScope.cssTemplates, currentNavPage.pageCss);
+            var glossUnits = glossFactory.createGlossUnits(currentNavPage.glossData);
+            $scope.testColor = "#333";
             $scope.navPage = {
-                 pageName: "startsida",
-                 pageUrl: "startsida",
-                 glossUnits: $scope.glossUnits,
-                 pageCss: "test-1"
+                 pageName: currentNavPage.pageName,
+                 pageUrl: currentNavPage.pageUrl,
+                 glossUnits: glossUnits,
+                 pageCss: currentNavPage.pageCss
             };
 
         };
-        $scope.testColor = "#333";
-        $scope.navPage = {
-             pageName: "startsida",
-             pageUrl: "startsida",
-             glossUnits: $scope.glossUnits,
-             pageCss: "test-1"
-        };
-        
+        $scope.updateNavigationPage('startsida');
     });
 
 //test, gör ingenting i nuläget...

@@ -1,4 +1,5 @@
 var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
+
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/main');
         $stateProvider
@@ -20,7 +21,17 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
                 templateUrl: 'views/device.html',
                 controller: 'DeviceCtrl'
             });
-    });
+    })
+    .run(function($rootScope,dataServiceProvider) {
+        dataServiceProvider.getInitData()
+            .then(function(initData) {
+                $rootScope.cssTemplates = initData.cssTemplates;
+                $rootScope.navPages = initData.navPages;
+                $rootScope.partOfSpeechColors = initData.posColors;
+            }, function(){
+                alert("Kunde inte ladda data.");
+            });
+    });  
 
 //test-code
 //just for testing, does the application react to battery status change?
