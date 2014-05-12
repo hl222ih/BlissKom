@@ -10,16 +10,34 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
                         templateUrl: 'views/main.html',
                         controller: 'MainCtrl'
                     },
-                    'extra': {
-                        template: '<div>include some extra content</div>',
+                    'header': {
+                        templateUrl: 'views/header.html',
                         controller: 'MainCtrl'
                     }
+//                    ,
+//                    'extra': {
+//                        template: '<div>include some extra content</div>',
+//                        controller: 'MainCtrl'
+//                    }
                 }
             })
             .state('/device', {
                 url: 'device',
                 templateUrl: 'views/device.html',
                 controller: 'DeviceCtrl'
+            })
+            .state('settings', {
+                url: '/settings',
+                views: {
+                    '': { 
+                        templateUrl: 'views/settings.html',
+                        controller: 'MainCtrl'
+                    },
+                    'header': {
+                        templateUrl: 'views/header.html',
+                        controller: 'MainCtrl'
+                    }
+                }
             });
     })
     .run(function($rootScope,dataServiceProvider,databaseServiceProvider) {

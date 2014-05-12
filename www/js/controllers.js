@@ -1,4 +1,4 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, glossFactory, navPageService, dataServiceProvider) { 
+blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupService, glossFactory, navPageService, dataServiceProvider) { 
 //testa spara en fil...hmmm
 //    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {  
 //    }, function() {
@@ -41,13 +41,15 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, glossFac
         
         //Create an object for the navigation page, with properties bindable
         //by the code
-        $scope.navPage = {
+        $rootScope.navPage = {
              pageName: currentNavPage.pageName,
              pageUrl: currentNavPage.pageUrl,
              glossUnits: glossUnits,
              pageCss: currentNavPage.pageCss,
              unitStyles: unitStyles
         };
+        //$rootScope.$apply();
+
 
     };
 
@@ -61,6 +63,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, glossFac
     //        alert("finished!");
     //    });
     //}
+    $scope.doBackup = backupService.doBackup;
 });
 
 //test, gör ingenting i nuläget...

@@ -144,3 +144,16 @@ blissKom.service("dataServiceProvider", function($http, $q) {
         });
     };
 });
+
+blissKom.service("backupService", function($rootScope) {
+    this.doBackup = function() {
+        var userRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/users/' + $rootScope.user.id);
+        userRef.push({ 
+            "datetime": new Date().getTime(), 
+            "cssTemplates" : $rootScope.cssTemplates,
+            "posColors" : $rootScope.partOfSpeechColors,
+            "navPages" : $rootScope.navPages,
+            "appSettings" : $rootScope.appSettings
+        });
+    };
+});
