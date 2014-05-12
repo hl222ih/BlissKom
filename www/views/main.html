@@ -9,10 +9,10 @@
   </p>
 </div>-->
 <div id="navHeader">
-    <div id="navPageName">{{navPage.pageName}}</div>
+    <div id="navPageName">{{navPage.pageName}} ({{user ? "logged in" : "not logged in"}})</div>
 </div>
 
-<div id="navBody">
+<div id="navBody" style="cursor: move;">
     <bk-nav-style></bk-nav-style>
     <div data-ng-repeat="glossUnit in navPage.glossUnits">
         <bk-gloss-unit-mini data-bk-pageid="1"/>

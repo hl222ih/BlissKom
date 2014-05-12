@@ -22,15 +22,17 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
                 controller: 'DeviceCtrl'
             });
     })
-    .run(function($rootScope,dataServiceProvider) {
+    .run(function($rootScope,dataServiceProvider,databaseServiceProvider) {
         dataServiceProvider.getInitData()
             .then(function(initData) {
                 $rootScope.cssTemplates = initData.cssTemplates;
                 $rootScope.navPages = initData.navPages;
                 $rootScope.partOfSpeechColors = initData.posColors;
+                $rootScope.appSettings = initData.appSettings;
+                databaseServiceProvider.createAuthAndLogin($rootScope.appSettings.email, $rootScope.appSettings.password);
             }, function(){
                 alert("Kunde inte ladda data.");
-            });
+            });            
     });  
 
 //test-code

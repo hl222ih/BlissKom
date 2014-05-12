@@ -7,7 +7,7 @@ blissKom.factory("glossFactory", function() {
         this.path = data.path;
         this.filename = data.filename;
         this.text = data.text;
-        this.comment = data.comment; //valbart
+        this.comment = data.comment; //optional
     };
 
     //Constructor for GlossUnit objects.
@@ -21,23 +21,23 @@ blissKom.factory("glossFactory", function() {
         this.filename = data.filename;
         this.glossId = data.glossId;
         this.glossText = data.glossText;
-        this.comment = data.comment; //valbart
+        this.comment = data.comment; //optional
         this.partOfSpeech = data.partOfSpeech;
-        this.pageLinkUrl = data.pageLinkUrl; //endast för sidlänkar
-        this.glossSubUnitsLeft = this.createArrayOfGlossSubUnits(data.glossSubUnitsLeft); //valbart
-        this.glossSubUnitsRight = this.createArrayOfGlossSubUnits(data.glossSubUnitsRight); //valbart
+        this.pageLinkUrl = data.pageLinkUrl; //only for pagelinks
+        this.glossSubUnitsLeft = this.createArrayOfGlossSubUnits(data.glossSubUnitsLeft); //optional
+        this.glossSubUnitsRight = this.createArrayOfGlossSubUnits(data.glossSubUnitsRight); //optional
     };
 
     GlossUnit.prototype = {
         isPageLink: !!this.pageUrl, //returns true if pageUrl is truthy
         hasModifiedText: this.glossText !== this.text,
-        createArrayOfGlossSubUnits: function(arrayData) {
+        createArrayOfGlossSubUnits: function(dataArray) {
             var glossSubUnits = [],
                 i = 0;
 
-            if (arrayData) {
-                for (; i < arrayData.length ; i = i+1) {
-                    glossSubUnits.push(new GlossSubUnit(arrayData[i]));
+            if (dataArray) {
+                for (; i < dataArray.length ; i = i+1) {
+                    glossSubUnits.push(new GlossSubUnit(dataArray[i]));
                 }
             }
             return glossSubUnits;
@@ -58,7 +58,7 @@ blissKom.factory("glossFactory", function() {
     };
 });
 
-blissKom.service("navPageService", function($http) {       
+blissKom.service("navPageService", function($http, $rootScope) {       
     var getJson = function(jsonFile) {
         return $http.get('data/' + jsonFile);
     };
@@ -73,12 +73,15 @@ blissKom.service("navPageService", function($http) {
         return getJson('posColors.json');
     };
 
-    this.getPageCss = function(cssTemplates, cssTemplateName) {
-        var cssTemplate = cssTemplates.filter(function (tObj) {
+    //Select CSS data for CSS template with the given name,
+    //create CSS for the glossUnits presented on the navigation page
+    //and return it.
+    this.getPageCss = function(cssTemplateName) {
+        var cssTemplate = $rootScope.cssTemplates.filter(function (tObj) {
             return tObj.name === cssTemplateName;
         })[0];
             
-            
+        //Create and return CSS according to data for given CSS-template.    
         var allCss = "";
         for (var i = 0; i < cssTemplate.settings.length; i++) {
             var currentObj = cssTemplate.settings[i];
@@ -95,44 +98,48 @@ blissKom.service("navPageService", function($http) {
     };
 });
 
-blissKom.service("databaseService", function() {
-    return {
-        updateLocalBlissCollection: function() {
-            var myBlissRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/bliss');
-            //funkar inte som jag vill, måste ses över.
-            var auth = new FirebaseSimpleLogin(myBlissRef, function(error, user) {
-                if (error) {
-//                    console.log("nånting gick fel");
-                } else if (user) {
-//                    console.log("redan inloggad");
-                    myBlissRef.once('value', function(dataSnapshot) {
-                        var mySnapShot = dataSnapshot;
-                        var blissObjects = mySnapShot.val();
-                        localStorage.setItem('testObject5', JSON.stringify(blissObjects));
-                    });
-                } else {
-                    auth.login('password', {
-                        email: 'test2@test.com',
-                        password: 'test'
-                    });
-//                    console.log("Login now succeeded (email/userid): " );//+ user.email + " " + user.id);
-                };
-            });
-        }
+
+
+
+
+blissKom.service("databaseServiceProvider", function ($q, $rootScope) {
+    this.createAuthAndLogin = function(email, password) {
+        var blissRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/bliss');
+        return $q.when($rootScope.blissAuth = new FirebaseSimpleLogin(blissRef, function(error, user) {
+            if (error) {
+                // an error occurred while attempting login, so, cancel attempt...
+                // console.log(error);
+                $rootScope.blissAuth = null;
+            } else if (user) {
+                // user authenticated with Firebase
+                // console.log('User ID!: ' + user.uid + ', Provider: ' + user.provider);
+                $rootScope.user = user;
+                $rootScope.$apply();
+            } else {
+                // user is logged out, so, login...
+                console.log("logged out, trying to login");
+                $rootScope.blissAuth.login('password', {
+                    email: email,
+                    password: password
+                });
+            }
+        }));
     };
 });
 
-blissKom.service("dataServiceProvider", function ($http, $q) {
+blissKom.service("dataServiceProvider", function($http, $q) {
     this.getInitData = function() {
         return $q.all([
             $http.get('data/' + 'cssTemplates.json'),
             $http.get('data/' + 'navPages.json'),
-            $http.get('data/' + 'posColors.json')
+            $http.get('data/' + 'posColors.json'),
+            $http.get('data/' + 'appSettings.json')
         ]).then(function (responses) {
             return {
                 cssTemplates: responses[0].data,
                 navPages: responses[1].data,
-                posColors: responses[2].data
+                posColors: responses[2].data,
+                appSettings: responses[3].data
             };
         });
     };
