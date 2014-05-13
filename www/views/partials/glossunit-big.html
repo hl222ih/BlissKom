@@ -1,2 +1,14 @@
-<div ng-repeat="part in glossUnitParts">
+<div class="dim">
+    <div class="largeGlossUnits {{navPage.currentGlossUnit.partOfSpeech}}" > 
+        <img class="largeGlossUnitImg"
+             data-ng-if="navPage.currentGlossUnit.path === 'custom'"
+             data-ng-src="img/custom/{{navPage.currentGlossUnit.filename}}" />
+        <img class="largeGlossUnitImg"
+             data-ng-if="navPage.currentGlossUnit.path === 'bliss'"
+             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{navPage.currentGlossUnit.filename}}" />
+        <img class="largeGlossUnitImg"
+             data-ng-if="navPage.currentGlossUnit.path === 'rt'"
+             data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{navPage.currentGlossUnit.filename}}" />
+        <input class="largeGlossUnitTexts" type="button" value="{{navPage.currentGlossUnit.text}}" data-ng-click=""/>
+    </div>
 </div>

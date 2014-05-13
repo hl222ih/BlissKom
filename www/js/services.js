@@ -29,8 +29,8 @@ blissKom.factory("glossFactory", function() {
     };
 
     GlossUnit.prototype = {
-        isPageLink: !!this.pageUrl, //returns true if pageUrl is truthy
-        hasModifiedText: this.glossText !== this.text,
+        isPageLink: function() { return !!this.pageLinkUrl; }, //returns true if pageLinkUrl is truthy
+        hasModifiedText: function() { this.glossText !== this.text; },
         createArrayOfGlossSubUnits: function(dataArray) {
             var glossSubUnits = [],
                 i = 0;
@@ -85,13 +85,13 @@ blissKom.service("navPageService", function($http, $rootScope) {
         var allCss = "";
         for (var i = 0; i < cssTemplate.settings.length; i++) {
             var currentObj = cssTemplate.settings[i];
-            var someCss = "\n    #unit" + currentObj["position"] + " {\n"
+            var someCss = "\n    .unit" + currentObj.position + " {\n"
             + "        display: block;\n"
-            + "        width: " + currentObj["width"] + "%;\n"
-            + "        height: " + currentObj["height"] + "%;\n"
-            + "        left: " + currentObj["left"] + "%;\n"
-            + "        top: " + currentObj["top"] + "%;\n"
-            + "    }\n";
+            + "        width: " + currentObj.width + "%;\n"
+            + "        height: " + currentObj.height + "%;\n"
+            + "        left: " + currentObj.left + "%;\n"
+            + "        top: " + currentObj.top + "%;\n"
+            + "        }\n";
             allCss += someCss;
         };
         return allCss;

@@ -1,0 +1,17 @@
+<div>
+    <a class="unit{{glossUnit.position}} glossUnits {{glossUnit.partOfSpeech}}"
+       ng-class="{pageLink: glossUnit.isPageLink()}"
+       data-ng-click="glossUnitClick(glossUnit)"
+       data-ng-href="#" style="">
+        <img class="smallGlossUnitImg"
+             data-ng-if="glossUnit.path === 'custom'"
+             data-ng-src="img/custom/{{glossUnit.filename}}" />
+        <img class="smallGlossUnitImg"
+             data-ng-if="glossUnit.path === 'bliss'"
+             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{glossUnit.filename}}" />
+        <img class="smallGlossUnitImg"
+             data-ng-if="glossUnit.path === 'rt'"
+             data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{glossUnit.filename}}" />
+    <div class="glossUnitTexts">{{glossUnit.text}}</div>
+    </a>        
+</div>

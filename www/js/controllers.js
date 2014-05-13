@@ -46,7 +46,8 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
              pageUrl: currentNavPage.pageUrl,
              glossUnits: glossUnits,
              pageCss: currentNavPage.pageCss,
-             unitStyles: unitStyles
+             unitStyles: unitStyles,
+             currentGlossUnit: null
         };
         //$rootScope.$apply();
 
@@ -64,6 +65,14 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
     //    });
     //}
     $scope.doBackup = backupService.doBackup;
+    $scope.glossUnitClick = function (glossUnit) {
+        if (glossUnit.isPageLink()) {
+            $scope.updateNavigationPage(glossUnit.pageLinkUrl);
+        } else {
+            $scope.showEnlargedGlossUnit = true;
+            $rootScope.navPage.currentGlossUnit = glossUnit;
+        }
+    };
 });
 
 //test, gör ingenting i nuläget...
