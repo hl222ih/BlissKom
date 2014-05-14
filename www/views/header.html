@@ -1,3 +1,9 @@
 <div id="navHeader">
-    <div id="navPageName"><a ui-sref="main">Main</a> | <a ui-sref="settings">Settings</a>{{navPage.pageName}} ({{user ? "logged in" : "not logged in"}})</div>
+    <div id="navPageName">
+        <a ui-sref="main">Main</a> | <a ui-sref="settings">Settings</a>{{navPage.pageName}} 
+    </div>
+    <div style="position: absolute; display: block; width: 5%; height: 100%; right: 0;">
+        <bk-icon-connected ng-if="user" style="position: absolute; display: block; height: 100%; max-width: 5%;"></bk-icon-connected>
+        <bk-icon-disconnected ng-if="!user" style="position: absolute; display: block; height: 100%; max-width: 5%;"></bk-icon-disconnected>
+    </div>
 </div>
