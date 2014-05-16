@@ -1,9 +1,17 @@
 <div id="navHeader">
-    <div id="navPageName">
-        <a ui-sref="main">Main</a> | <a ui-sref="settings">Settings</a>{{navPage.pageName}} 
+    <bk-icon-menu></bk-icon-menu>
+    <bk-icon-editmode></bk-icon-editmode>
+    <bk-icon-book></bk-icon-book>
+    <bk-icon-home></bk-icon-home>
+
+    <div id="pageNav">
+        <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{activeHeaderUrl: $index === currentNavTree.position, headerUrl: true}">
+            <div>
+                <div>{{pageName}}</div>
+                <bk-icon-rightarrow ng-if="!$last"></bk-icon-rightarrow>
+            </div>
+        </div>
     </div>
-    <div style="position: absolute; display: block; width: 5%; height: 100%; right: 0;">
-        <bk-icon-connected ng-if="user" style="position: absolute; display: block; height: 100%; max-width: 5%;"></bk-icon-connected>
-        <bk-icon-disconnected ng-if="!user" style="position: absolute; display: block; height: 100%; max-width: 5%;"></bk-icon-disconnected>
-    </div>
+    <bk-icon-connected ng-if="user"></bk-icon-connected>
+    <bk-icon-disconnected ng-if="!user"></bk-icon-disconnected>
 </div>

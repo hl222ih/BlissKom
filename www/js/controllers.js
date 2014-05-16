@@ -14,7 +14,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
         //Defaulting page-url to "startsida". 
         //Should not be hardcoded.
         if (!pageUrl) {
-            pageUrl = "startsida";
+            pageUrl = "startsidaa";
         }
      
         //Get the navigation page with page-url from the collection of
@@ -40,7 +40,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
         var glossUnits = glossFactory.createGlossUnits(currentNavPage.glossData);
         
         //Create an object for the navigation page, with properties bindable
-        //by the code
+        //by the code.
         $rootScope.navPage = {
              pageName: currentNavPage.pageName,
              pageUrl: currentNavPage.pageUrl,
@@ -49,15 +49,14 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
              unitStyles: unitStyles,
              currentGlossUnit: null
         };
-        //$rootScope.$apply();
 
-
+        $rootScope.headings = [];
     };
 
     //Displays the navigation page with url "startsida", the main navigation page.
     //Should remove the 'startsida' hard coding to allow several parallel
     //navigation setups.
-    $scope.updateNavigationPage('startsida');
+    $scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position]);
     //$scope.login = function() {
     //    databaseServiceProvider.getServerBlissCollection()
     //    .then( function() {

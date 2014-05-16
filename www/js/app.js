@@ -41,6 +41,8 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
             });
     })
     .run(function($rootScope,dataServiceProvider,databaseServiceProvider) {
+        //keep track of current navigation pages' url's/names
+        
         dataServiceProvider.getInitData()
             .then(function(initData) {
                 $rootScope.cssTemplates = initData.cssTemplates;
@@ -48,6 +50,11 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
                 $rootScope.partOfSpeechColors = initData.posColors;
                 $rootScope.appSettings = initData.appSettings;
                 databaseServiceProvider.createAuthAndLogin($rootScope.appSettings.email, $rootScope.appSettings.password);
+                $rootScope.currentNavTree = {
+                    "treePageUrls": [$rootScope.appSettings.defaultPageUrl, "attgora", "hojto", "specialsida", "utflykter", "manader"],
+                    "treePageNames": [$rootScope.appSettings.defaultPageName, "att göra", "hojto", "specialsida", "utflykter", "månader"],
+                    "position": 1,
+                }; 
             }, function(){
                 alert("Kunde inte ladda data.");
             });            

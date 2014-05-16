@@ -36,3 +36,45 @@ blissKom.directive("bkIconSwipedown", function() {
         templateUrl: 'views/partials/icons/button-swipedown.html'
     };
 });
+
+blissKom.directive("bkIconLeftarrow", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/button-leftarrow.html'
+    };
+});
+
+blissKom.directive("bkIconRightarrow", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/button-rightarrow.html'
+    };
+});
+
+blissKom.directive("bkIconMenu", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/button-menu.html'
+    }
+});
+
+blissKom.directive("bkIconEditmode", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/button-editmode.html'
+    }
+});
+
+blissKom.directive("bkIconBook", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/button-book.html'
+    }
+});
+
+blissKom.directive("bkIconHome", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/button-home.html'
+    }
+});

@@ -10,11 +10,11 @@
              data-ng-if="navPage.currentGlossUnit.path === 'rt'"
              data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{navPage.currentGlossUnit.filename}}" />
         <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.partOfSpeech}}">
-            <div style="position: absolute; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.28);">
-                <bk-icon-ok style="position: absolute; left: 0; top; 0; height: 100%; width: 15%; background-color: rgba(255, 255, 255, 0.2); "></bk-icon-ok>
-                <input class="largeGlossUnitTexts" type="button" style="" value="{{navPage.currentGlossUnit.text}}" data-ng-click=""/>
-                <input class="largeGlossUnitTexts" type="button" style="" value="{{navPage.currentGlossUnit.text}}" data-ng-click=""/>
-                <bk-icon-cancel style="position: absolute; left: 85%; top; 0; height: 100%; width: 15%; background-color: rgba(255, 255, 255, 0.2);"></bk-icon-ok>
+            <div style="position: absolute; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.29);">
+                <bk-icon-ok></bk-icon-ok>
+                <input data-ng-repeat="text in navPage.currentGlossUnit.text | stringToArray" class="largeGlossUnitTexts" type="button" value="{{text}}" data-ng-click="" />
+<!--<input data-ng-repeat="text in navPage.currentGlossUnit.texts" class="largeGlossUnitTexts" type="button" style="" value="{{text}}" data-ng-click=""/>-->
+                <bk-icon-cancel></bk-icon-cancel>
             </div>
         </div>
     </div>
