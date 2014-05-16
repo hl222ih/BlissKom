@@ -11,10 +11,10 @@
              data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{navPage.currentGlossUnit.filename}}" />
         <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.partOfSpeech}}">
             <div style="position: absolute; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.29);">
-                <bk-icon-ok></bk-icon-ok>
+                <bk-icon-ok data-ng-click="confirmEnlargedGlossUnit()"></bk-icon-ok>
                 <input data-ng-repeat="text in navPage.currentGlossUnit.text | stringToArray" class="largeGlossUnitTexts" type="button" value="{{text}}" data-ng-click="" />
 <!--<input data-ng-repeat="text in navPage.currentGlossUnit.texts" class="largeGlossUnitTexts" type="button" style="" value="{{text}}" data-ng-click=""/>-->
-                <bk-icon-cancel></bk-icon-cancel>
+                <bk-icon-cancel data-ng-click="cancelEnlargedGlossUnit()"></bk-icon-cancel>
             </div>
         </div>
     </div>

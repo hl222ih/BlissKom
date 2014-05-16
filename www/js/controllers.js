@@ -11,6 +11,8 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
     //Is normally invoked by a tap of a glossUnit-link or
     //a tap of an enlarged glossUnit image as confirmation.
     $scope.updateNavigationPage = function(pageUrl) {
+        $scope.showEnlargedGlossUnit = false;
+
         //Defaulting page-url to "startsida". 
         //Should not be hardcoded.
         if (!pageUrl) {
@@ -49,7 +51,6 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
              unitStyles: unitStyles,
              currentGlossUnit: null
         };
-
         $rootScope.headings = [];
     };
 
@@ -72,6 +73,18 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
             $rootScope.navPage.currentGlossUnit = glossUnit;
         }
     };
+    $scope.cancelEnlargedGlossUnit = function () {
+        $scope.showEnlargedGlossUnit = false;
+    }
+    $scope.confirmEnlargedGlossUnit = function () {
+        $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
+    }
+    $scope.isMenuVisible = false;
+    $scope.toggleMenu = function() { $scope.isMenuVisible = !$scope.isMenuVisible; };
+    $scope.navToPrevPage = function() {
+        //till startsidan som test
+        $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
+    }
 });
 
 //test, gör ingenting i nuläget...

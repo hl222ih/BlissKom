@@ -1,4 +1,4 @@
-var blissKom = angular.module("blissKom", ["ui.router", "firebase"])
+var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch"])
 
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/main');

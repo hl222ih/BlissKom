@@ -1,5 +1,5 @@
 <div id="navHeader">
-    <bk-icon-menu></bk-icon-menu>
+    <bk-icon-menu ng-click="toggleMenu()"></bk-icon-menu>
     <bk-icon-editmode></bk-icon-editmode>
     <bk-icon-book></bk-icon-book>
     <bk-icon-home></bk-icon-home>
@@ -14,4 +14,10 @@
     </div>
     <bk-icon-connected ng-if="user"></bk-icon-connected>
     <bk-icon-disconnected ng-if="!user"></bk-icon-disconnected>
+</div>
+<div id="menu" ng-show="isMenuVisible">
+    <div>menu item #1</div>
+    <div>menu item #2</div>
+    <div>menu item #3</div>
+    <div>menu item #4</div>
 </div>
