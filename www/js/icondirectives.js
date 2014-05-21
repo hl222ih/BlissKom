@@ -85,3 +85,17 @@ blissKom.directive("bkIconComment", function() {
         templateUrl: 'views/partials/icons/icon-comment.html'
     }
 });
+
+blissKom.directive("bkIconBigrightarrow", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-bigrightarrow.html'
+    }
+});
+
+blissKom.directive("bkIconBigleftarrow", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-bigleftarrow.html'
+    }
+});

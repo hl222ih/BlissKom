@@ -241,6 +241,7 @@ div.dim {
     border-radius: 15px;
     overflow: hidden;
     background-color: #eee;
+    box-shadow: 0 -1px 10px 1px black;
 }
 
 .largeGlossUnitTexts {
@@ -386,4 +387,22 @@ bk-icon-home {
     width: 36px;
     color: green;
     z-index: 2;
+}
+
+.largeGlossUnits > bk-icon-bigrightarrow {
+    position: absolute; 
+    height: 64px; 
+    width: 64px;
+    top: calc(50% - 62px); /*50%  - (half height + full padding)*/
+    right: -82px;
+    padding: 30px;
+}
+
+.largeGlossUnits > bk-icon-bigleftarrow {
+    position: absolute; 
+    height: 64px; 
+    width: 64px;
+    top: calc(50% - 62px); /*50%  - (half height + full padding)*/
+    left: -82px;
+    padding: 30px;
 }
