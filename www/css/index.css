@@ -134,9 +134,9 @@ body div {
     color: white;
     position: relative;
     font-size: 1rem;
-    left: 20%;
+    left: 152px;
     height: 40px;
-    width: 70%;
+    width: calc(100% - 152px - 45px);
     text-align: center;
 }
 

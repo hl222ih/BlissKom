@@ -14,11 +14,6 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch"])
                         templateUrl: 'views/header.html',
                         controller: 'MainCtrl'
                     }
-//                    ,
-//                    'extra': {
-//                        template: '<div>include some extra content</div>',
-//                        controller: 'MainCtrl'
-//                    }
                 }
             })
             .state('/device', {
@@ -31,6 +26,19 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch"])
                 views: {
                     '': { 
                         templateUrl: 'views/settings.html',
+                        controller: 'MainCtrl'
+                    },
+                    'header': {
+                        templateUrl: 'views/header.html',
+                        controller: 'MainCtrl'
+                    }
+                }
+            })
+            .state('glossunitsettings', {
+                url: '/glossunitsettings',
+                views: {
+                    '': { 
+                        templateUrl: 'views/glossunitsettings.html',
                         controller: 'MainCtrl'
                     },
                     'header': {

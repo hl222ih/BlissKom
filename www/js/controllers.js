@@ -85,6 +85,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
         //till startsidan som test
         $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
     }
+    dataServiceProvider.downloadBlissData();
 });
 
 //test, gör ingenting i nuläget...
