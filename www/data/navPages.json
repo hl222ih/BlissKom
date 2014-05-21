@@ -11,7 +11,7 @@
                 "filename": "hello,greetings.svg",
                 "glossId": 14702,
                 "glossText": "hej, goddag",
-                "comment": "",
+                "comment": "test",
                 "partOfSpeech": "expression",
                 "pageLinkUrl": "",
                 "glossSubUnitsLeft": [
@@ -401,7 +401,7 @@
                 "filename": "wash,bathe,bath-(to).svg",
                 "glossId": 18038,
                 "glossText": "bada, tvätta",
-                "comment": "",
+                "comment": "test",
                 "partOfSpeech": "action",
                 "pageLinkUrl": "",
                 "glossSubUnitsLeft": [
@@ -409,13 +409,13 @@
                         "text": "bada",
                         "path": "rt",
                         "filename": "bada.svg",
-                        "comment": ""
+                        "comment": "test2"
                     },
                     {
                         "text": "tvätta",
                         "path": "rt",
                         "filename": "tvätta.svg",
-                        "comment": ""
+                        "comment": "test3"
                     }
                 ],
                 "glossSubUnitsRight": []

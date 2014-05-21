@@ -1,7 +1,8 @@
 <div class="dim">
     <div class="largeGlossUnits {{navPage.currentGlossUnit.currentPartOfSpeech}}" 
         hm-swipe-right="showLeftImageOfGlossUnit(); $event.stopPropagation();"
-        hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"> 
+        hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"
+        ng-click="navPage.currentGlossUnit.showComment = false"> 
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
              data-ng-src="img/custom/{{navPage.currentGlossUnit.currentFilename}}" />
@@ -19,9 +20,12 @@
                        type="button" 
                        value="{{text}}" 
                        data-ng-click="confirmEnlargedGlossUnit(text)" />
-<!--<input data-ng-repeat="text in navPage.currentGlossUnit.texts" class="largeGlossUnitTexts" type="button" style="" value="{{text}}" data-ng-click=""/>-->
                 <bk-icon-cancel data-ng-click="cancelEnlargedGlossUnit()"></bk-icon-cancel>
             </div>
+        </div>
+        <div class="glossUnitCommentArea">
+            <bk-icon-comment ng-show="navPage.currentGlossUnit.currentComment" ng-click="navPage.currentGlossUnit.showComment = !navPage.currentGlossUnit.showComment; $event.stopPropagation();"></bk-icon-comment>
+            <div class="glossUnitComment" ng-show="navPage.currentGlossUnit.showComment">{{navPage.currentGlossUnit.currentComment}}</div>
         </div>
     </div>
 </div>

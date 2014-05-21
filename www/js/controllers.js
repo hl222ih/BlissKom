@@ -44,7 +44,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
         
         //Create an object for the navigation page, with properties bindable
         //by the code.
-        if (!$rootScope.navPage) {
+        if (!$rootScope.navPage || $rootScope.navPage.pageUrl !== pageUrl) {
             $rootScope.navPage = {
                  pageName: currentNavPage.pageName,
                  pageUrl: currentNavPage.pageUrl,
@@ -84,9 +84,11 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
     };
     $scope.cancelEnlargedGlossUnit = function () {
         $scope.showEnlargedGlossUnit = false;
+        $rootScope.navPage.currentGlossUnit.showComment = false;
     }
     $scope.confirmEnlargedGlossUnit = function (text) {
         $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
+        $rootScope.navPage.currentGlossUnit.showComment = false;
         var gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
         if (text) {
             gu.text = text;
