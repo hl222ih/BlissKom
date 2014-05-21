@@ -1,4 +1,4 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupService, glossFactory, navPageService, dataServiceProvider) { 
+blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase, backupService, glossFactory, navPageService, dataServiceProvider) { 
 //testa spara en fil...hmmm
 //    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {  
 //    }, function() {
@@ -85,7 +85,14 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $firebase, backupSe
         //till startsidan som test
         $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
     }
-    dataServiceProvider.downloadBlissData();
+    $scope.showHeader = function() {
+        $scope.isHeaderShown = true;
+        $rootScope.headerHeight = 40;
+    };
+    $scope.hideHeader = function() {
+        $scope.isHeaderShown = false;
+        $rootScope.headerHeight = 0;
+    };
 });
 
 //test, gör ingenting i nuläget...

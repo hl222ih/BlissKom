@@ -133,8 +133,7 @@ blissKom.service("dataServiceProvider", function($rootScope, $http, $q) {
             $http.get('data/' + 'cssTemplates.json'),
             $http.get('data/' + 'navPages.json'),
             $http.get('data/' + 'posColors.json'),
-            $http.get('data/' + 'appSettings.json'),
-            $http.get('
+            $http.get('data/' + 'appSettings.json')
         ]).then(function (responses) {
             return {
                 cssTemplates: responses[0].data,
@@ -146,10 +145,10 @@ blissKom.service("dataServiceProvider", function($rootScope, $http, $q) {
     };
     this.downloadBlissData = function() {
         var blissRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/bliss/');
-        alert("downloading blissdata");
+        //alert("downloading blissdata");
         blissRef.once('value', function(blissSnapshot) { 
             var blissData = blissSnapshot.val();
-            alert("downloaded bliss-data!");
+            //alert("downloaded bliss-data!");
         });
     };
 });
