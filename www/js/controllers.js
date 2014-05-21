@@ -5,6 +5,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
 //        alert('Lyckades inte få access till filsystemet');
 //    });
     //var test = $rootScope.blissAuth;
+    $rootScope.conversation = [];
 
     //Function which updates the content of a navigation page
     //based on the page-url.
@@ -43,14 +44,16 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
         
         //Create an object for the navigation page, with properties bindable
         //by the code.
-        $rootScope.navPage = {
-             pageName: currentNavPage.pageName,
-             pageUrl: currentNavPage.pageUrl,
-             glossUnits: glossUnits,
-             pageCss: currentNavPage.pageCss,
-             unitStyles: unitStyles,
-             currentGlossUnit: null
-        };
+        if (!$rootScope.navPage) {
+            $rootScope.navPage = {
+                 pageName: currentNavPage.pageName,
+                 pageUrl: currentNavPage.pageUrl,
+                 glossUnits: glossUnits,
+                 pageCss: currentNavPage.pageCss,
+                 unitStyles: unitStyles,
+                 currentGlossUnit: null
+            };
+        }
         $rootScope.headings = [];
     };
 
@@ -70,14 +73,26 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
             $scope.updateNavigationPage(glossUnit.pageLinkUrl);
         } else {
             $scope.showEnlargedGlossUnit = true;
-            $rootScope.navPage.currentGlossUnit = glossUnit;
+            $rootScope.navPage.currentGlossUnit = jQuery.extend(true, {}, glossUnit); //deepcopy glossUnit
+            $rootScope.navPage.currentGlossUnit.currentFilename = $rootScope.navPage.currentGlossUnit.filename;
+            $rootScope.navPage.currentGlossUnit.currentPath = $rootScope.navPage.currentGlossUnit.path;
+            $rootScope.navPage.currentGlossUnit.currentText = $rootScope.navPage.currentGlossUnit.text;
+            $rootScope.navPage.currentGlossUnit.currentComment = $rootScope.navPage.currentGlossUnit.comment;
+            $rootScope.navPage.currentGlossUnit.currentPartOfSpeech = $rootScope.navPage.currentGlossUnit.partOfSpeech;
+            $rootScope.navPage.currentGlossUnit.currentPosition = 0;
         }
     };
     $scope.cancelEnlargedGlossUnit = function () {
         $scope.showEnlargedGlossUnit = false;
     }
-    $scope.confirmEnlargedGlossUnit = function () {
+    $scope.confirmEnlargedGlossUnit = function (text) {
         $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
+        var gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
+        if (text) {
+            gu.text = text;
+        }
+        $rootScope.conversation.push(gu);
+        var pause = "";
     }
     $scope.isMenuVisible = false;
     $scope.toggleMenu = function() { $scope.isMenuVisible = !$scope.isMenuVisible; };
@@ -92,6 +107,64 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
     $scope.hideHeader = function() {
         $scope.isHeaderShown = false;
         $rootScope.headerHeight = 0;
+    };
+    $scope.showLeftImageOfGlossUnit = function() {
+        var cgu = $rootScope.navPage.currentGlossUnit;
+        var pos = cgu.currentPosition;
+
+        if (pos <= 0) {  
+            if (cgu.glossSubUnitsLeft[-pos]) {
+                cgu.currentFilename = cgu.glossSubUnitsLeft[-pos].filename;
+                cgu.currentPath = cgu.glossSubUnitsLeft[-pos].path;
+                cgu.currentText = cgu.glossSubUnitsLeft[-pos].text;
+                cgu.currentComment = cgu.glossSubUnitsLeft[-pos].comment;
+                cgu.currentPartOfSpeech = cgu.glossSubUnitsLeft[-pos].partOfSpeech;
+                cgu.currentPosition--;
+            }
+        } else if (pos === 1) {
+            cgu.currentFilename = cgu.filename;
+            cgu.currentPath = cgu.path;
+            cgu.currentText = cgu.text;
+            cgu.currentComment = cgu.comment;
+            cgu.currentPartOfSpeech = cgu.partOfSpeech;
+            cgu.currentPosition--;
+        } else if (pos > 1) {
+            cgu.currentFilename = cgu.glossSubUnitsRight[pos-2].filename;
+            cgu.currentPath = cgu.glossSubUnitsRight[pos-2].path;
+            cgu.currentText = cgu.glossSubUnitsRight[pos-2].text;
+            cgu.currentComment = cgu.glossSubUnitsRight[pos-2].comment;
+            cgu.currentPartOfSpeech = cgu.glossSubUnitsRight[pos-2].partOfSpeech;
+            cgu.currentPosition--;
+        }
+    };
+    $scope.showRightImageOfGlossUnit = function() {
+        var cgu = $rootScope.navPage.currentGlossUnit;
+        var pos = cgu.currentPosition;
+
+        if (pos >= 0) {
+            if (cgu.glossSubUnitsRight[pos]) {
+                cgu.currentFilename = cgu.glossSubUnitsRight[pos].filename;
+                cgu.currentPath = cgu.glossSubUnitsRight[pos].path;
+                cgu.currentText = cgu.glossSubUnitsRight[pos].text;
+                cgu.currentComment = cgu.glossSubUnitsRight[pos].comment;
+                cgu.currentPartOfSpeech = cgu.glossSubUnitsRight[pos].partOfSpeech;
+                cgu.currentPosition++;
+            }
+        } else if (pos === -1) {
+            cgu.currentFilename = cgu.filename;
+            cgu.currentPath = cgu.path;
+            cgu.currentText = cgu.text;
+            cgu.currentComment = cgu.comment;
+            cgu.currentPartOfSpeech = cgu.partOfSpeech;
+            cgu.currentPosition++;
+        } else if (pos < -1) {
+            cgu.currentFilename = cgu.glossSubUnitsLeft[pos+2].filename;
+            cgu.currentPath = cgu.glossSubUnitsLeft[pos+2].path;
+            cgu.currentText = cgu.glossSubUnitsLeft[pos+2].text;
+            cgu.currentComment = cgu.glossSubUnitsLeft[pos+2].comment;
+            cgu.currentPartOfSpeech = cgu.glossSubUnitsLeft[pos+2].partOfSpeech;
+            cgu.currentPosition++;
+        }
     };
 });
 

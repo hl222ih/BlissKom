@@ -1,18 +1,24 @@
 <div class="dim">
-    <div class="largeGlossUnits {{navPage.currentGlossUnit.partOfSpeech}}" > 
+    <div class="largeGlossUnits {{navPage.currentGlossUnit.currentPartOfSpeech}}" 
+        hm-swipe-right="showLeftImageOfGlossUnit(); $event.stopPropagation();"
+        hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"> 
         <img class="largeGlossUnitImg"
-             data-ng-if="navPage.currentGlossUnit.path === 'custom'"
-             data-ng-src="img/custom/{{navPage.currentGlossUnit.filename}}" />
+             data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
+             data-ng-src="img/custom/{{navPage.currentGlossUnit.currentFilename}}" />
         <img class="largeGlossUnitImg"
-             data-ng-if="navPage.currentGlossUnit.path === 'bliss'"
-             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{navPage.currentGlossUnit.filename}}" />
+             data-ng-if="navPage.currentGlossUnit.currentPath === 'bliss'"
+             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{navPage.currentGlossUnit.currentFilename}}" />
         <img class="largeGlossUnitImg"
-             data-ng-if="navPage.currentGlossUnit.path === 'rt'"
-             data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{navPage.currentGlossUnit.filename}}" />
-        <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.partOfSpeech}}">
+             data-ng-if="navPage.currentGlossUnit.currentPath === 'rt'"
+             data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{navPage.currentGlossUnit.currentFilename}}" />
+        <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.currentPartOfSpeech}}">
             <div style="position: absolute; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.29);">
                 <bk-icon-ok data-ng-click="confirmEnlargedGlossUnit()"></bk-icon-ok>
-                <input data-ng-repeat="text in navPage.currentGlossUnit.text | stringToArray" class="largeGlossUnitTexts" type="button" value="{{text}}" data-ng-click="" />
+                <input data-ng-repeat="text in navPage.currentGlossUnit.currentText | stringToArray" 
+                       class="largeGlossUnitTexts" 
+                       type="button" 
+                       value="{{text}}" 
+                       data-ng-click="confirmEnlargedGlossUnit(text)" />
 <!--<input data-ng-repeat="text in navPage.currentGlossUnit.texts" class="largeGlossUnitTexts" type="button" style="" value="{{text}}" data-ng-click=""/>-->
                 <bk-icon-cancel data-ng-click="cancelEnlargedGlossUnit()"></bk-icon-cancel>
             </div>

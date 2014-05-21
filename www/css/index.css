@@ -144,8 +144,8 @@ body div {
   all images centered vertically and horizontally. */
 img.smallGlossUnitImg, img.largeGlossUnitImg, svg {
     position: absolute;
-    /*zoom: 5;  enlarges img size of images that doesn't fill parent div, but
-                decreases quality of images large enough.*/
+    zoom: 2;  /*enlarges img size of images that doesn't fill parent div, but
+                decreases quality of images.*/
     max-height: 100%;
     max-width: 100%;
     top: 0;
