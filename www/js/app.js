@@ -50,6 +50,9 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
     })
     .run(function($rootScope,dataServiceProvider,databaseServiceProvider) {
         //keep track of current navigation pages' url's/names
+
+        $rootScope.isLogActive = true;
+        $rootScope.notification = "";
         
         dataServiceProvider.getInitData()
             .then(function(initData) {
@@ -58,6 +61,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                 $rootScope.partOfSpeechColors = initData.posColors;
                 $rootScope.appSettings = initData.appSettings;
                 databaseServiceProvider.createAuthAndLogin($rootScope.appSettings.email, $rootScope.appSettings.password);
+
                 $rootScope.currentNavTree = {
                     "treePageUrls": [$rootScope.appSettings.defaultPageUrl, "attgora", "hojto", "specialsida", "utflykter", "manader"],
                     "treePageNames": [$rootScope.appSettings.defaultPageName, "att göra", "hojto", "specialsida", "utflykter", "månader"],

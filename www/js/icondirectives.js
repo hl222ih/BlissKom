@@ -99,3 +99,17 @@ blissKom.directive("bkIconBigleftarrow", function() {
         templateUrl: 'views/partials/icons/icon-bigleftarrow.html'
     }
 });
+
+blissKom.directive("bkIconLoginactive", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-loginactive.html'
+    }
+});
+
+blissKom.directive("bkIconLogactive", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-logactive.html'
+    }
+});

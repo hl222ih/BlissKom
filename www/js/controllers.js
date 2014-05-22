@@ -168,6 +168,18 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
             cgu.currentPosition++;
         }
     };
+    $scope.toggleLogActivity = function () {
+        $rootScope.isLogActive = !$rootScope.isLogActive;
+        var notElement = document.getElementsByClassName("notificationBar")[0];
+        notElement.classList.remove("showForAWhile");
+        notElement.offsetWidth = notElement.offsetWidth; //hack för att nollställa css-animation istället för att ta bort hela elementet och lägga till det igen...
+        notElement.classList.add("showForAWhile");
+        if ($rootScope.isLogActive) {
+            $rootScope.notification = "anteckningar aktiverat...";
+        } else {
+            $rootScope.notification = "anteckningar inaktiverat...";
+        }
+    };
 });
 
 //test, gör ingenting i nuläget...

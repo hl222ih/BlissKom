@@ -136,7 +136,7 @@ body div {
     font-size: 1rem;
     left: 152px;
     height: 40px;
-    width: calc(100% - 152px - 45px);
+    width: calc(100% - 242px);
     text-align: center;
 }
 
@@ -328,7 +328,7 @@ bk-icon-cancel {
     top: 0px;
 }
 
-bk-icon-menu, bk-icon-editmode, bk-icon-book, bk-icon-home {
+bk-icon-menu, bk-icon-editmode, bk-icon-book, bk-icon-home, bk-icon-logactive, bk-icon-loginactive {
     position: absolute;
     display: block;
     height: 36px;
@@ -346,7 +346,14 @@ bk-icon-book {
 bk-icon-home {
     left: 114px;
 }
-    
+
+bk-icon-logactive, bk-icon-loginactive {
+    right: 40px;
+    padding-left: 30px; /* större klickutrymme */
+    padding-right: 10px; /* större klickutrymme */
+    z-index: 2;
+}
+
 #menu {
     display: block;
     position: absolute;
@@ -406,3 +413,36 @@ bk-icon-home {
     left: -82px;
     padding: 30px;
 }
+
+.notificationBar {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 24px;
+    font-size: 24px;
+    line-height: 1;
+    background-color: gray;
+    padding: 6px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+.showForAWhile, .showForAWhile2 {
+    -webkit-animation: fadeout 2s;
+    animation: fadeout 2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-delay:3s;
+    animation-delay:3s;
+    opacity: 1 !important;
+}
+
