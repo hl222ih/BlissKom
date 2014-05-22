@@ -63,9 +63,9 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                 databaseServiceProvider.createAuthAndLogin($rootScope.appSettings.email, $rootScope.appSettings.password);
 
                 $rootScope.currentNavTree = {
-                    "treePageUrls": [$rootScope.appSettings.defaultPageUrl, "attgora", "hojto", "specialsida", "utflykter", "manader"],
-                    "treePageNames": [$rootScope.appSettings.defaultPageName, "att göra", "hojto", "specialsida", "utflykter", "månader"],
-                    "position": 1,
+                    "treePageUrls": [$rootScope.appSettings.defaultPageUrl],
+                    "treePageNames": [$rootScope.appSettings.defaultPageName],
+                    "position": 0
                 }; 
             }, function(){
                 alert("Kunde inte ladda data.");

@@ -12,13 +12,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
     //Is normally invoked by a tap of a glossUnit-link or
     //a tap of an enlarged glossUnit image as confirmation.
     $scope.updateNavigationPage = function(pageUrl) {
-        $scope.showEnlargedGlossUnit = false;
-
-        //Defaulting page-url to "startsida". 
-        //Should not be hardcoded.
-        if (!pageUrl) {
-            pageUrl = "startsidaa";
-        }
+        $rootScope.showEnlargedGlossUnit = false;
      
         //Get the navigation page with page-url from the collection of
         //all navigation pages.
@@ -30,8 +24,8 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
         //If no navigation page with given page-url was found, return
         //without doing anything. Show alert message.
         if (!currentNavPage) {
-            alert("Sidan kunde inte hittas.");
-            return;
+            $rootScope.showStatusMessage("Sidan saknas...");
+            return false;
         }
 
         //Generate navigation-page-specific CSS which will be automatically
@@ -54,7 +48,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
                  currentGlossUnit: null
             };
         }
-        $rootScope.headings = [];
+        return true;
     };
 
     //Displays the navigation page with url "startsida", the main navigation page.
@@ -70,9 +64,20 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
     $scope.doBackup = backupService.doBackup;
     $scope.glossUnitClick = function (glossUnit) {
         if (glossUnit.isPageLink()) {
-            $scope.updateNavigationPage(glossUnit.pageLinkUrl);
+            if ($scope.updateNavigationPage(glossUnit.pageLinkUrl)) {
+                if ($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position] === $rootScope.appSettings.defaultPageUrl) {
+                    $rootScope.currentNavTree = {
+                        "treePageUrls": [$rootScope.appSettings.defaultPageUrl],
+                        "treePageNames": [$rootScope.appSettings.defaultPageName],
+                        "position": 0
+                    };                     
+                }
+                $rootScope.currentNavTree.treePageUrls.push(glossUnit.pageLinkUrl);
+                $rootScope.currentNavTree.treePageNames.push(glossUnit.text);
+                $rootScope.currentNavTree.position++;
+            }
         } else {
-            $scope.showEnlargedGlossUnit = true;
+            $rootScope.showEnlargedGlossUnit = true;
             $rootScope.navPage.currentGlossUnit = jQuery.extend(true, {}, glossUnit); //deepcopy glossUnit
             $rootScope.navPage.currentGlossUnit.currentFilename = $rootScope.navPage.currentGlossUnit.filename;
             $rootScope.navPage.currentGlossUnit.currentPath = $rootScope.navPage.currentGlossUnit.path;
@@ -83,25 +88,39 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
         }
     };
     $scope.cancelEnlargedGlossUnit = function () {
-        $scope.showEnlargedGlossUnit = false;
-        $rootScope.navPage.currentGlossUnit.showComment = false;
+        $rootScope.showEnlargedGlossUnit = false;
+        //$rootScope.navPage.currentGlossUnit.showComment = false;
     }
     $scope.confirmEnlargedGlossUnit = function (text) {
+        $rootScope.currentNavTree.position = 0;
         $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
-        $rootScope.navPage.currentGlossUnit.showComment = false;
+        //$rootScope.navPage.currentGlossUnit.showComment = false;
         var gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
         if (text) {
             gu.text = text;
         }
         $rootScope.conversation.push(gu);
-        var pause = "";
     }
     $scope.isMenuVisible = false;
     $scope.toggleMenu = function() { $scope.isMenuVisible = !$scope.isMenuVisible; };
     $scope.navToPrevPage = function() {
-        //till startsidan som test
-        $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
+        if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position - 1])) {
+            $rootScope.currentNavTree.position--;
+        }
     }
+
+    $scope.navToNextPage = function() {
+        if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position + 1])) {
+            $rootScope.currentNavTree.position++;
+        }
+    }
+
+    $scope.navToPage = function(position) {
+        if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[position])) {
+            $rootScope.currentNavTree.position = position;
+        }
+    }
+
     $scope.showHeader = function() {
         $scope.isHeaderShown = true;
         $rootScope.headerHeight = 40;
@@ -170,15 +189,18 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
     };
     $scope.toggleLogActivity = function () {
         $rootScope.isLogActive = !$rootScope.isLogActive;
+        if ($rootScope.isLogActive) {
+            $rootScope.showStatusMessage("Anteckningar aktiverat...");
+        } else {
+            $rootScope.showStatusMessage("Anteckningar inaktiverat...");
+        }
+    };
+    $rootScope.showStatusMessage = function (message) {
         var notElement = document.getElementsByClassName("notificationBar")[0];
         notElement.classList.remove("showForAWhile");
         notElement.offsetWidth = notElement.offsetWidth; //hack för att nollställa css-animation istället för att ta bort hela elementet och lägga till det igen...
         notElement.classList.add("showForAWhile");
-        if ($rootScope.isLogActive) {
-            $rootScope.notification = "anteckningar aktiverat...";
-        } else {
-            $rootScope.notification = "anteckningar inaktiverat...";
-        }
+        $rootScope.notification = message;
     };
 });
 

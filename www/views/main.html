@@ -8,7 +8,7 @@
       </a>
   </p>
 </div>-->
-<div id="navBody" ng-style="{'height': 'calc( 100% - ' + headerHeight + 'px)', 'top': headerHeight}" hm-swipe-right="navToPrevPage(); " hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
+<div id="navBody" ng-style="{'height': 'calc( 100% - ' + headerHeight + 'px)', 'top': headerHeight}" hm-swipe-right="navToPrevPage()" hm-swipe-left="navToNextPage()" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
     <!--<bk-icon-swipedown style="z-index: 5; position: absolute; display: block; top: -2%; height: 15%; width: 100%;"></bk-icon-swipedown>-->
     <bk-nav-style></bk-nav-style>
     <div data-ng-repeat="glossUnit in navPage.glossUnits">

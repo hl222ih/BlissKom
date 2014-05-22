@@ -426,6 +426,7 @@ bk-icon-logactive, bk-icon-loginactive {
     padding: 6px;
     pointer-events: none;
     z-index: 2;
+    opacity: 0;
 }
 
 @keyframes fadeout {
@@ -443,6 +444,6 @@ bk-icon-logactive, bk-icon-loginactive {
     animation-fill-mode: forwards;
     -webkit-animation-delay:3s;
     animation-delay:3s;
-    opacity: 1 !important;
+    opacity: 1
 }
 

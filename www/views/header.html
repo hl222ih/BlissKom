@@ -2,14 +2,14 @@
     <bk-icon-menu ng-click="toggleMenu()"></bk-icon-menu>
     <bk-icon-editmode></bk-icon-editmode>
     <bk-icon-book></bk-icon-book>
-    <bk-icon-home></bk-icon-home>
+    <bk-icon-home ng-click="navToPage(0)"></bk-icon-home>
     <bk-icon-logactive ng-show="isLogActive" ng-click="toggleLogActivity()"></bk-icon-logactive>
     <bk-icon-loginactive ng-show="!isLogActive" ng-click="toggleLogActivity()"></bk-icon-loginactive>
 
     <div id="pageNav">
         <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{activeHeaderUrl: $index === currentNavTree.position, headerUrl: true}">
             <div>
-                <div>{{pageName}}</div>
+                <div ng-click="navToPage($index)">{{pageName}}</div>
                 <bk-icon-rightarrow ng-if="!$last"></bk-icon-rightarrow>
             </div>
         </div>
