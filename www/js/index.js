@@ -26,6 +26,6 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        windows.alert('Received Event: ' + id); //temp
+        //windows.alert('Received Event: ' + id); //temp
     }
 };

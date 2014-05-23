@@ -8,7 +8,7 @@
       </a>
   </p>
 </div>-->
-<div id="navBody" ng-style="{'height': 'calc( 100% - ' + headerHeight + 'px)', 'top': headerHeight}" hm-swipe-right="navToPrevPage()" hm-swipe-left="navToNextPage()" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" hm-swipe-right="navToPrevPage()" hm-swipe-left="navToNextPage()" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
     <!--<bk-icon-swipedown style="z-index: 5; position: absolute; display: block; top: -2%; height: 15%; width: 100%;"></bk-icon-swipedown>-->
     <bk-nav-style></bk-nav-style>
     <div data-ng-repeat="glossUnit in navPage.glossUnits">
@@ -18,12 +18,13 @@
         <bk-gloss-unit-big />
     </div>
     <div class="notificationBar">{{notification}}</div>
+    <img class="backgroundImage" src="img/BlissKom.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>
-<div class="app">
+<!-- <div class="app">
     <h1>Apache Cordova</h1>
     <div id="deviceready" class="blink">
         <p class="event listening">Connecting to Device, hold on! (Main)</p>
         <p class="event received">Device is Ready, yay!</p>
     </div>
-</div>
+</div> -->
 

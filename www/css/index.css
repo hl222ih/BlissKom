@@ -6,18 +6,18 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
+    background-color:blue;
+    //background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    //background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    //background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    //background-image:-webkit-gradient(
+    //    linear,
+    //    left top,
+    //    left bottom,
+    //    color-stop(0, #A7A7A7),
+    //    color-stop(0.51, #E4E4E4)
+    //);
+    //background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
@@ -25,31 +25,32 @@ body {
     padding:0px;
 /*    text-transform:uppercase;*/
     width:100%;
+    overflow: hidden;
 }
 
 /* Portrait layout (default) */
-.app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+//.app {
+    //background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    //position:absolute;             /* position in the center of the screen */
+    //left:50%;
+    //top:50%;
+    //height:50px;                   /* text area height */
+    //width:225px;                   /* text area width */
+    //text-align:center;
+    //padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    //margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
-}
+//}
 
 /* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
-}
+//@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+//    .app {
+//        background-position:left center;
+//        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+//        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+//                                      /* offset horizontal: half of image width and text area width */
+//    }
+//}
 
 h1 {
     font-size:24px;
@@ -99,9 +100,16 @@ h1 {
 
 //egen kod:
 
-
+html, body {
+    background-color: lightblue !important;
+    overflow: hidden !important; //disable scroll of screen
+}
+body > div {
+    overflow: hidden !important; //disable scroll of screen
+    background-color: lightgreen !important;    
+}
 body div {
-    //beh?vs tydligen f?r att css ska visas korrekt?
+    //behövs tydligen för att css ska visas korrekt?
 }
 
 #navBody {
@@ -113,7 +121,8 @@ body div {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    height: calc(100% - 40px);
+    /*height: calc(100% - 40px);*/
+    overflow: hidden;
 }
     
 #navHeader {
@@ -122,11 +131,12 @@ body div {
     z-index: 1;
     position: absolute;
     width: 100%;
-    height: 40px;
+    /*height: 40px;*/
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-bottom: 4px double gray;
+    overflow: hidden;
 }
 
 #pageNav {
@@ -136,7 +146,7 @@ body div {
     font-size: 1rem;
     left: 152px;
     height: 40px;
-    width: calc(100% - 242px);
+    //width: calc(100% - 242px);
     text-align: center;
 }
 
@@ -241,9 +251,18 @@ div.dim {
     border-radius: 15px;
     overflow: hidden;
     background-color: #eee;
+    -webkit-box-shadow: 0 -1px 10px 1px black;
     box-shadow: 0 -1px 10px 1px black;
 }
 
+.largeGlossUnitTextAreas > div {
+    position: absolute; 
+    height: 100%; 
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.29);
+    overflow: hidden;
+    border-radius: 15px;
+}
 .largeGlossUnitTexts {
     display: inline-block;
     position: relative;
@@ -272,10 +291,12 @@ bk-icon-ok, bk-icon-cancel {
 
 bk-icon-ok {
     left: 0; 
+    border-radius: 15px 0 0 15px;
 }
 
 bk-icon-cancel {
     left: 85%; 
+    border-radius: 0 15px 15px 0;
 }
 
 #pageNav .headerUrl {
@@ -400,7 +421,7 @@ bk-icon-logactive, bk-icon-loginactive {
     position: absolute; 
     height: 64px; 
     width: 64px;
-    top: calc(50% - 62px); /*50%  - (half height + full padding)*/
+    //top: calc(50% - 62px); /*50%  - (half height + full padding)*/
     right: -82px;
     padding: 30px;
 }
@@ -409,7 +430,7 @@ bk-icon-logactive, bk-icon-loginactive {
     position: absolute; 
     height: 64px; 
     width: 64px;
-    top: calc(50% - 62px); /*50%  - (half height + full padding)*/
+    //top: calc(50% - 62px); /*50%  - (half height + full padding)*/
     left: -82px;
     padding: 30px;
 }
@@ -446,4 +467,49 @@ bk-icon-logactive, bk-icon-loginactive {
     animation-delay:3s;
     opacity: 1
 }
+#menu {
+    margin: 0;
+    padding: 0;
+}
+#menu ul {
+    position: absolute;
+    display: block;
+    //height: calc(100% - 60px);
+    list-style: none !important;
+    margin: 0;
+    background-color: blue;
+    padding: 0;
+    padding-top: 10px;
+    margin-left: 2px;
+    -webkit-box-shadow: 0 2px 5px 2px black;
+    box-shadow: 0 2px 5px 2px black;
+    //-webkit-box-sizing: border-box;
+    //box-sizing: border-box;
+}
 
+#menu li {
+    display: relative;
+    margin: 0 !important;
+    background-color: lightblue;
+    //padding-top: 4px;
+    //padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    //height: 12%;
+    //line-height:;
+    //font-size: 14px;
+    overflow: hidden;
+    //-webkit-box-sizing: border-box;
+    //box-sizing: border-box;
+}
+
+.backgroundImage {
+    max-width: 100%; 
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 5%;
+    right: 0;
+    margin: auto;
+}

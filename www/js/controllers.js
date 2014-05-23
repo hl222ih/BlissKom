@@ -54,6 +54,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
     //Displays the navigation page with url "startsida", the main navigation page.
     //Should remove the 'startsida' hard coding to allow several parallel
     //navigation setups.
+    
     $scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position]);
     //$scope.login = function() {
     //    databaseServiceProvider.getServerBlissCollection()
@@ -123,11 +124,15 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
 
     $scope.showHeader = function() {
         $scope.isHeaderShown = true;
+        var windowHeight = angular.element($window).height();
         $rootScope.headerHeight = 40;
+        $rootScope.bodyHeight = windowHeight - 40;
     };
     $scope.hideHeader = function() {
         $scope.isHeaderShown = false;
+        var windowHeight = angular.element($window).height();
         $rootScope.headerHeight = 0;
+        $rootScope.bodyHeight = windowHeight;
     };
     $scope.showLeftImageOfGlossUnit = function() {
         var cgu = $rootScope.navPage.currentGlossUnit;

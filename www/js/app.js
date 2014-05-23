@@ -1,7 +1,7 @@
 var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "angular-gestures"])
 
     .config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/main');
+        $urlRouterProvider.otherwise('main');
         $stateProvider
             .state('main', {
                 url: '/main',
@@ -16,11 +16,11 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     }
                 }
             })
-            .state('/device', {
-                url: 'device',
-                templateUrl: 'views/device.html',
-                controller: 'DeviceCtrl'
-            })
+//            .state('/device', {
+//                url: 'device',
+//                templateUrl: 'views/device.html',
+//                controller: 'DeviceCtrl'
+//            })
             .state('settings', {
                 url: '/settings',
                 views: {
@@ -48,12 +48,20 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                 }
             });
     })
-    .run(function($rootScope,dataServiceProvider,databaseServiceProvider) {
+    .run(function($rootScope,dataServiceProvider,databaseServiceProvider, $window) {
         //keep track of current navigation pages' url's/names
 
         $rootScope.isLogActive = true;
         $rootScope.notification = "";
-        
+        $rootScope.headerHeight = 40;
+        $rootScope.appHeight = angular.element($window).height();
+        $rootScope.bodyHeight = $rootScope.appHeight - 40;
+        $rootScope.menuHeight = Math.floor($rootScope.bodyHeight * 0.1) * 8;
+        $rootScope.menuItemHeight = $rootScope.menuHeight / 8;
+        $rootScope.menuItemFontSize = $rootScope.menuItemHeight * 0.5;
+        $rootScope.pageNavWidth = angular.element($window).width() - 242;
+        $rootScope.bigArrowTop = $rootScope.bodyHeight / 2 - 62 - 0.05 * $rootScope.bodyHeight;
+
         dataServiceProvider.getInitData()
             .then(function(initData) {
                 $rootScope.cssTemplates = initData.cssTemplates;

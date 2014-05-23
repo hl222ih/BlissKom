@@ -6,7 +6,7 @@
     <bk-icon-logactive ng-show="isLogActive" ng-click="toggleLogActivity()"></bk-icon-logactive>
     <bk-icon-loginactive ng-show="!isLogActive" ng-click="toggleLogActivity()"></bk-icon-loginactive>
 
-    <div id="pageNav">
+    <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">
         <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{activeHeaderUrl: $index === currentNavTree.position, headerUrl: true}">
             <div>
                 <div ng-click="navToPage($index)">{{pageName}}</div>
@@ -18,8 +18,14 @@
     <bk-icon-disconnected ng-if="!user"></bk-icon-disconnected>
 </div>
 <div id="menu" ng-show="isMenuVisible">
-    <div>menu item #1</div>
-    <div>menu item #2</div>
-    <div>menu item #3</div>
-    <div>menu item #4</div>
+    <ul ng-style="{'height':menuHeight, 'font-size':menuItemFontSize}">
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Navigering</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Rutinställningar</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Sidinställningar</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Samlingsinställningar</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Appinställningar</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Stilmallsinställningar</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Säkerhetskopiering</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Om BlissKom</li>
+    </ul>
 </div>

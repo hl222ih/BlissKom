@@ -1824,7 +1824,7 @@ Hammer.gestures.Swipe = {
          * @type {Number}
          * @default 0.6
          */
-        swipeVelocityX: 0.6,
+        swipeVelocityX: 0.2,
 
         /**
          * vertical swipe velocity
@@ -1832,7 +1832,7 @@ Hammer.gestures.Swipe = {
          * @type {Number}
          * @default 0.6
          */
-        swipeVelocityY: 0.2
+        swipeVelocityY: 0.11
     },
 
     handler: function swipeGesture(ev, inst) {
