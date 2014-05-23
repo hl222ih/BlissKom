@@ -2,7 +2,7 @@
     <div class="largeGlossUnits {{navPage.currentGlossUnit.currentPartOfSpeech}}" 
         hm-swipe-right="showLeftImageOfGlossUnit(); $event.stopPropagation();"
         hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"
-        ng-click="navPage.currentGlossUnit.showComment = false"> 
+        hm-tap="navPage.currentGlossUnit.showComment = false"> 
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
              data-ng-src="img/custom/{{navPage.currentGlossUnit.currentFilename}}" />
@@ -14,24 +14,24 @@
              data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{navPage.currentGlossUnit.currentFilename}}" />
         <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.currentPartOfSpeech}}">
             <div>
-                <bk-icon-ok data-ng-click="confirmEnlargedGlossUnit()"></bk-icon-ok>
+                <bk-icon-ok hm-tap="confirmEnlargedGlossUnit()"></bk-icon-ok>
                 <input data-ng-repeat="text in navPage.currentGlossUnit.currentText | stringToArray" 
                        class="largeGlossUnitTexts" 
                        type="button" 
                        value="{{text}}" 
-                       data-ng-click="confirmEnlargedGlossUnit(text)" />
-                <bk-icon-cancel data-ng-click="cancelEnlargedGlossUnit()"></bk-icon-cancel>
+                       hm-tap="confirmEnlargedGlossUnit(text)" />
+                <bk-icon-cancel hm-tap="cancelEnlargedGlossUnit()"></bk-icon-cancel>
             </div>
         </div>
         <div class="glossUnitCommentArea">
-            <bk-icon-comment ng-show="navPage.currentGlossUnit.currentComment" ng-click="navPage.currentGlossUnit.showComment = !navPage.currentGlossUnit.showComment; $event.stopPropagation();"></bk-icon-comment>
+            <bk-icon-comment ng-show="navPage.currentGlossUnit.currentComment" hm-tap="navPage.currentGlossUnit.showComment = !navPage.currentGlossUnit.showComment; $event.stopPropagation();"></bk-icon-comment>
             <div class="glossUnitComment" ng-show="navPage.currentGlossUnit.showComment">{{navPage.currentGlossUnit.currentComment}}</div>
         </div>
         <bk-icon-bigleftarrow ng-show="((navPage.currentGlossUnit.currentPosition <= 0 && navPage.currentGlossUnit.glossSubUnitsLeft[-navPage.currentGlossUnit.currentPosition]) || navPage.currentGlossUnit.currentPosition >= 1)"
-                              ng-click="showLeftImageOfGlossUnit();"
+                              hm-tap="showLeftImageOfGlossUnit();"
                               ng-style="{'top': bigArrowTop + 'px'}"></bk-icon-bigleftarrow>
         <bk-icon-bigrightarrow ng-show="((navPage.currentGlossUnit.currentPosition >= 0 && navPage.currentGlossUnit.glossSubUnitsRight[navPage.currentGlossUnit.currentPosition]) || navPage.currentGlossUnit.currentPosition <= -1)"
-                               ng-click="showRightImageOfGlossUnit();"
+                               hm-tap="showRightImageOfGlossUnit();"
                                ng-style="{'top': bigArrowTop + 'px'}"></bk-icon-bigrightarrow>
     </div>
 </div>

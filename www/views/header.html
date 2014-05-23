@@ -1,15 +1,15 @@
 <div id="navHeader" ng-style="{'height': headerHeight + 'px'}">
-    <bk-icon-menu ng-click="toggleMenu()"></bk-icon-menu>
+    <bk-icon-menu hm-tap="toggleMenu()"></bk-icon-menu>
     <bk-icon-editmode></bk-icon-editmode>
     <bk-icon-book></bk-icon-book>
-    <bk-icon-home ng-click="navToPage(0)"></bk-icon-home>
-    <bk-icon-logactive ng-show="isLogActive" ng-click="toggleLogActivity()"></bk-icon-logactive>
-    <bk-icon-loginactive ng-show="!isLogActive" ng-click="toggleLogActivity()"></bk-icon-loginactive>
+    <bk-icon-home hm-tap="navToPage(0)"></bk-icon-home>
+    <bk-icon-logactive ng-show="isLogActive" hm-tap="toggleLogActivity()"></bk-icon-logactive>
+    <bk-icon-loginactive ng-show="!isLogActive" hm-tap="toggleLogActivity()"></bk-icon-loginactive>
 
     <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">
         <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{activeHeaderUrl: $index === currentNavTree.position, headerUrl: true}">
             <div>
-                <div ng-click="navToPage($index)">{{pageName}}</div>
+                <div hm-tap="navToPage($index)">{{pageName}}</div>
                 <bk-icon-rightarrow ng-if="!$last"></bk-icon-rightarrow>
             </div>
         </div>
