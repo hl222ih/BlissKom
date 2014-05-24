@@ -39,7 +39,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                 views: {
                     '': { 
                         templateUrl: 'views/glossunitsettings.html',
-                        controller: 'MainCtrl'
+                        controller: 'GlossUnitCtrl'
                     },
                     'header': {
                         templateUrl: 'views/header.html',

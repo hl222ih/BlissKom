@@ -20,7 +20,8 @@
 <div id="menu" ng-show="isMenuVisible">
     <ul ng-style="{'height':menuHeight, 'font-size':menuItemFontSize}">
         <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Navigering</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Rutinställningar</li>
+        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}"
+            hm-tap='loadGlossUnitSettingsState()'>Rutinställningar</li>
         <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Sidinställningar</li>
         <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Samlingsinställningar</li>
         <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Appinställningar</li>

@@ -1,4 +1,15 @@
-<div id="navBody">
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: lightyellow;">
+    <label>Text:</label>
+    <input type="text" />
+    <label>Comment:</label>
+    <textarea/>
+    <!-- ordklass if bliss -->
+    <!-- sidlänk if mainruta -->
     <input type="text" ng-model="myTextBox"/>
-    <span ng-repeat="item in items | filter: myTextBox"><img src="http://www.blisskom.besaba.com/bliss/svg/clean.svg"></span>
+    <span ng-repeat="item in navPage.glossUnits | filter: myTextBox">
+        <img style="width:100px; height: 100px" ng-src="http://www.blisskom.besaba.com/bliss/svg/{{item.filename}}" />
+       {{item.filename}}
+    </span>
+    <input type="button" value="backup" name="Ta backup" hm-tap="doBackup()"/>
+    
 </div>

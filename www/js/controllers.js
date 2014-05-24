@@ -1,4 +1,4 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase, backupService, glossFactory, navPageService, dataServiceProvider) { 
+blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $firebase, backupService, glossFactory, navPageService, dataServiceProvider) { 
 //testa spara en fil...hmmm
 //    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {  
 //    }, function() {
@@ -207,7 +207,13 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $firebase,
         notElement.classList.add("showForAWhile");
         $rootScope.notification = message;
     };
+    $rootScope.loadGlossUnitSettingsState = function(){
+        $state.go('glossunitsettings');
+    }
 });
 
+blissKom.controller("GlossUnitCtrl", function() { 
+    
+});
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});
