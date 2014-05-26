@@ -1,4 +1,4 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $firebase, backupService, glossFactory, navPageService, dataServiceProvider) { 
+blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $firebase, backupService, ngDialog, glossFactory, navPageService, dataServiceProvider) { 
 //testa spara en fil...hmmm
 //    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {  
 //    }, function() {
@@ -28,6 +28,12 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
             return false;
         }
 
+        if ($rootScope.cssTemplates) {
+            var currentCssTemplate = $rootScope.cssTemplates.filter(function (cssObj) {
+                return cssObj.name === currentNavPage.pageCss;
+            })[0];
+        }
+
         //Generate navigation-page-specific CSS which will be automatically
         //loaded into the current navigation page. (navstyle.html)
         var unitStyles = navPageService.getPageCss(currentNavPage.pageCss);
@@ -43,11 +49,13 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
                  pageName: currentNavPage.pageName,
                  pageUrl: currentNavPage.pageUrl,
                  glossUnits: glossUnits,
-                 pageCss: currentNavPage.pageCss,
+                 pageCss: currentNavPage.pageCss, //complete css insertable in html code.
+                 cssTemplate: currentCssTemplate, //css template object
                  unitStyles: unitStyles,
                  currentGlossUnit: null
             };
         }
+                
         return true;
     };
 
@@ -119,6 +127,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
     $scope.navToPage = function(position) {
         if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[position])) {
             $rootScope.currentNavTree.position = position;
+            $state.go('main');
         }
     }
 
@@ -207,13 +216,53 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
         notElement.classList.add("showForAWhile");
         $rootScope.notification = message;
     };
-    $rootScope.loadGlossUnitSettingsState = function(){
+    $rootScope.loadGlossUnitSettingsState = function(glossUnit){
+        $rootScope.navPage.currentGlossUnit = glossUnit;
         $state.go('glossunitsettings');
     }
+    $rootScope.editMode = false;
+    $rootScope.toggleEditMode = function() {
+        if ($rootScope.editMode) {
+            $rootScope.editMode = false;
+        } else {
+            $rootScope.editMode = true;
+        }
+    };
+    $rootScope.getGlossUnitByPosition = function (position) { 
+        var i = 0,
+        gus = $rootScope.navPage.glossUnits;
+        for (; i < gus.length; i++) {
+            if (position === gus[i].position) {
+                return gus[i];
+            }
+        }
+    };
+    $rootScope.copyGlossUnit = function (position) {
+        $rootScope.copiedGlossUnit = $rootScope.getGlossUnitByPosition(position);
+        $rootScope.movedGlossUnit = null;
+        $rootScope.showStatusMessage("Kopierat... Välj klistra in i valfri tom ruta...");
+    };
+    $rootScope.moveGlossUnit = function (position) {
+        $rootScope.movedGlossUnit = $rootScope.getGlossUnitByPosition(position);
+        $rootScope.copiedGlossUnit = null;
+        $rootScope.showStatusMessage("Urklippt... Välj ruta att placera i och byta plats med...");
+    };
+    $rootScope.cancelMoveGlossUnit = function () {
+        $rootScope.movedGlossUnit = null;
+        $rootScope.showStatusMessage("Flytt avbruten...");
+    };
+    $rootScope.deleteGlossUnit = function () {
+        ngDialog.open({
+            template: 'views/partials/modalpopup.html', 
+            scope: $scope,
+            className: 'ngdialog-theme-default'
+        });
+    };
 });
 
-blissKom.controller("GlossUnitCtrl", function() { 
-    
+blissKom.controller("GlossUnitCtrl", function($scope, $rootScope) { 
+    $scope.gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
+    var test = "";
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});

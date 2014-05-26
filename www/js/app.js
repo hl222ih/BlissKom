@@ -1,4 +1,4 @@
-var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "angular-gestures"])
+var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "angular-gestures", "ngDialog"])
 
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('main');
@@ -54,7 +54,8 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
         $rootScope.isLogActive = true;
         $rootScope.notification = "";
         $rootScope.headerHeight = 40;
-        $rootScope.appHeight = angular.element($window).height();
+        $rootScope.appHeight = (angular.element($window).height() < angular.element($window).width()) ? angular.element($window).height() : angular.element($window).width();
+        $rootScope.bodyHeightMinusKeyboard = $rootScope.appHeight * 0.3;
         $rootScope.bodyHeight = $rootScope.appHeight - 40;
         $rootScope.menuHeight = Math.floor($rootScope.bodyHeight * 0.1) * 8;
         $rootScope.menuItemHeight = $rootScope.menuHeight / 8;

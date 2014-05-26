@@ -14,6 +14,38 @@
     <div data-ng-repeat="glossUnit in navPage.glossUnits">
         <bk-gloss-unit-small />
     </div>
+    <div ng-if="editMode" 
+         class="lightdim" 
+         style='position: absolute; border: 2px dotted brown; text-align: center;'
+         ng-repeat="cssUnit in navPage.cssTemplate.settings" 
+         ng-style="{'height': {{cssUnit.height}} + '%', 'width': {{cssUnit.width}} + '%', 'top': {{cssUnit.top}} + '%', 'left': {{cssUnit.left}} + '%'}"
+         class='lightdim unit{{cssUnit.position}}'>
+            <button class="editModeButtonEdit"
+                    ng-if="!movedGlossUnit" 
+                    hm-tap="loadGlossUnitSettingsState(cssUnit.position)">redigera</button>
+            <button class="editModeButtonDelete"
+                    ng-if="!movedGlossUnit && getGlossUnitByPosition(cssUnit.position)" 
+                    hm-tap="deleteGlossUnit(cssUnit.position)">radera</button>
+            <button class="editModeButtonMove"
+                    ng-if="!movedGlossUnit && getGlossUnitByPosition(cssUnit.position)" 
+                    hm-tap="moveGlossUnit(cssUnit.position)">flytta</button>
+            <button class="editModeButtonCopy"
+                    ng-if="!movedGlossUnit && getGlossUnitByPosition(cssUnit.position)" 
+                    hm-tap="copyGlossUnit(cssUnit.position)">kopiera</button>
+            <button class="editModeButtonPlace"
+                    ng-if="movedGlossUnit && movedGlossUnit !== getGlossUnitByPosition(cssUnit.position)"
+                    hm-tap="">placera</button>
+            <button class="editModeButtonPaste"
+                    ng-if="copiedGlossUnit && !getGlossUnitByPosition(cssUnit.position)">klistra in</button>
+            <button class="editModeButtonCancel"
+                    ng-if="movedGlossUnit && movedGlossUnit === getGlossUnitByPosition(cssUnit.position)" 
+                    hm-tap="cancelMoveGlossUnit()">avbryt</button>
+            <label class="editModeUnitNumberOverlay"
+                   ng-style="{'font-size': {{cssUnit.height}} / 100 * bodyHeight + 'px'}">
+                {{cssUnit.position}}
+            </label>
+    </div>
+
     <div ng-show="showEnlargedGlossUnit">
         <bk-gloss-unit-big />
     </div>

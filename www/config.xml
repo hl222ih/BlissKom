@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.blisskom.BlissKom" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.blisskom.BlissKom" version="0.0.1">
     <name>BlissKom</name>
     <description>
         An application for blissymbolics communication.
     </description>
     <author email="hsls@hotmail.com" href="http://www.blisskom.se">Hannes Ljusås</author>
+    <content src="index.html"/>
     <access origin="*"/>
     <preference name="fullscreen" value="true"/>
     <preference name="webviewbounce" value="true"/>

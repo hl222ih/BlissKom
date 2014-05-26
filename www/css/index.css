@@ -1,13 +1,16 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
-
+html {
+    background-color: #333;
+}
 body {
+    background-color: #333;
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-image: url('../img/BlissKom.svg');
     /* background-color: rgb(218, 52, 52); */
-    background-image: url('img/BlissKom.svg');
     //background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     //background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     //background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
@@ -170,6 +173,14 @@ img.largeGlossUnitImg {
 div.dim {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+div.lightdim {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.35);
     width: 100%;
     height: 100%;
     z-index: 2;
@@ -502,7 +513,7 @@ bk-icon-logactive, bk-icon-loginactive {
     //box-sizing: border-box;
 }
 
-.backgroundImage {
+.backgroundImage, .backgroundImageStart {
     max-width: 100%; 
     position: absolute;
     z-index: -1;
@@ -511,4 +522,40 @@ bk-icon-logactive, bk-icon-loginactive {
     left: 5%;
     right: 0;
     margin: auto;
+}
+
+.backgroundImageStart {
+    height: 100%;
+    background-color: #333;
+}
+
+.editModeButtonEdit {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.editModeButtonDelete, .editModeButtonCancel {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.editModeButtonMove, .editModeButtonPlace {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.editModeButtonCopy, .editModeButtonPaste {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.editModeUnitNumberOverlay {
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    line-height: 1;
+    width: 100%;
+    color: rgba(255,255,255,0.35);                
 }

@@ -1,15 +1,38 @@
 <div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: lightyellow;">
-    <label>Text:</label>
-    <input type="text" />
-    <label>Comment:</label>
-    <textarea/>
+    <style>
+        button {
+            position: relative;
+            width: 10%;
+        }
+        #selectedImage {
+            position: absolute;
+            display: block;
+            left: 55%;
+            width: 30%;
+            top: 0;
+            background-color: orange;
+            border: 1px solid red;
+        }
+    </style>
+    <div id="glossUnitSettings">
+    <button>+</button>
+    <button>sidobild</button>
+    <button>mittenbild</button>
+    <button>sidobild</button>
+    <button>+</button>
+    <label for="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">Text:</label><br />
+    <input type="text" name="text" />
+    <label for="comment">Comment:</label>
+    <input type="text" name="comment"/>
     <!-- ordklass if bliss -->
+    
     <!-- sidlänk if mainruta -->
     <input type="text" ng-model="myTextBox"/>
+    <div id="selectedImage" ng-style="{'height': bodyHeightMinusKeyboard + 'px'}">sdfdf</div>
     <span ng-repeat="item in navPage.glossUnits | filter: myTextBox">
         <img style="width:100px; height: 100px" ng-src="http://www.blisskom.besaba.com/bliss/svg/{{item.filename}}" />
        {{item.filename}}
     </span>
     <input type="button" value="backup" name="Ta backup" hm-tap="doBackup()"/>
-    
+</div>
 </div>
