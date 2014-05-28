@@ -65,6 +65,13 @@ blissKom.directive("bkIconEditmode", function() {
     }
 });
 
+blissKom.directive("bkIconEdit", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-edit.html'
+    }
+});
+
 blissKom.directive("bkIconBook", function() {
     return {
         restrict: 'E',
@@ -111,5 +118,53 @@ blissKom.directive("bkIconLogactive", function() {
     return {
         restrict: 'E',
         templateUrl: 'views/partials/icons/icon-logactive.html'
+    }
+});
+
+//http://graphicdesignjunction.com/2013/01/vector-icons-for-website-ui-design/
+//The icons pack release at icomoon and design by Keyamoon. 
+//The icons are completely free for commercial and non-commercial usage. 
+//You cannot, however, modify, claim them to be your own, redistribute on another 
+//website and/or sell them for a profit. You should include a link to this page in your credits.
+
+blissKom.directive("bkIconCopy", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-copy.html'
+    }
+});
+
+blissKom.directive("bkIconRemove", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-remove.html'
+    }
+});
+
+blissKom.directive("bkIconCut", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-cut.html'
+    }
+});
+
+blissKom.directive("bkIconPaste", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-paste.html'
+    }
+});
+
+blissKom.directive("bkIconPlaceandswitch", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-placeandswitch.html'
+    }
+});
+
+blissKom.directive("bkIconSmallcancel", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-smallcancel.html'
     }
 });

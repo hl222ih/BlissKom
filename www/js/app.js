@@ -62,6 +62,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
         $rootScope.menuItemFontSize = $rootScope.menuItemHeight * 0.5;
         $rootScope.pageNavWidth = angular.element($window).width() - 242;
         $rootScope.bigArrowTop = $rootScope.bodyHeight / 2 - 62 - 0.05 * $rootScope.bodyHeight;
+        $rootScope.smallIconSize = Math.floor($rootScope.appHeight / 160) * 10;
 
         dataServiceProvider.getInitData()
             .then(function(initData) {

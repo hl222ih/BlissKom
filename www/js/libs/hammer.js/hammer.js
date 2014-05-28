@@ -1933,7 +1933,7 @@ Hammer.gestures.Swipe = {
              * @type {Number}
              * @default 250
              */
-            tapMaxTime: 250,
+            tapMaxTime: 2500,
 
             /**
              * max distance of movement of a tap, this is for the slow tappers
@@ -1941,7 +1941,7 @@ Hammer.gestures.Swipe = {
              * @type {Number}
              * @default 10
              */
-            tapMaxDistance: 10,
+            tapMaxDistance: 25,
 
             /**
              * always trigger the `tap` event, even while double-tapping
