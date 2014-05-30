@@ -53,14 +53,14 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
 
         $rootScope.isLogActive = true;
         $rootScope.notification = "";
-        $rootScope.headerHeight = 40;
+        $rootScope.headerHeight = 42;
         $rootScope.appHeight = (angular.element($window).height() < angular.element($window).width()) ? angular.element($window).height() : angular.element($window).width();
         $rootScope.bodyHeightMinusKeyboard = $rootScope.appHeight * 0.3;
-        $rootScope.bodyHeight = $rootScope.appHeight - 40;
+        $rootScope.bodyHeight = $rootScope.appHeight - 42;
         $rootScope.menuHeight = Math.floor($rootScope.bodyHeight * 0.1) * 8;
         $rootScope.menuItemHeight = $rootScope.menuHeight / 8;
         $rootScope.menuItemFontSize = $rootScope.menuItemHeight * 0.5;
-        $rootScope.pageNavWidth = angular.element($window).width() - 242;
+        $rootScope.pageNavWidth = angular.element($window).width() - 362;
         $rootScope.bigArrowTop = $rootScope.bodyHeight / 2 - 62 - 0.05 * $rootScope.bodyHeight;
         $rootScope.smallIconSize = Math.floor($rootScope.appHeight / 160) * 10;
 

@@ -1,32 +1,53 @@
-<div id="navHeader" ng-style="{'height': headerHeight + 'px'}">
-    <bk-icon-menu hm-tap="toggleMenu()"></bk-icon-menu>
-    <bk-icon-editmode hm-tap="toggleEditMode()"></bk-icon-editmode>
-    <bk-icon-book></bk-icon-book>
-    <bk-icon-home hm-tap="navToPage(0)"></bk-icon-home>
-    <bk-icon-logactive ng-show="isLogActive" hm-tap="toggleLogActivity()"></bk-icon-logactive>
-    <bk-icon-loginactive ng-show="!isLogActive" hm-tap="toggleLogActivity()"></bk-icon-loginactive>
-
+<div id="navHeader" ng-style="{'height': headerHeight + 'px'}" ng-class="{'hidden-element': isHeaderHidden}">
+   <div class="btn-group">
+        <button type="button" class="btn btn-header dropdown-toggle" data-toggle="dropdown">
+            <bk-icon-menu></bk-icon-menu>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="caret"></span>
+            <!--<bk-icon-menu hm-tap="toggleMenu()">-->
+        </button>
+        <ul class="dropdown-menu" ng-style="{'max-height': bodyHeight}">
+            <li><a href="#">Navigering</a></li>
+            <li class="divider"></li>
+            <li hm-tap='loadGlossUnitSettingsState()'><a href="#">Rutinställningar</a></li>
+            <li><a href="#">Sidinställningar</a></li>
+            <li><a href="#">Samlingsinställningar</a></li>
+            <li><a href="#">Appinställningar</a></li>
+            <li><a href="#">Stilmallsinställningar</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Säkerhetskopiering</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Om BlissKom</a></li>
+        </ul>
+        <button type="button" class="btn btn-header">
+            <bk-icon-editmode hm-tap="toggleEditMode()"></bk-icon-editmode>&nbsp;
+        </button>
+        <button type="button" class="btn btn-header">
+            <bk-icon-book></bk-icon-book>&nbsp;
+        </button>
+        <button type="button" class="btn btn-header">
+            <bk-icon-home hm-tap="navToPage(0)"></bk-icon-home>&nbsp;
+        </button>
+    </div>
     <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">
-        <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{activeHeaderUrl: $index === currentNavTree.position, headerUrl: true}">
+        <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{'activeHeaderUrl': $index === currentNavTree.position, 'headerUrl': true}">
             <div>
-                <div hm-tap="navToPage($index)">{{pageName}}</div>
+                <div hm-tap="navToPage($index)"><a href="#">{{pageName}}</a></div>
                 <bk-icon-rightarrow ng-if="!$last"></bk-icon-rightarrow>
+                <!--  -->
             </div>
         </div>
+    </div>
+    <div class="btn-group" style="position: absolute; right: 10px;">
+        <button type="button" class="btn btn-header" style="position: absolute; right: 40px;">
+            <bk-icon-logactive ng-show="isLogActive" hm-tap="toggleLogActivity()"></bk-icon-logactive>
+            <bk-icon-loginactive ng-show="!isLogActive" hm-tap="toggleLogActivity()"></bk-icon-loginactive>
+            &nbsp;
+        </button>
     </div>
     <bk-icon-connected ng-if="user"></bk-icon-connected>
     <bk-icon-disconnected ng-if="!user"></bk-icon-disconnected>
 </div>
 <div id="menu" ng-show="isMenuVisible">
     <ul ng-style="{'height':menuHeight, 'font-size':menuItemFontSize}">
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Navigering</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}"
-            hm-tap='loadGlossUnitSettingsState()'>Rutinställningar</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Sidinställningar</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Samlingsinställningar</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Appinställningar</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Stilmallsinställningar</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Säkerhetskopiering</li>
-        <li ng-style="{'height':menuItemHeight + 'px', 'line-height':menuItemHeight + 'px'}">Om BlissKom</li>
     </ul>
 </div>

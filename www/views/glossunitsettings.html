@@ -16,16 +16,38 @@
     </style>
     <div id="glossUnitSettings">
     <button>+</button>
-    <button>sidobild</button>
+    <button ng-repeat="subLeftUnit in gu.glossSubUnitsLeft">sidobild</button>
     <button>mittenbild</button>
-    <button>sidobild</button>
+    <button ng-repeat="subRightUnit in gu.glossSubUnitsRight">sidobild</button>
     <button>+</button>
+    <div class="btn-group">
+        <label class="btn btn-primary" ng-model="checkModel.left" btn-checkbox>Left</label>
+        <label class="btn btn-primary" ng-model="checkModel.middle" btn-checkbox>Middle</label>
+        <label class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Right</label>
+    </div>
     <label for="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">Text:</label><br />
     <input type="text" name="text" />
     <label for="comment">Comment:</label>
-    <input type="text" name="comment"/>
+    <input type="text" name="comment" ng-value="gu.text"/>
     <!-- ordklass if bliss -->
+    </br>
+    <select ng-if="gu.partOfSpeech" 
+            ng-model="pos1" 
+            ng-options="code as name for (name, code) in partOfSpeechColors"
+            ng-style="{'background-color':code}">
+        <option value="">-- välj ordklass --</option>
+    </select>
     
+    <select ng-model="gu.partOfSpeech"
+            ng-style="{'background-color':partOfSpeechColors[gu.partOfSpeech]}"
+            ng-change="checkGuPos()">
+        <option ng-repeat="(name, code) in partOfSpeechColors" 
+                ng-style="{'background-color':code}"
+                ng-selected="gu.partOfSpeech === name"
+                ng-value="name">
+            {{name}}
+        </option>
+    </select>
     <!-- sidlänk if mainruta -->
     <input type="text" ng-model="myTextBox"/>
     <div id="selectedImage" ng-style="{'height': bodyHeightMinusKeyboard + 'px'}">sdfdf</div>

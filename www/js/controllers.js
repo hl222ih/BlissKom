@@ -1,4 +1,4 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $firebase, backupService, ngDialog, glossFactory, navPageService, dataServiceProvider) { 
+blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document, $state, $firebase, backupService, ngDialog, glossFactory, navPageService, dataServiceProvider) { 
 //testa spara en fil...hmmm
 //    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {  
 //    }, function() {
@@ -13,7 +13,13 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
     //a tap of an enlarged glossUnit image as confirmation.
     $scope.updateNavigationPage = function(pageUrl) {
         $rootScope.showEnlargedGlossUnit = false;
+        var isNavigatingToNewPage = true;
      
+        if (!pageUrl && $rootScope.navPage) {
+            pageUrl = $rootScope.navPage.pageUrl;
+            isNavigatingToNewPage = false;
+        }
+
         //Get the navigation page with page-url from the collection of
         //all navigation pages.
         if ($rootScope.navPages) {
@@ -24,8 +30,8 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
         //If no navigation page with given page-url was found, return
         //without doing anything. Show alert message.
         if (!currentNavPage) {
-            $rootScope.showStatusMessage("Sidan saknas...");
-            return false;
+            isNavigatingToNewPage = false;
+            return isNavigatingToNewPage;
         }
 
         if ($rootScope.cssTemplates) {
@@ -44,7 +50,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
         
         //Create an object for the navigation page, with properties bindable
         //by the code.
-        if (!$rootScope.navPage || $rootScope.navPage.pageUrl !== pageUrl) {
+        //if (!$rootScope.navPage || $rootScope.navPage.pageUrl !== pageUrl) {
             $rootScope.navPage = {
                  pageName: currentNavPage.pageName,
                  pageUrl: currentNavPage.pageUrl,
@@ -54,9 +60,9 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
                  unitStyles: unitStyles,
                  currentGlossUnit: null
             };
-        }
+        //}
                 
-        return true;
+        return isNavigatingToNewPage;
     };
 
     //Displays the navigation page with url "startsida", the main navigation page.
@@ -115,30 +121,36 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
     $scope.navToPrevPage = function() {
         if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position - 1])) {
             $rootScope.currentNavTree.position--;
+        } else {
+            $rootScope.showStatusMessage("Sidan saknas...");
         }
-    }
+    };
 
     $scope.navToNextPage = function() {
         if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position + 1])) {
             $rootScope.currentNavTree.position++;
+        } else {
+            $rootScope.showStatusMessage("Sidan saknas...");
         }
-    }
+    };
 
     $scope.navToPage = function(position) {
         if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[position])) {
             $rootScope.currentNavTree.position = position;
             $state.go('main');
+        } else {
+            $rootScope.showStatusMessage("Sidan saknas...");
         }
-    }
+    };
 
     $scope.showHeader = function() {
-        $scope.isHeaderShown = true;
+        $rootScope.isHeaderHidden = false;
         var windowHeight = angular.element($window).height();
-        $rootScope.headerHeight = 40;
-        $rootScope.bodyHeight = windowHeight - 40;
+        $rootScope.headerHeight = 42;
+        $rootScope.bodyHeight = windowHeight - 42;
     };
     $scope.hideHeader = function() {
-        $scope.isHeaderShown = false;
+        $rootScope.isHeaderHidden = true;
         var windowHeight = angular.element($window).height();
         $rootScope.headerHeight = 0;
         $rootScope.bodyHeight = windowHeight;
@@ -216,10 +228,10 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
         notElement.classList.add("showForAWhile");
         $rootScope.notification = message;
     };
-    $rootScope.loadGlossUnitSettingsState = function(glossUnit){
-        $rootScope.navPage.currentGlossUnit = glossUnit;
+    $rootScope.loadGlossUnitSettingsState = function(position) {
+        $rootScope.settingGlossUnit = $rootScope.getGlossUnitByPosition(position);
         $state.go('glossunitsettings');
-    }
+    };
     $rootScope.editMode = false;
     $rootScope.toggleEditMode = function() {
         if ($rootScope.editMode) {
@@ -233,6 +245,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
         gus = $rootScope.navPage.glossUnits;
         for (; i < gus.length; i++) {
             if (position === gus[i].position) {
+                gus[i].pageUrl = $rootScope.navPage.pageUrl;
                 return gus[i];
             }
         }
@@ -258,11 +271,70 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $state, $f
             className: 'ngdialog-theme-default'
         });
     };
+    $rootScope.removeGlossUnitByPosition = function (position, pageUrl) {
+        if (!pageUrl) {
+            pageUrl = $rootScope.navPage.pageUrl;
+        }
+        var navPage = $rootScope.navPages.filter(function (np) {
+            return np.pageUrl === pageUrl;
+        })[0];
+        var glossUnit = navPage.glossData.filter(function (gu) {
+            return gu.position === position;
+        })[0];
+        var index = navPage.glossData.indexOf(glossUnit);
+        if (index != -1) {
+            navPage.glossData.splice(index, 1);
+        }
+    };
+    $rootScope.addGlossUnitByPosition = function (glossUnit, position, pageUrl) {
+        if (!pageUrl) {
+            pageUrl = $rootScope.navPage.pageUrl;
+        }
+        var navPage = $rootScope.navPages.filter(function (np) {
+            return np.pageUrl === pageUrl;
+        })[0];
+        glossUnit.position = position;
+        navPage.glossData.push(glossUnit);        
+    };
+    $rootScope.placeAndSwitchGlossUnit = function (position) {
+        var fromPosition = $rootScope.movedGlossUnit.position;
+        var toPosition = position;
+        var fromPageUrl = $rootScope.movedGlossUnit.pageUrl;
+        //var toPage not needed
+        
+        var movedGlossUnit = jQuery.extend(true, {}, $rootScope.movedGlossUnit);
+        var switchGlossUnit = jQuery.extend(true, {}, $rootScope.getGlossUnitByPosition(toPosition));
+
+        movedGlossUnit.position = toPosition;
+
+        $rootScope.removeGlossUnitByPosition(toPosition);
+        $rootScope.addGlossUnitByPosition(movedGlossUnit, toPosition);
+        $rootScope.removeGlossUnitByPosition(fromPosition, fromPageUrl);
+        if (JSON.stringify(switchGlossUnit) !== '{}') {
+            switchGlossUnit.position = fromPosition;
+            $rootScope.addGlossUnitByPosition(switchGlossUnit, fromPosition, fromPageUrl);
+        }
+        $rootScope.movedGlossUnit = null;
+        $scope.updateNavigationPage();
+    };
+    $rootScope.pasteGlossUnit = function (position) {
+        $rootScope.addGlossUnitByPosition(jQuery.extend(true, {}, $rootScope.copiedGlossUnit), position);
+        $scope.updateNavigationPage();
+    };
 });
 
 blissKom.controller("GlossUnitCtrl", function($scope, $rootScope) { 
-    $scope.gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
+    $scope.gu = jQuery.extend(true, {}, $rootScope.settingGlossUnit);
     var test = "";
+    $scope.getSelectedValueFromDDL = function () {
+        var posDdl = $document.getElementById("posDdl");
+        var val = posDdl.options[posDdl.selectedIndex].value;
+        return val;
+    };
+    $scope.checkGuPos = function () {
+    var test = $scope.gu;
+    var test2 = "";
+    }
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});

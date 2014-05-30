@@ -9,7 +9,6 @@
   </p>
 </div>-->
 <div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" hm-swipe-right="navToPrevPage()" hm-swipe-left="navToNextPage()" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
-    <!--<bk-icon-swipedown style="z-index: 5; position: absolute; display: block; top: -2%; height: 15%; width: 100%;"></bk-icon-swipedown>-->
     <bk-nav-style></bk-nav-style>
     <div data-ng-repeat="glossUnit in navPage.glossUnits">
         <bk-gloss-unit-small />
@@ -38,10 +37,11 @@
                           ng-style="{'width':smallIconSize + 'px', 'height':smallIconSize + 'px'}"></bk-icon-copy>
             <bk-icon-placeandswitch class="editModeButtonPlace"
                     ng-if="movedGlossUnit && movedGlossUnit !== getGlossUnitByPosition(cssUnit.position)"
-                    hm-tap=""
+                    hm-tap="placeAndSwitchGlossUnit(cssUnit.position)"
                     ng-style="{'width':smallIconSize + 'px', 'height':smallIconSize + 'px'}"></bk-icon-placeandswitch>
             <bk-icon-paste class="editModeButtonPaste"
                     ng-if="copiedGlossUnit && !getGlossUnitByPosition(cssUnit.position)"
+                    hm-tap="pasteGlossUnit(cssUnit.position)"
                     ng-style="{'width':smallIconSize + 'px', 'height':smallIconSize + 'px'}"></bk-icon-paste>
             <bk-icon-smallcancel class="editModeButtonCancel"
                     ng-if="movedGlossUnit && movedGlossUnit === getGlossUnitByPosition(cssUnit.position)" 
