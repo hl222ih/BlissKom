@@ -146,8 +146,9 @@ blissKom.service("dataServiceProvider", function($rootScope, $http, $q) {
     this.downloadBlissData = function() {
         var blissRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/bliss/');
         //alert("downloading blissdata");
-        blissRef.once('value', function(blissSnapshot) { 
-            var blissData = blissSnapshot.val();
+        blissRef.once('value', function(blissSnapshot) {
+            $rootScope.blissData = blissSnapshot.val();
+            $rootScope.$apply();
             //alert("downloaded bliss-data!");
         });
     };

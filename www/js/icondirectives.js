@@ -121,6 +121,20 @@ blissKom.directive("bkIconLogactive", function() {
     }
 });
 
+blissKom.directive("bkIconLink", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-link.html'
+    }
+});
+
+blissKom.directive("bkIconCamera", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-camera.html'
+    }
+});
+
 //http://graphicdesignjunction.com/2013/01/vector-icons-for-website-ui-design/
 //The icons pack release at icomoon and design by Keyamoon. 
 //The icons are completely free for commercial and non-commercial usage. 
@@ -166,5 +180,24 @@ blissKom.directive("bkIconSmallcancel", function() {
     return {
         restrict: 'E',
         templateUrl: 'views/partials/icons/icon-smallcancel.html'
+    }
+});
+
+
+//Copyright by Specialpedagogiska skolmyndigheten www.spsm.se, with permission.
+
+blissKom.directive("bkIconBliss", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-bliss.html'
+    }
+});
+
+//Icon made by Freepik (www.freepik.com) from Flaticon.com
+
+blissKom.directive("bkIconHand", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partials/icons/icon-hand.html'
     }
 });

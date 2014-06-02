@@ -1,0 +1,24 @@
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: lightyellow;">
+    <div class="form-group" style="position: relative;">
+        <input type="text" 
+             class="form-control" 
+             id="blissSearch" 
+             ng-model="blissSearchTextbox"
+             placeholder="Sök blisstecken"></input>
+    </div>
+    <div id="blissSelection" style="position: absolute; top: 20%; height: 100%; width: 100%;">
+        <div ng-repeat="item in blissData | filter: {glossText:blissSearchTextbox} | limitTo: 10"
+              hm-tap="selectImage({{item.gloss}})"
+              style="position: relative; display: inline-block; height: 25%; text-align: center; margin: 10px;">              
+            <img ng-src="{{appSettings.onlineBlissUrl}}{{item.filename}}.svg"
+                 style="display: block; position: relative; height: 100%; border: 1px solid #555; border-radius: 5px; margin-left: auto; margin-right: auto; padding-left: 10px; padding-right: 10px; padding-bottom: 3px;"
+                 ng-style="{'background-color':partOfSpeechColors[item.partOfSpeech], 'width': '150px'}"/>
+            <!--hade velat ha en width:auto men det leder till att img-taggarna överlappar varandra ibland då bilderna inte hinner laddas innan css-reglerna appliceras-->
+            <div style="position: relative; display: block; width: auto;">
+                {{item.glossText}}
+            </div>
+        </div>
+    </div>
+    <button hm-tap="downloadBlissData()">ladda ner bliss-data</button>
+    <div class="notificationBar">{{notification}}</div>
+</div>

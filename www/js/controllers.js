@@ -90,6 +90,8 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
                 $rootScope.currentNavTree.treePageUrls.push(glossUnit.pageLinkUrl);
                 $rootScope.currentNavTree.treePageNames.push(glossUnit.text);
                 $rootScope.currentNavTree.position++;
+            } else {
+                $rootScope.showStatusMessage("Sidan saknas...");
             }
         } else {
             $rootScope.showEnlargedGlossUnit = true;
@@ -230,6 +232,9 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     };
     $rootScope.loadGlossUnitSettingsState = function(position) {
         $rootScope.settingGlossUnit = $rootScope.getGlossUnitByPosition(position);
+        if (!$rootScope.settingGlossUnit) {
+            $rootScope.settingGlossUnit = {};
+        }
         $state.go('glossunitsettings');
     };
     $rootScope.editMode = false;
@@ -323,8 +328,11 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     };
 });
 
-blissKom.controller("GlossUnitCtrl", function($scope, $rootScope) { 
-    $scope.gu = jQuery.extend(true, {}, $rootScope.settingGlossUnit);
+blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
+    if (!$rootScope.settingGlossUnit.activeLeftRightPosition) {
+        $rootScope.settingGlossUnit.activeLeftRightPosition = 0;
+    }
+    $rootScope.sgu = jQuery.extend(true, {}, $rootScope.settingGlossUnit);
     var test = "";
     $scope.getSelectedValueFromDDL = function () {
         var posDdl = $document.getElementById("posDdl");
@@ -332,9 +340,49 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope) {
         return val;
     };
     $scope.checkGuPos = function () {
-    var test = $scope.gu;
+    var test = $rootScope.sgu;
     var test2 = "";
+    };
+    $scope.selectBlissSymbol = function () {
+        $state.go('blisselection');
     }
+});
+
+blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, dataServiceProvider) {
+    $scope.selectImage = function(glossId) {
+        var selectedBlissGlossUnit = $rootScope.blissData.filter(function (bObj) {
+                return bObj.gloss === glossId;
+            })[0];
+        if (selectedBlissGlossUnit) {
+            if ($rootScope.settingGlossUnit.activeLeftRightPosition === 0) {
+                $rootScope.settingGlossUnit.glossId = selectedBlissGlossUnit.gloss;
+                $rootScope.settingGlossUnit.glossText = selectedBlissGlossUnit.glossText;
+                $rootScope.settingGlossUnit.text = selectedBlissGlossUnit.glossText;
+                $rootScope.settingGlossUnit.comment = "";
+                $rootScope.settingGlossUnit.partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
+                $rootScope.settingGlossUnit.filename = selectedBlissGlossUnit.filename + '.svg';
+            } else if ($rootScope.settingGlossUnit.activeLeftRightPosition < 0) {
+                $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].text = selectedBlissGlossUnit.glossText;
+                $rootScope.settingGlossUnit.comment = "";
+                $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
+                $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].filename = selectedBlissGlossUnit.filename + '.svg';             
+            } else { //$rootScope.settingGlossUnit.activeLeftRightPosition > 0
+                $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].text = selectedBlissGlossUnit.glossText;
+                $rootScope.settingGlossUnit.comment = "";
+                $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
+                $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].filename = selectedBlissGlossUnit.filename + '.svg';
+            }
+        }
+        $state.go('glossunitsettings');
+    };
+    $scope.downloadBlissData = function() {
+        if (!$rootScope.blissData) {
+            $rootScope.showStatusMessage("Laddar ner blissdata... Kan ta en stund. ");
+            dataServiceProvider.downloadBlissData();
+        } else {
+            $rootScope.showStatusMessage("Blissdata finns redan.");
+        }
+    };
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});

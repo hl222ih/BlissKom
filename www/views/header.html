@@ -6,17 +6,17 @@
             <!--<bk-icon-menu hm-tap="toggleMenu()">-->
         </button>
         <ul class="dropdown-menu" ng-style="{'max-height': bodyHeight}">
-            <li><a href="#">Navigering</a></li>
+            <li hm-tap="navToPage(0)"><a href>Navigering</a></li>
             <li class="divider"></li>
-            <li hm-tap='loadGlossUnitSettingsState()'><a href="#">Rutinställningar</a></li>
-            <li><a href="#">Sidinställningar</a></li>
-            <li><a href="#">Samlingsinställningar</a></li>
-            <li><a href="#">Appinställningar</a></li>
-            <li><a href="#">Stilmallsinställningar</a></li>
+            <li hm-tap='loadGlossUnitSettingsState()'><a href>Rutinställningar</a></li>
+            <li><a href>Sidinställningar</a></li>
+            <li><a href>Samlingsinställningar</a></li>
+            <li><a href>Appinställningar</a></li>
+            <li><a href>Stilmallsinställningar</a></li>
             <li class="divider"></li>
-            <li><a href="#">Säkerhetskopiering</a></li>
+            <li><a href>Säkerhetskopiering</a></li>
             <li class="divider"></li>
-            <li><a href="#">Om BlissKom</a></li>
+            <li><a href>Om BlissKom</a></li>
         </ul>
         <button type="button" class="btn btn-header">
             <bk-icon-editmode hm-tap="toggleEditMode()"></bk-icon-editmode>&nbsp;
@@ -31,7 +31,7 @@
     <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">
         <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{'activeHeaderUrl': $index === currentNavTree.position, 'headerUrl': true}">
             <div>
-                <div hm-tap="navToPage($index)"><a href="#">{{pageName}}</a></div>
+                <div hm-tap="navToPage($index)"><a href>{{pageName}}</a></div>
                 <bk-icon-rightarrow ng-if="!$last"></bk-icon-rightarrow>
                 <!--  -->
             </div>

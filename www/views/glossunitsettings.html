@@ -1,60 +1,150 @@
-<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: lightyellow;">
-    <style>
-        button {
-            position: relative;
-            width: 10%;
-        }
-        #selectedImage {
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;">
+    <style>    
+        .selectedImage {
             position: absolute;
             display: block;
-            left: 55%;
-            width: 30%;
-            top: 0;
-            background-color: orange;
-            border: 1px solid red;
+            width: 100%;
         }
     </style>
-    <div id="glossUnitSettings">
-    <button>+</button>
-    <button ng-repeat="subLeftUnit in gu.glossSubUnitsLeft">sidobild</button>
-    <button>mittenbild</button>
-    <button ng-repeat="subRightUnit in gu.glossSubUnitsRight">sidobild</button>
-    <button>+</button>
-    <div class="btn-group">
-        <label class="btn btn-primary" ng-model="checkModel.left" btn-checkbox>Left</label>
-        <label class="btn btn-primary" ng-model="checkModel.middle" btn-checkbox>Middle</label>
-        <label class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Right</label>
+<div id="glossUnitSettings" style="position: absolute; width: 100%; height: 100%; text-align: center;">
+    <div class="btn-group" 
+         style="display: inline-block; text-align: center; padding-top: 1%;">
+        <button class="btn btn-primary"
+               ng-model="radioModel"
+               btn-radio="'Left'"
+               style="position: relative; width: auto;">
+            +
+        </button>
+        <button class="btn btn-primary" 
+               ng-model="radioModel" 
+               btn-radio="'Middle'"
+               ng-repeat="subLeftUnit in sgu.glossSubUnitsLeft"
+               style="position: relative; width: auto;"
+               ng-class="{buttonSelected: sgu.activeLeftRightPosition === -(sgu.glossSubUnitsLeft.length - $index)}"
+               hm-tap="sgu.activeLeftRightPosition = -(sgu.glossSubUnitsLeft.length - $index);">
+            Vänsterbild {{sgu.glossSubUnitsLeft.length - $index}}
+        </button>
+        <button class="btn btn-primary" 
+               ng-model="radioModel" 
+               btn-radio="'Middle'"
+               style="position: relative; width: auto;"
+               ng-class="{buttonSelected: sgu.activeLeftRightPosition === 0}"
+               hm-tap="sgu.activeLeftRightPosition = 0;">
+            Mittenbild
+        </button>
+        <button class="btn btn-primary" 
+               ng-model="radioModel" 
+               btn-radio="'Middle'"
+               ng-repeat="subRightUnit in sgu.glossSubUnitsRight"
+               style="position: relative; width: auto;"
+               ng-class="{buttonSelected: sgu.activeLeftRightPosition === $index + 1}"
+               hm-tap="sgu.activeLeftRightPosition = $index + 1">
+            Högerbild {{$index + 1}}
+        </button>
+        <button class="btn btn-primary"
+               ng-model="radioModel"
+               btn-radio="'Right'"
+               style="position: relative; width: auto;">
+            +
+        </button>
     </div>
-    <label for="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">Text:</label><br />
-    <input type="text" name="text" />
-    <label for="comment">Comment:</label>
-    <input type="text" name="comment" ng-value="gu.text"/>
-    <!-- ordklass if bliss -->
-    </br>
-    <select ng-if="gu.partOfSpeech" 
-            ng-model="pos1" 
-            ng-options="code as name for (name, code) in partOfSpeechColors"
-            ng-style="{'background-color':code}">
-        <option value="">-- välj ordklass --</option>
-    </select>
-    
-    <select ng-model="gu.partOfSpeech"
-            ng-style="{'background-color':partOfSpeechColors[gu.partOfSpeech]}"
-            ng-change="checkGuPos()">
-        <option ng-repeat="(name, code) in partOfSpeechColors" 
-                ng-style="{'background-color':code}"
-                ng-selected="gu.partOfSpeech === name"
-                ng-value="name">
-            {{name}}
-        </option>
-    </select>
-    <!-- sidlänk if mainruta -->
-    <input type="text" ng-model="myTextBox"/>
-    <div id="selectedImage" ng-style="{'height': bodyHeightMinusKeyboard + 'px'}">sdfdf</div>
-    <span ng-repeat="item in navPage.glossUnits | filter: myTextBox">
-        <img style="width:100px; height: 100px" ng-src="http://www.blisskom.besaba.com/bliss/svg/{{item.filename}}" />
-       {{item.filename}}
-    </span>
-    <input type="button" value="backup" name="Ta backup" hm-tap="doBackup()"/>
+    <div class="input-group"
+         style="position: absolute; width: 46%; left:2%;top:12%; text-align: left;">
+        <span class="input-group-addon"
+              style="border-left: 1px solid #ccc; border-radius: 4px 0 0 4px;">Text:</span>
+        <input type="text" 
+               class="form-control form-control-sm" 
+               name="text" 
+               ng-value="sgu.text"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+    </div>
+    <div class="input-group"
+         style="position: absolute; width: 46%; left:2%;top:24%; text-align: left;">
+        <span class="input-group-addon"
+              style="border-left: 1px solid #ccc; border-radius: 4px 0 0 4px;">Kommentar:</span>
+        <input type="text" 
+               class="form-control form-control-sm" 
+               name="comment" 
+               ng-value="sgu.comment"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+    </div>
+    <div class="input-group"
+         style="position: absolute; width: 46%; right:2%;top:12%; text-align: left;">
+        <span class="input-group-addon"
+              style="border-left: 1px solid #ccc; border-radius: 4px 0 0 4px; line-height: 20px; vertical-align: middle;"
+              hm-tap="chkPageLink = true; $event.stopPropagation();">
+                Sidlänk:&nbsp;
+            <div style="position: absolute; top: 0; display: inline-block; height: 100%; border-left: 1px solid #ccc;"></div>
+            <input type="checkbox"
+                   ng-model="chkPageLink"
+                   onclick="return false;"
+                   style="display: inline-block; height: 20px; width: 20px; vertical-align: middle; margin-left: 15px; padding-right: 5px; ">
+        </span>
+
+        <input type="text" 
+               class="form-control form-control-sm" 
+               name="pageLink" 
+               ng-value="sgu.pageLink"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+    </div>
+    <div class="dropdown" style="position: absolute; top: 24%; left: 52%;">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="position: relative; width: auto;">
+            ordklass: {{sgu.partOfSpeech}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="max-width: 200px;" ng-style="{'max-height': appHeight*0.52 + 'px'}" >
+            <li ng-repeat="(name, code) in partOfSpeechColors" 
+                    ng-style="{'background-color':code}"
+                    hm-tap="sgu.partOfSpeech = name">
+                <a href>{{name}}</a>
+            </li>  
+        </ul>
+    </div>
+    <div class="dropdown" style="position: absolute; top: 24%; right: 2%;">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="position: relative; width: auto;">
+            sidlänk <span class="caret"></span>
+            
+        </button>
+        <ul class="dropdown-menu" style="max-width: 200px" >
+            <li ng-repeat="(name, code) in partOfSpeechColors" 
+                    ng-style="{'background-color':code}"
+                    hm-tap="sgu.partOfSpeech = name">
+                <a href>{{name}}</a>
+            </li>  
+        </ul>
+    </div>
+    <div class="selectedImage" 
+         ng-style="{'height': bodyHeight/2 + 'px'}"
+         style="bottom: 2%;">
+        <img class="selectedImageImg" ng-src="{{appSettings.onlineBlissUrl}}{{sgu.filename}}" 
+             style="height: 100%; width: auto; border: 1px solid #555; border-radius: 10px; padding: 2px 10px;" 
+             ng-style="{'background-color':partOfSpeechColors[sgu.partOfSpeech]}" />
+    </div>
+    <div class="btn-group-vertical"
+         style="position:absolute; left: 2%; bottom: 2%;">
+        <button class="btn btn-primary"
+                style="padding-bottom: 15px; padding-top: 15px; text-align: left;"
+                hm-tap="selectBlissSymbol()">
+            <bk-icon-bliss style="position: relative; display: inline-block; width: 32px; height: 32px; vertical-align: middle; left: 5px;"></bk-icon-bliss>
+            <span style="line-height: 32px; vertical-align: middle; padding-left: 5px;">Välj blissymbol...</span>
+        </button>
+        <button class="btn btn-primary"
+                style="padding-bottom: 15px; padding-top: 15px; text-align: left;"
+                hm-tap="">
+            <bk-icon-hand style="position: relative; display: inline-block; width: 32px; height: 32px; vertical-align: middle;"></bk-icon-hand>
+            <span style="line-height: 32px; vertical-align: middle; padding-left: 5px;"><s>Välj teckenillustration...</s></span>
+        </button>
+        <button class="btn btn-primary"
+                style="padding-bottom: 15px; padding-top: 15px; text-align: left;"
+                hm-tap="">
+            <bk-icon-link style="position: relative; display: inline-block; width: 32px; height: 32px; vertical-align: middle;"></bk-icon-link>
+            <span style="line-height: 32px; vertical-align: middle; padding-left: 5px;"><s>Välj bild från sökväg...</s></span>
+        </button>
+        <button class="btn btn-primary"
+                style="padding-bottom: 15px; padding-top: 15px; text-align: left;"
+                hm-tap="">
+            <bk-icon-camera style="position: relative; display: inline-block; width: 32px; height: 32px; vertical-align: middle;"></bk-icon-camera>
+            <span style="line-height: 32px; vertical-align: middle; padding-left: 5px;"><s>Ta foto med kameran...</s></span>
+        </button>
+    </div>
 </div>
 </div>

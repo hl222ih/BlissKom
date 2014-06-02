@@ -66,6 +66,10 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+/* prevent html content to be rendered before load */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 
 /*egen kod nedan */
 
@@ -122,7 +126,7 @@ body div {
 
 /*laborated with this fiddle: http://jsfiddle.net/Zv9SM/
   all images centered vertically and horizontally. */
-img.smallGlossUnitImg, img.largeGlossUnitImg, svg {
+img.smallGlossUnitImg, img.largeGlossUnitImg, svg, img.selectedImageImg {
     position: absolute;
     zoom: 2;  /*enlarges img size of images that doesn't fill parent div, but
                 decreases quality of images. 
@@ -421,11 +425,12 @@ bk-icon-cancel {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 24px;
-    font-size: 24px;
+    height: 32px;
+    font-size: 20px;
+    padding: 6px 0 6px 0;
+    text-indent: 6px;
     line-height: 1;
     background-color: gray;
-    padding: 6px;
     pointer-events: none; /* css-validator: Property pointer-events doesn't exist : none */
     z-index: 2;
     opacity: 0;
@@ -574,4 +579,8 @@ bk-icon-logactive, bk-icon-loginactive {
 .btn-header > .caret {
     color: white; 
     margin-right: -10px
+}
+
+.buttonSelected {
+   text-decoration: underline !important;
 }
