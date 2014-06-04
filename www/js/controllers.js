@@ -145,13 +145,13 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         }
     };
 
-    $scope.showHeader = function() {
+    $rootScope.showHeader = function() {
         $rootScope.isHeaderHidden = false;
         var windowHeight = angular.element($window).height();
         $rootScope.headerHeight = 42;
         $rootScope.bodyHeight = windowHeight - 42;
     };
-    $scope.hideHeader = function() {
+    $rootScope.hideHeader = function() {
         $rootScope.isHeaderHidden = true;
         var windowHeight = angular.element($window).height();
         $rootScope.headerHeight = 0;
@@ -329,10 +329,15 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
 });
 
 blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
+    $scope.update = function () {
+        $rootScope.sgu.activeText = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.text : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].text : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].text);
+        $rootScope.sgu.activeComment = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.comment : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].comment : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment);
+    }
     if (!$rootScope.settingGlossUnit.activeLeftRightPosition) {
         $rootScope.settingGlossUnit.activeLeftRightPosition = 0;
     }
     $rootScope.sgu = jQuery.extend(true, {}, $rootScope.settingGlossUnit);
+    $scope.update();
     var test = "";
     $scope.getSelectedValueFromDDL = function () {
         var posDdl = $document.getElementById("posDdl");
@@ -345,7 +350,58 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
     };
     $scope.selectBlissSymbol = function () {
         $state.go('blisselection');
-    }
+    };
+    $scope.updateSguComment = function () {
+        console.log('comment-mid: ' + $rootScope.sgu.comment);
+        console.log('comment-left: ' + $rootScope.sgu.glossSubUnitsLeft[0].comment);
+        if ($rootScope.sgu.activeLeftRightPosition === 0) {
+            $rootScope.sgu.comment = $rootScope.sgu.activeComment;
+        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
+            $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].comment = $rootScope.sgu.activeComment;
+        } else {
+            $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment = $rootScope.sgu.activeComment;
+        }    
+        //console.log('comment-right: ' + $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment);
+//        if ($rootScope.sgu.activeLeftRightPosition === 0) {
+//            $rootScope.sgu.comment = $rootScope.sgu.activeComment;
+//        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
+//            $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].comment = $rootScope.sgu.activeComment;
+//        } else {
+//            $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment = $rootScope.sgu.activeComment;
+//        }
+////        $rootScope.$apply();   
+    };
+    $scope.updateSguText = function () {
+        //console.log('text-right: ' + $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].text);
+        if ($rootScope.sgu.activeLeftRightPosition === 0) {
+            $rootScope.sgu.text = $rootScope.sgu.activeText;
+        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
+            $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].text = $rootScope.sgu.activeText;
+        } else {
+            $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].text = $rootScope.sgu.activeText;
+        }    
+        console.log('text-mid: ' + $rootScope.sgu.text);
+        console.log('text-left: ' + $rootScope.sgu.glossSubUnitsLeft[0].text);
+    };
+    $scope.$on("$destroy", function(){
+        $rootScope.$apply();
+        var nps = $rootScope.navPages;
+        var glossUnitsToUpdate = [];
+        for (var i = 0; i < nps.length; i++) {
+            var tempGus = nps[i].glossData.filter(function (gu) {
+                return gu.glossId === $rootScope.sgu.glossId;
+            });
+            glossUnitsToUpdate = glossUnitsToUpdate.concat(tempGus);
+        }
+        for (var j = 0; j < glossUnitsToUpdate.length; j++) {
+            glossUnitsToUpdate[j].text = $rootScope.sgu.text;
+            glossUnitsToUpdate[j].comment = $rootScope.sgu.comment;
+            glossUnitsToUpdate[j].pageLinkUrl = $rootScope.sgu.pageLinkUrl;
+            glossUnitsToUpdate[j].partOfSpeech = $rootScope.sgu.partOfSpeech;
+            glossUnitsToUpdate[j].glossSubUnitsLeft = jQuery.extend(true, [], $rootScope.sgu.glossSubUnitsLeft);
+            glossUnitsToUpdate[j].glossSubUnitsRight = jQuery.extend(true, [], $rootScope.sgu.glossSubUnitsRight); //deepcopy array
+        }
+   });
 });
 
 blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, dataServiceProvider) {

@@ -1,4 +1,4 @@
-<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: lightyellow;">
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
     <div class="form-group" style="position: relative;">
         <input type="text" 
              class="form-control" 
@@ -21,4 +21,5 @@
     </div>
     <button hm-tap="downloadBlissData()">ladda ner bliss-data</button>
     <div class="notificationBar">{{notification}}</div>
+    <img class="backgroundImage" src="img/BlissKomLight.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>

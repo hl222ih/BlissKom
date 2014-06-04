@@ -2,7 +2,7 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 html {
-    background-color: #333;
+    background-color: #333; 
 }
 body {
     background-color: #333;
@@ -80,7 +80,7 @@ body > div {
     overflow: hidden !important; /*disable scroll of screen*/
 }
 body div {
-    /*behövs tydligen för att css ska visas korrekt?*/
+    /*beh�vs tydligen f�r att css ska visas korrekt?*/
 }
 
 #navBody {
@@ -403,6 +403,7 @@ bk-icon-cancel {
 }
 
 .largeGlossUnits > bk-icon-bigrightarrow {
+    display: block;
     position: absolute; 
     height: 64px; 
     width: 64px;
@@ -412,6 +413,7 @@ bk-icon-cancel {
 }
 
 .largeGlossUnits > bk-icon-bigleftarrow {
+    display: block;
     position: absolute; 
     height: 64px; 
     width: 64px;
@@ -420,6 +422,11 @@ bk-icon-cancel {
     padding: 30px;
 }
 
+.largeGlossUnits > bk-icon-bigleftarrow > svg, .largeGlossUnits > bk-icon-bigrightarrow > svg {
+    height: 100%;
+    left: 30%;
+    top: 80%;
+}
 .notificationBar {
     display: block;
     position: absolute;

@@ -1,3 +1,5 @@
-<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: lightyellow;">
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
     <input type="button" value="backup" name="Ta backup" hm-tap="doBackup()"/>
+    <div class="notificationBar">{{notification}}</div>
+    <img class="backgroundImage lightFill" src="img/BlissKom.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>

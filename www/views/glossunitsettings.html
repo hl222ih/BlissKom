@@ -1,4 +1,4 @@
-<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;">
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
     <style>    
         .selectedImage {
             position: absolute;
@@ -21,7 +21,7 @@
                ng-repeat="subLeftUnit in sgu.glossSubUnitsLeft"
                style="position: relative; width: auto;"
                ng-class="{buttonSelected: sgu.activeLeftRightPosition === -(sgu.glossSubUnitsLeft.length - $index)}"
-               hm-tap="sgu.activeLeftRightPosition = -(sgu.glossSubUnitsLeft.length - $index);">
+               hm-tap="sgu.activeLeftRightPosition = -(sgu.glossSubUnitsLeft.length - $index); update();">
             Vänsterbild {{sgu.glossSubUnitsLeft.length - $index}}
         </button>
         <button class="btn btn-primary" 
@@ -29,7 +29,7 @@
                btn-radio="'Middle'"
                style="position: relative; width: auto;"
                ng-class="{buttonSelected: sgu.activeLeftRightPosition === 0}"
-               hm-tap="sgu.activeLeftRightPosition = 0;">
+               hm-tap="sgu.activeLeftRightPosition = 0; update();">
             Mittenbild
         </button>
         <button class="btn btn-primary" 
@@ -38,7 +38,7 @@
                ng-repeat="subRightUnit in sgu.glossSubUnitsRight"
                style="position: relative; width: auto;"
                ng-class="{buttonSelected: sgu.activeLeftRightPosition === $index + 1}"
-               hm-tap="sgu.activeLeftRightPosition = $index + 1">
+               hm-tap="sgu.activeLeftRightPosition = $index + 1; update();">
             Högerbild {{$index + 1}}
         </button>
         <button class="btn btn-primary"
@@ -49,23 +49,25 @@
         </button>
     </div>
     <div class="input-group"
-         style="position: absolute; width: 46%; left:2%;top:12%; text-align: left;">
+         style="position: absolute; width: 46%; left:2%; top:12%; text-align: left;">
         <span class="input-group-addon"
               style="border-left: 1px solid #ccc; border-radius: 4px 0 0 4px;">Text:</span>
         <input type="text" 
                class="form-control form-control-sm" 
                name="text" 
-               ng-value="sgu.text"
+               ng-model="sgu.activeText"
+               ng-change="updateSguText()"
                autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
     </div>
     <div class="input-group"
-         style="position: absolute; width: 46%; left:2%;top:24%; text-align: left;">
+         style="position: absolute; width: 46%; left:2%; top:24%; text-align: left;">
         <span class="input-group-addon"
               style="border-left: 1px solid #ccc; border-radius: 4px 0 0 4px;">Kommentar:</span>
         <input type="text" 
                class="form-control form-control-sm" 
-               name="comment" 
-               ng-value="sgu.comment"
+               name="comment"
+               ng-model="sgu.activeComment"
+               ng-change="updateSguComment()"
                autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
     </div>
     <div class="input-group"
@@ -147,4 +149,6 @@
         </button>
     </div>
 </div>
+    <div class="notificationBar">{{notification}}</div>
+    <img class="backgroundImage" src="img/BlissKomLight.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>
