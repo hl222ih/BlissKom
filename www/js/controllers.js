@@ -457,11 +457,6 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
             glossUnitsToUpdate[j].glossSubUnitsRight = jQuery.extend(true, [], $rootScope.sgu.glossSubUnitsRight); //deepcopy array
         }
     });
-    //check if changes are made and if user wants to use them or cancel them.
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
-       // alert("trying to change route");
-        //event.preventDefault();
-    });
     $scope.returnToNav = function () {
         $state.go('main');
     };
@@ -505,6 +500,9 @@ blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, data
             $rootScope.showStatusMessage("Blissdata finns redan.");
         }
     };
+});
+blissKom.controller("AboutCtrl", function($rootScope) {
+    //$rootScope.stateName = "Om BlissKom";
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});

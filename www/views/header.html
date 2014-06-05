@@ -29,11 +29,16 @@
         </button>
     </div>
     <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">
-        <div ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{'activeHeaderUrl': $index === currentNavTree.position, 'headerUrl': true}">
+        <div ng-if="!stateHeaderText" ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{'activeHeaderUrl': $index === currentNavTree.position, 'headerUrl': true}">
             <div>
                 <div hm-tap="navToPage($index)"><a href>{{pageName}}</a></div>
                 <bk-icon-rightarrow ng-if="!$last"></bk-icon-rightarrow>
                 <!--  -->
+            </div>
+        </div>
+        <div ng-if="stateHeaderText" class="headerUrl activeHeaderUrl">
+            <div>
+                <div><a href>{{stateHeaderText}}</a></div>
             </div>
         </div>
     </div>

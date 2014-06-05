@@ -64,8 +64,8 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                 url: '/about',
                 views: {
                     '': { 
-                        templateUrl: 'views/about.html'
-                        //controller: 'SelectImageCtrl'
+                        templateUrl: 'views/about.html',
+                        controller: 'AboutCtrl'
                     },
                     'header': {
                         templateUrl: 'views/header.html',
@@ -105,7 +105,29 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                 }; 
             }, function(){
                 alert("Kunde inte ladda data.");
-            });            
+            });
+        //check if changes are made and if user wants to use them or cancel them.
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+            var stateHeader = "";
+            switch (toState.name) {
+                case "about":
+                    stateHeader = "Om BlissKom";
+                    break;
+                case "blisselection":
+                    stateHeader = "Val från blissbibliotek";
+                    break;
+                case "glossunitsettings":
+                    stateHeader = "Inställningar för betydelse";
+                    break;
+                default:
+                    stateHeader = "";
+                    break;
+            }
+            $rootScope.stateHeaderText = stateHeader;
+          // alert("trying to change route");
+            //event.preventDefault();
+        });
+
     });  
 
 //test-code
