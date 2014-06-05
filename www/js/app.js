@@ -59,6 +59,19 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                         controller: 'MainCtrl'
                     }
                 }
+            })
+            .state('about', {
+                url: '/about',
+                views: {
+                    '': { 
+                        templateUrl: 'views/about.html'
+                        //controller: 'SelectImageCtrl'
+                    },
+                    'header': {
+                        templateUrl: 'views/header.html',
+                        controller: 'MainCtrl'
+                    }
+                }
             });
     })
     .run(function($rootScope,dataServiceProvider,databaseServiceProvider, $window) {

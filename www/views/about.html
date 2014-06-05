@@ -1,10 +1,12 @@
 <div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
-    <p>BlissKom Copyright Hannes Ljusås (hsls@hotmail.com) och Linnéuniversitetet (info@lnu.se)</p>
-    <p>Teckenspråksillustrationer Copyright Specialpedagogiska skolmyndigheten (http://www.spsm.se)</p>
-    <p>Blissymbolsvokabulären Copyright Blissymbolics Communication International (http://www.blissymbolics.org/)</p>
-    <p>Baserad delvis på MIT-licenserad kod (http://opensource.org/licenses/MIT) av bland annat följande:</p>
-    <p>Google Inc, Dmitry Baranovskiy, Daniel Smith, Jorik Tangelder, jQuery Foundation Inc, Twitter Inc, Firebase Inc
-    och Apache-licenserad kod (http://www.apache.org/licenses/LICENSE-2.0.txt) av Apache Software Foundation.</p>    
-    <div class="notificationBar">{{notification}}</div>
+    <div class="about" style="position: absolute; width: 60%; height: appHeight*60 + '%'; right: 5%; bottom: 20%; padding: 0; margin: 0">
+        <p>BlissKom Copyright Hannes Ljusås (hsls@hotmail.com) och Linnéuniversitetet (info@lnu.se)</p>
+        <p>Teckenspråksillustrationer Copyright Specialpedagogiska skolmyndigheten (http://www.spsm.se)</p>
+        <p>Blissymbolsvokabulären Copyright Blissymbolics Communication International (http://www.blissymbolics.org/)</p>
+        <p>Baserad delvis på MIT-licenserad kod (http://opensource.org/licenses/MIT) av bland annat följande:</p>
+        <p>Google Inc, Dmitry Baranovskiy, Daniel Smith, Jorik Tangelder, jQuery Foundation Inc, Twitter Inc, Firebase Inc
+        och Apache-licenserad kod (http://www.apache.org/licenses/LICENSE-2.0.txt) av Apache Software Foundation.</p>    
+    </div>
     <img class="backgroundImage" src="img/BlissKomLight.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>
+<div class="notificationBar">{{notification}}</div>

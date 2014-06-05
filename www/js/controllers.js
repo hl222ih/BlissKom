@@ -237,6 +237,9 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         }
         $state.go('glossunitsettings');
     };
+    $rootScope.loadAboutState = function() {
+        $state.go('about');
+    };
     $rootScope.editMode = false;
     $rootScope.toggleEditMode = function() {
         if ($rootScope.editMode) {
