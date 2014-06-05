@@ -406,16 +406,16 @@
                 "pageLinkUrl": "",
                 "glossSubUnitsLeft": [
                     {
-                        "text": "bada",
-                        "path": "rt",
-                        "filename": "bada.svg",
-                        "comment": "test2"
-                    },
-                    {
                         "text": "tvätta",
                         "path": "rt",
                         "filename": "tvätta.svg",
                         "comment": "test3"
+                    },
+                    {
+                        "text": "bada",
+                        "path": "rt",
+                        "filename": "bada.svg",
+                        "comment": "test2"
                     }
                 ],
                 "glossSubUnitsRight": []

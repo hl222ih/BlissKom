@@ -1,10 +1,10 @@
-<p>test</p>
+<p>{{message}}{{dialogResult}}</p>
 <input type="button" 
        value="OK" 
-       hm-tap="closeThisDialog()"
+       hm-tap="ok(); closeThisDialog();"
        ng-dialog-class="ngdialog-theme-flat" />
 <input type="button" 
        value="Avbryt" 
-       hm-tap="closeThisDialog()"
+       hm-tap="cancel(); closeThisDialog();"
        ng-dialog-class="ngdialog-theme-flat" />
 

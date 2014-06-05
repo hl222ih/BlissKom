@@ -269,13 +269,28 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         $rootScope.movedGlossUnit = null;
         $rootScope.showStatusMessage("Flytt avbruten...");
     };
-    $rootScope.deleteGlossUnit = function () {
+    $rootScope.deleteGlossUnit = function (position) {
+        $rootScope.activePosition = position;
+        $scope.message = 'Vill du verkligen radera rutans hela innehåll?';
+        $scope.ok = function () {
+            $rootScope.dialogResult = true;
+        };
+        $scope.cancel = function () {
+            $rootScope.dialogResult = false;
+        };
         ngDialog.open({
             template: 'views/partials/modalpopup.html', 
-            scope: $scope,
-            className: 'ngdialog-theme-default'
+            className: 'ngdialog-theme-default',
+            scope: $scope
         });
     };
+    $scope.$on('ngDialog.closed', function(e, $dialog) {
+        if ($rootScope.dialogResult) {
+            $rootScope.removeGlossUnitByPosition($rootScope.activePosition);
+            $scope.updateNavigationPage();
+            $rootScope.showStatusMessage("Rutans innehåll borttaget...");
+        }
+    });
     $rootScope.removeGlossUnitByPosition = function (position, pageUrl) {
         if (!pageUrl) {
             pageUrl = $rootScope.navPage.pageUrl;
@@ -332,6 +347,7 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
     $scope.update = function () {
         $rootScope.sgu.activeText = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.text : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].text : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].text);
         $rootScope.sgu.activeComment = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.comment : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].comment : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment);
+        $rootScope.sgu.activeFilename = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.filename : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].filename : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].filename);
     }
     if (!$rootScope.settingGlossUnit.activeLeftRightPosition) {
         $rootScope.settingGlossUnit.activeLeftRightPosition = 0;
@@ -344,16 +360,11 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         var val = posDdl.options[posDdl.selectedIndex].value;
         return val;
     };
-    $scope.checkGuPos = function () {
-    var test = $rootScope.sgu;
-    var test2 = "";
-    };
     $scope.selectBlissSymbol = function () {
+        $rootScope.settingGlossUnit.activeLeftRightPosition = $rootScope.sgu.activeLeftRightPosition;
         $state.go('blisselection');
     };
     $scope.updateSguComment = function () {
-        console.log('comment-mid: ' + $rootScope.sgu.comment);
-        console.log('comment-left: ' + $rootScope.sgu.glossSubUnitsLeft[0].comment);
         if ($rootScope.sgu.activeLeftRightPosition === 0) {
             $rootScope.sgu.comment = $rootScope.sgu.activeComment;
         } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
@@ -361,18 +372,8 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         } else {
             $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment = $rootScope.sgu.activeComment;
         }    
-        //console.log('comment-right: ' + $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment);
-//        if ($rootScope.sgu.activeLeftRightPosition === 0) {
-//            $rootScope.sgu.comment = $rootScope.sgu.activeComment;
-//        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
-//            $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].comment = $rootScope.sgu.activeComment;
-//        } else {
-//            $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment = $rootScope.sgu.activeComment;
-//        }
-////        $rootScope.$apply();   
     };
     $scope.updateSguText = function () {
-        //console.log('text-right: ' + $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].text);
         if ($rootScope.sgu.activeLeftRightPosition === 0) {
             $rootScope.sgu.text = $rootScope.sgu.activeText;
         } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
@@ -380,11 +381,62 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         } else {
             $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].text = $rootScope.sgu.activeText;
         }    
-        console.log('text-mid: ' + $rootScope.sgu.text);
-        console.log('text-left: ' + $rootScope.sgu.glossSubUnitsLeft[0].text);
     };
+    $scope.updateSguFilename = function () {
+        if ($rootScope.sgu.activeLeftRightPosition === 0) {
+            $rootScope.sgu.filename = $rootScope.sgu.activeFilename;
+        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
+            $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].filename = $rootScope.sgu.activeFilename;
+        } else {
+            $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].filename = $rootScope.sgu.activeFilename;
+        }    
+    };
+    $scope.addRightImage = function () {
+        if ($rootScope.sgu.glossSubUnitsRight.length < 3) {
+            $rootScope.sgu.glossSubUnitsRight.push({text: $rootScope.sgu.text, comment: ''});
+            $scope.activateImage($rootScope.sgu.glossSubUnitsRight.length);
+        } else {
+            $rootScope.showStatusMessage("Kan bara ha tre sidobilder...");
+        }
+    }
+    $scope.addLeftImage = function () {
+        if ($rootScope.sgu.glossSubUnitsLeft.length < 3) {        
+            $rootScope.sgu.glossSubUnitsLeft.push({text: $rootScope.sgu.text, comment: ''});
+            $scope.activateImage(-$rootScope.sgu.glossSubUnitsLeft.length);
+        } else {
+            $rootScope.showStatusMessage("Kan bara ha tre sidobilder...");
+        }
+    }
+    $scope.activateImage = function (leftRightPosition) {
+        $rootScope.sgu.activeLeftRightPosition = leftRightPosition;
+        $scope.update();
+    }
+    $scope.getActiveFullPath = function () {
+        var gu = {};
+        if ($rootScope.sgu.activeLeftRightPosition === 0) {
+            gu = $rootScope.sgu;
+        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
+            gu = $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1];
+        } else {
+            gu = $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1];
+        }    
+
+        if (gu.path === "bliss") {
+            return $rootScope.appSettings.onlineBlissUrl + $rootScope.sgu.activeFilename;
+        } else if (gu.path === "rt") {
+            return $rootScope.appSettings.onlineRtUrl + $rootScope.sgu.activeFilename;
+        }
+    }
+    $scope.getActivePath = function () {
+        if ($rootScope.sgu.activeLeftRightPosition === 0) {
+            return $rootScope.sgu.path;
+        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
+            return $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].path;
+        } else {
+            return $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].path;
+        }    
+    }
     $scope.$on("$destroy", function(){
-        $rootScope.$apply();
         var nps = $rootScope.navPages;
         var glossUnitsToUpdate = [];
         for (var i = 0; i < nps.length; i++) {
@@ -401,7 +453,15 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
             glossUnitsToUpdate[j].glossSubUnitsLeft = jQuery.extend(true, [], $rootScope.sgu.glossSubUnitsLeft);
             glossUnitsToUpdate[j].glossSubUnitsRight = jQuery.extend(true, [], $rootScope.sgu.glossSubUnitsRight); //deepcopy array
         }
-   });
+    });
+    //check if changes are made and if user wants to use them or cancel them.
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+       // alert("trying to change route");
+        //event.preventDefault();
+    });
+    $scope.returnToNav = function () {
+        $state.go('main');
+    };
 });
 
 blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, dataServiceProvider) {
@@ -417,16 +477,19 @@ blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, data
                 $rootScope.settingGlossUnit.comment = "";
                 $rootScope.settingGlossUnit.partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
                 $rootScope.settingGlossUnit.filename = selectedBlissGlossUnit.filename + '.svg';
+                $rootScope.settingGlossUnit.path = "bliss";
             } else if ($rootScope.settingGlossUnit.activeLeftRightPosition < 0) {
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].text = selectedBlissGlossUnit.glossText;
-                $rootScope.settingGlossUnit.comment = "";
+                $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].comment = "";
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].filename = selectedBlissGlossUnit.filename + '.svg';             
+                $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].path = "bliss";
             } else { //$rootScope.settingGlossUnit.activeLeftRightPosition > 0
                 $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].text = selectedBlissGlossUnit.glossText;
-                $rootScope.settingGlossUnit.comment = "";
+                $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].comment = "";
                 $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
                 $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].filename = selectedBlissGlossUnit.filename + '.svg';
+                $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].path = "bliss";
             }
         }
         $state.go('glossunitsettings');

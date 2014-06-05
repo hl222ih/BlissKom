@@ -422,10 +422,15 @@ bk-icon-cancel {
     padding: 30px;
 }
 
-.largeGlossUnits > bk-icon-bigleftarrow > svg, .largeGlossUnits > bk-icon-bigrightarrow > svg {
+.largeGlossUnits > bk-icon-bigleftarrow > svg {
     height: 100%;
     left: 30%;
     top: 80%;
+}
+.largeGlossUnits > bk-icon-bigrightarrow > svg {
+    height: 100%;
+    right: 30%;
+    top: 80%; 
 }
 .notificationBar {
     display: block;
@@ -590,4 +595,10 @@ bk-icon-logactive, bk-icon-loginactive {
 
 .buttonSelected {
    text-decoration: underline !important;
+}
+
+.selectedImage {
+    position: absolute;
+    display: block;
+    width: 100%;
 }
