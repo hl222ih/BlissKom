@@ -1,5 +1,28 @@
 <div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
-    <input type="button" value="backup" name="Ta backup" hm-tap="doBackup()"/>
+
+    <button class="btn btn-primary" 
+           style="position: absolute; width: 30%; right: 52%; top: 2%;"
+           hm-tap="doBackup()">
+        Säkerhetskopia aktuell data
+    </button>
+    <button class="btn btn-primary" 
+           style="position: absolute; width: 30%; left: 52%; top: 2%;"
+           hm-tap="activateBackup()">
+        Återställ data från: {{activeBackup.toLocaleString()}}
+    </button>
+    <div class="dropdown" style="position: absolute; top: 20%; left: 35%; width: 30%">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="position: relative; width: 100%;">
+            Välj säkerhetskopia <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" ng-style="{'max-height': appHeight*0.52 + 'px'}" >
+            <li ng-repeat="date in backupDates"
+                hm-tap="setActiveBackup($index)">
+                <a href>{{date.toLocaleString()}}</a>
+            </li>  
+        </ul>
+    </div>
+    <div ng-repeast="date in backupDates">{{date.toLocaleString()}}</div>
+
     <div class="notificationBar">{{notification}}</div>
-    <img class="backgroundImage lightFill" src="img/BlissKom.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
+    <img class="backgroundImage lightFill" src="img/BlissKomLight.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>

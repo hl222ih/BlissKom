@@ -16,7 +16,8 @@ body {
     height:100%;
     margin:0px;
     padding:0px;
-/*    text-transform:uppercase;*/
+
+    /* text-transform:uppercase; */
     width:100%;
     overflow: hidden;
 }
@@ -423,14 +424,20 @@ bk-icon-cancel {
 }
 
 .largeGlossUnits > bk-icon-bigleftarrow > svg {
+    position: absolute;
+    display: block;
     height: 100%;
     left: 30%;
-    top: 80%;
+    right: -30%;
+    top: 70%;
 }
 .largeGlossUnits > bk-icon-bigrightarrow > svg {
+    position: absolute;
+    display: block;
     height: 100%;
     right: 30%;
-    top: 80%; 
+    left: -30%;
+    top: 70%; 
 }
 .notificationBar {
     display: block;

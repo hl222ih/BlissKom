@@ -155,18 +155,51 @@ blissKom.service("dataServiceProvider", function($rootScope, $http, $q) {
 });
 
 blissKom.service("backupService", function($rootScope) {
+    var allSavedAppSettings = {};
     this.doBackup = function() {
         var userRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/users/' + $rootScope.user.id);
-        var appSettings = JSON.parse(JSON.stringify($rootScope.appSettings));
+        //var appSettings = JSON.parse(JSON.stringify($rootScope.appSettings));
+        var appSettings = angular.fromJson(angular.toJson($rootScope.appSettings));
+
+        //login and password should not be saved on the server.
         appSettings.password = null;
         appSettings.email = null;
+        appSettings = angular.copy(appSettings); //remove angular hashkey
 
         userRef.push({ 
             "datetime": new Date().getTime(), 
-            "cssTemplates" : $rootScope.cssTemplates,
-            "posColors" : $rootScope.partOfSpeechColors,
-            "navPages" : $rootScope.navPages,
-            "appSettings" : appSettings
+            "cssTemplates" : angular.fromJson(angular.toJson($rootScope.cssTemplates)),
+            "posColors" : angular.fromJson(angular.toJson($rootScope.partOfSpeechColors)),
+            "navPages" : angular.fromJson(angular.toJson($rootScope.navPages)),
+            "appSettings" : angular.fromJson(angular.toJson(appSettings))
         });
+    };
+    this.retrieveListOfBackup = function() {
+        var userRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/users/' + $rootScope.user.id);
+        userRef.once('value', function(appSettingsSnapshot) {
+            allSavedAppSettings = appSettingsSnapshot.val();
+            var dateTimes = [];
+            for (var bkpObjKey in allSavedAppSettings) {
+                dateTimes.push(new Date(allSavedAppSettings[bkpObjKey].datetime));
+            }
+            $rootScope.backupDates = dateTimes;
+            $rootScope.$apply();
+
+        });
+    };
+    this.activateBackup = function() {
+        var allSavedAppSettingsArray = [];
+        for (var setupObjKey in allSavedAppSettings) {
+            allSavedAppSettingsArray.push(allSavedAppSettings[setupObjKey]);
+        }
+        var retrievedSettings = allSavedAppSettingsArray.filter(function (setupObj) {
+            return $rootScope.activeBackup = setupObj.datetime;
+        })[0];
+        if (retrievedSettings) {
+            $rootScope.appSettings = retrievedSettings.appSettings;
+            $rootScope.cssTemplates = retrievedSettings.cssTemplates;
+            $rootScope.navPages = retrievedSettings.navPages;
+            $rootScope.posColors = retrievedSettings.posColors;
+        }
     };
 });

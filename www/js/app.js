@@ -72,6 +72,19 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                         controller: 'MainCtrl'
                     }
                 }
+            })
+            .state('backup', {
+                url: '/backup',
+                views: {
+                    '': { 
+                        templateUrl: 'views/backup.html',
+                        controller: 'BackupCtrl'
+                    },
+                    'header': {
+                        templateUrl: 'views/header.html',
+                        controller: 'MainCtrl'
+                    }
+                }
             });
     })
     .run(function($rootScope,dataServiceProvider,databaseServiceProvider, $window) {
@@ -119,12 +132,14 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                 case "glossunitsettings":
                     stateHeader = "Inställningar för betydelse";
                     break;
+                case "backup":
+                    stateHeader = "Säkerhetskopiering och återställning";
+                    break;
                 default:
                     stateHeader = "";
                     break;
             }
             $rootScope.stateHeaderText = stateHeader;
-          // alert("trying to change route");
             //event.preventDefault();
         });
 
@@ -132,11 +147,11 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
 
 //test-code
 //just for testing, does the application react to battery status change?
-window.addEventListener("batterystatus", onBatteryStatus, false);
+//window.addEventListener("batterystatus", onBatteryStatus, false);
 
-function onBatteryStatus(info) {
-    window.alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
+//function onBatteryStatus(info) {
+//    window.alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
  //   var testdiv = document.getElementById("test");
   //  testdiv.innerHTML = "Testet funkade!";
-};
+//};
 

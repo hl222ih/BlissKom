@@ -1,4 +1,4 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document, $state, $firebase, backupService, ngDialog, glossFactory, navPageService, dataServiceProvider) { 
+blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document, $state, $firebase, ngDialog, glossFactory, backupService, navPageService, dataServiceProvider) { 
 //testa spara en fil...hmmm
 //    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {  
 //    }, function() {
@@ -76,7 +76,6 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     //        alert("finished!");
     //    });
     //}
-    $scope.doBackup = backupService.doBackup;
     $scope.glossUnitClick = function (glossUnit) {
         if (glossUnit.isPageLink()) {
             if ($scope.updateNavigationPage(glossUnit.pageLinkUrl)) {
@@ -207,11 +206,11 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
             cgu.currentPartOfSpeech = cgu.partOfSpeech;
             cgu.currentPosition++;
         } else if (pos < -1) {
-            cgu.currentFilename = cgu.glossSubUnitsLeft[pos+2].filename;
-            cgu.currentPath = cgu.glossSubUnitsLeft[pos+2].path;
-            cgu.currentText = cgu.glossSubUnitsLeft[pos+2].text;
-            cgu.currentComment = cgu.glossSubUnitsLeft[pos+2].comment;
-            cgu.currentPartOfSpeech = cgu.glossSubUnitsLeft[pos+2].partOfSpeech;
+            cgu.currentFilename = cgu.glossSubUnitsLeft[-pos-2].filename;
+            cgu.currentPath = cgu.glossSubUnitsLeft[-pos-2].path;
+            cgu.currentText = cgu.glossSubUnitsLeft[-pos-2].text;
+            cgu.currentComment = cgu.glossSubUnitsLeft[-pos-2].comment;
+            cgu.currentPartOfSpeech = cgu.glossSubUnitsLeft[-pos-2].partOfSpeech;
             cgu.currentPosition++;
         }
     };
@@ -239,6 +238,9 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     };
     $rootScope.loadAboutState = function() {
         $state.go('about');
+    };
+    $rootScope.loadBackupState = function() {
+        $state.go('backup');
     };
     $rootScope.editMode = false;
     $rootScope.toggleEditMode = function() {
@@ -351,6 +353,7 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         $rootScope.sgu.activeText = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.text : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].text : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].text);
         $rootScope.sgu.activeComment = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.comment : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].comment : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment);
         $rootScope.sgu.activeFilename = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.filename : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].filename : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].filename);
+        $rootScope.sgu.activePartOfSpeech = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.partOfSpeech : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].partOfSpeech : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].partOfSpeech);
     }
     if (!$rootScope.settingGlossUnit.activeLeftRightPosition) {
         $rootScope.settingGlossUnit.activeLeftRightPosition = 0;
@@ -477,12 +480,18 @@ blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, data
                 $rootScope.settingGlossUnit.filename = selectedBlissGlossUnit.filename + '.svg';
                 $rootScope.settingGlossUnit.path = "bliss";
             } else if ($rootScope.settingGlossUnit.activeLeftRightPosition < 0) {
+                if (!$rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1]) {
+                    $rootScope.settingGlossUnit.glossSubUnitsLeft.splice(-$rootScope.settingGlossUnit.activeLeftRightPosition - 1, 0, {});
+                }
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].text = selectedBlissGlossUnit.glossText;
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].comment = "";
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].filename = selectedBlissGlossUnit.filename + '.svg';             
                 $rootScope.settingGlossUnit.glossSubUnitsLeft[-$rootScope.settingGlossUnit.activeLeftRightPosition - 1].path = "bliss";
             } else { //$rootScope.settingGlossUnit.activeLeftRightPosition > 0
+                if (!$rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1]) {
+                    $rootScope.settingGlossUnit.glossSubUnitsRight.splice($rootScope.settingGlossUnit.activeLeftRightPosition - 1, 0, {});
+                }
                 $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].text = selectedBlissGlossUnit.glossText;
                 $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].comment = "";
                 $rootScope.settingGlossUnit.glossSubUnitsRight[$rootScope.settingGlossUnit.activeLeftRightPosition - 1].partOfSpeech = selectedBlissGlossUnit.partOfSpeech;
@@ -501,8 +510,15 @@ blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, data
         }
     };
 });
-blissKom.controller("AboutCtrl", function($rootScope) {
-    //$rootScope.stateName = "Om BlissKom";
+blissKom.controller("AboutCtrl", function() {
+});
+blissKom.controller("BackupCtrl", function($scope, $rootScope, backupService) {
+    $scope.doBackup = backupService.doBackup;
+    backupService.retrieveListOfBackup();
+    $scope.setActiveBackup = function (index) {
+        $rootScope.activeBackup = $rootScope.backupDates[index];
+    };
+    $scope.activateBackup = backupService.activateBackup;
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});
