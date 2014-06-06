@@ -15,14 +15,12 @@
             Välj säkerhetskopia <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" ng-style="{'max-height': appHeight*0.52 + 'px'}" >
-            <li ng-repeat="date in backupDates"
+            <li ng-repeat="date in backupDates | orderBy : 'getTime()' : true"
                 hm-tap="setActiveBackup($index)">
                 <a href>{{date.toLocaleString()}}</a>
             </li>  
         </ul>
     </div>
-    <div ng-repeast="date in backupDates">{{date.toLocaleString()}}</div>
-
     <div class="notificationBar">{{notification}}</div>
     <img class="backgroundImage lightFill" src="img/BlissKomLight.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>

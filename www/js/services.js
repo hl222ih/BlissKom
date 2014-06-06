@@ -8,6 +8,7 @@ blissKom.factory("glossFactory", function() {
         this.filename = data.filename;
         this.text = data.text;
         this.comment = data.comment; //optional
+        this.partOfSpeech = data.partOfSpeech; //optional
     };
 
     //Constructor for GlossUnit objects.
@@ -172,6 +173,14 @@ blissKom.service("backupService", function($rootScope) {
             "posColors" : angular.fromJson(angular.toJson($rootScope.partOfSpeechColors)),
             "navPages" : angular.fromJson(angular.toJson($rootScope.navPages)),
             "appSettings" : angular.fromJson(angular.toJson(appSettings))
+        }, function (error) {
+            if (!error) {
+                $rootScope.showStatusMessage("Säkerhetskopiering utförd...");
+                //alert("yay");
+            } else {
+                $rootScope.showStatusMessage("Säkerhetskopieringen misslyckades...");
+                //alert("non-yay");
+            }
         });
     };
     this.retrieveListOfBackup = function() {

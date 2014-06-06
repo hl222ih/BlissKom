@@ -1,0 +1,24 @@
+<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
+    <div ng-repeat="cu in conversation"
+         style="position: relative; display: inline-block; width: 20%; height: 30%;" >
+        <a class="unit{{cu.position}} glossUnits {{cu.partOfSpeech}}"
+           ng-class="{pageLink: cu.isPageLink()}"
+           data-ng-href="#"
+           style="display: inline-block; height: 100%; width: 100%;">
+            <img class="smallGlossUnitImg"
+                 data-ng-if="cu.path === 'custom'"
+                 data-ng-src="img/custom/{{cu.filename}}" />
+            <img class="smallGlossUnitImg"
+                 data-ng-if="cu.path === 'bliss'"
+                 data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{cu.filename}}" 
+                 style="height: auto; width: auto;"/>
+            <img class="smallGlossUnitImg"
+                 data-ng-if="cu.path === 'rt'"
+                 data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{cu.filename}}" />
+            <div class="glossUnitTexts">{{cu.text}}</div>
+        </a>        
+    </div>
+    <div class="notificationBar">{{notification}}</div>
+    <img class="backgroundImage lightFill" src="img/BlissKomLight.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
+</div>
+

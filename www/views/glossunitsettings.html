@@ -91,7 +91,7 @@
             <ul class="dropdown-menu" style="max-width: 200px; " ng-style="{'max-height': appHeight*0.52 + 'px'}" >
                 <li ng-repeat="(name, code) in partOfSpeechColors" 
                         ng-style="{'background-color':code}"
-                        hm-tap="sgu.partOfSpeech = name">
+                        hm-tap="changePartOfSpeech(name)">
                     <a href>{{name}}</a>
                 </li>  
             </ul>
@@ -99,7 +99,6 @@
         <div class="dropdown" style="position: absolute; top: 24%; right: 2%; width: 20%">
             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="position: relative; width: 100%;">
                 sidlänk <span class="caret"></span>
-
             </button>
             <ul class="dropdown-menu" style="max-width: 200px" >
                 <li ng-repeat="navPage in navPages" 
@@ -113,7 +112,7 @@
              style="bottom: 2%;">
             <img class="selectedImageImg" ng-src="{{getActiveFullPath()}}" 
                  style="height: 100%; width: auto; border: 1px solid #555; border-radius: 10px; padding: 2px 10px; left: 70px;" 
-                 ng-style="getActivePath() === 'bliss' && {'background-color':partOfSpeechColors[sgu.partOfSpeech]} || {'background-color':'white'}" />
+                 ng-style="getActivePath() === 'bliss' && {'background-color':partOfSpeechColors[sgu.activePartOfSpeech]} || {'background-color':'white'}" />
         </div>
         <div class="btn-group-vertical"
              style="position:absolute; left: 2%; bottom: 2%;">

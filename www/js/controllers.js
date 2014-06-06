@@ -1,11 +1,8 @@
 blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document, $state, $firebase, ngDialog, glossFactory, backupService, navPageService, dataServiceProvider) { 
-//testa spara en fil...hmmm
-//    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function() {  
-//    }, function() {
-//        alert('Lyckades inte få access till filsystemet');
-//    });
-    //var test = $rootScope.blissAuth;
-    $rootScope.conversation = [];
+
+    if (!$rootScope.conversation) {
+        $rootScope.conversation = [];
+    }
 
     //Function which updates the content of a navigation page
     //based on the page-url.
@@ -70,12 +67,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     //navigation setups.
     
     $scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position]);
-    //$scope.login = function() {
-    //    databaseServiceProvider.getServerBlissCollection()
-    //    .then( function() {
-    //        alert("finished!");
-    //    });
-    //}
+
     $scope.glossUnitClick = function (glossUnit) {
         if (glossUnit.isPageLink()) {
             if ($scope.updateNavigationPage(glossUnit.pageLinkUrl)) {
@@ -108,14 +100,16 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         //$rootScope.navPage.currentGlossUnit.showComment = false;
     }
     $scope.confirmEnlargedGlossUnit = function (text) {
+        //$rootScope.navPage.currentGlossUnit.showComment = false;
+        if ($rootScope.isLogActive) {
+            var gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
+            if (text) {
+                gu.text = text;
+            }
+            $rootScope.conversation.push(gu);
+        }
         $rootScope.currentNavTree.position = 0;
         $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
-        //$rootScope.navPage.currentGlossUnit.showComment = false;
-        var gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
-        if (text) {
-            gu.text = text;
-        }
-        $rootScope.conversation.push(gu);
     }
     $scope.isMenuVisible = false;
     $scope.toggleMenu = function() { $scope.isMenuVisible = !$scope.isMenuVisible; };
@@ -242,6 +236,9 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     $rootScope.loadBackupState = function() {
         $state.go('backup');
     };
+    $rootScope.loadConversationState = function() {
+        $state.go('conversation');
+    };
     $rootScope.editMode = false;
     $rootScope.toggleEditMode = function() {
         if ($rootScope.editMode) {
@@ -346,6 +343,14 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         $rootScope.addGlossUnitByPosition(jQuery.extend(true, {}, $rootScope.copiedGlossUnit), position);
         $scope.updateNavigationPage();
     };
+    $rootScope.getCurrentBackgroundColor = function () {
+        var cgu = $rootScope.navPage.currentGlossUnit;
+        if (cgu.currentPosition > 0) {
+            return $rootScope.partOfSpeechColors[cgu.glossSubUnitsRight[cgu.currentPosition-1].partOfSpeech];
+        } else if (cgu.currentPosition < 0) {
+            return $rootScope.partOfSpeechColors[cgu.glossSubUnitsLeft[-cgu.currentPosition-1].partOfSpeech];
+        }
+    }
 });
 
 blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
@@ -431,6 +436,8 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
             return $rootScope.appSettings.onlineBlissUrl + $rootScope.sgu.activeFilename;
         } else if (gu.path === "rt") {
             return $rootScope.appSettings.onlineRtUrl + $rootScope.sgu.activeFilename;
+        } else {
+            return false; //shows web browsers standard "image missing" icon.
         }
     }
     $scope.getActivePath = function () {
@@ -460,6 +467,16 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
             glossUnitsToUpdate[j].glossSubUnitsRight = jQuery.extend(true, [], $rootScope.sgu.glossSubUnitsRight); //deepcopy array
         }
     });
+    $scope.changePartOfSpeech = function (name) {
+        if ($rootScope.sgu.activeLeftRightPosition === 0) {
+            $rootScope.sgu.partOfSpeech = name;
+        } else if ($rootScope.sgu.activeLeftRightPosition < 0) {
+            $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].partOfSpeech = name;
+        } else {
+            $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].partOfSpeech = name;
+        }
+        $scope.update();
+    };
     $scope.returnToNav = function () {
         $state.go('main');
     };
@@ -519,6 +536,10 @@ blissKom.controller("BackupCtrl", function($scope, $rootScope, backupService) {
         $rootScope.activeBackup = $rootScope.backupDates[index];
     };
     $scope.activateBackup = backupService.activateBackup;
+});
+
+blissKom.controller("ConversationCtrl", function($scope, $rootScope) {
+    
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});

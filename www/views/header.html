@@ -8,24 +8,30 @@
         <ul class="dropdown-menu" ng-style="{'max-height': bodyHeight}">
             <li hm-tap="navToPage(0)"><a href>Navigering</a></li>
             <li class="divider"></li>
-            <li hm-tap='loadGlossUnitSettingsState()'><a href>Rutinställningar</a></li>
+            <li hm-tap="loadGlossUnitSettingsState()"><a href>Rutinställningar</a></li>
             <li><a href>Sidinställningar</a></li>
             <li><a href><s>Samlingsinställningar</s></a></li>
             <li><a href><s>Appinställningar</s></a></li>
             <li><a href>Stilmallsinställningar</a></li>
             <li class="divider"></li>
-            <li hm-tap='loadBackupState()'><a href>Säkerhetskopiering</a></li>
+            <li hm-tap="loadBackupState()"><a href>Säkerhetskopiering</a></li>
             <li class="divider"></li>
-            <li hm-tap='loadAboutState()'><a href>Om BlissKom</a></li>
+            <li hm-tap="loadAboutState()"><a href>Om BlissKom</a></li>
         </ul>
-        <button type="button" class="btn btn-header">
-            <bk-icon-editmode hm-tap="toggleEditMode()"></bk-icon-editmode>&nbsp;
+        <button type="button" 
+                class="btn btn-header"
+                hm-tap="toggleEditMode()">
+            <bk-icon-editmode></bk-icon-editmode>&nbsp;
         </button>
-        <button type="button" class="btn btn-header">
+        <button type="button" 
+                class="btn btn-header"
+                hm-tap="loadConversationState()">
             <bk-icon-book></bk-icon-book>&nbsp;
         </button>
-        <button type="button" class="btn btn-header">
-            <bk-icon-home hm-tap="navToPage(0)"></bk-icon-home>&nbsp;
+        <button type="button" 
+                class="btn btn-header"
+                hm-tap="navToPage(0)">
+            <bk-icon-home></bk-icon-home>&nbsp;
         </button>
     </div>
     <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">

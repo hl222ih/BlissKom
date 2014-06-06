@@ -2,16 +2,17 @@
     <div class="largeGlossUnits {{navPage.currentGlossUnit.currentPartOfSpeech}}" 
         hm-swipe-right="showLeftImageOfGlossUnit(); $event.stopPropagation();"
         hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"
-        hm-tap="navPage.currentGlossUnit.showComment = false"> 
+        hm-tap="navPage.currentGlossUnit.showComment = false"
+        ng-style="{'background-color': getCurrentBackgroundColor()}">
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
-             data-ng-src="img/custom/{{navPage.currentGlossUnit.currentFilename}}" />
+             data-ng-src="{{appSettings.localCustomUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'bliss'"
-             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{navPage.currentGlossUnit.currentFilename}}" />
+             data-ng-src="{{appSettings.onlineBlissUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'rt'"
-             data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{navPage.currentGlossUnit.currentFilename}}" />
+             data-ng-src="{{appSettings.onlineRtUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
         <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.currentPartOfSpeech}}">
             <div>
                 <bk-icon-ok hm-tap="confirmEnlargedGlossUnit()"></bk-icon-ok>

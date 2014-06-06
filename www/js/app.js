@@ -85,6 +85,19 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                         controller: 'MainCtrl'
                     }
                 }
+            })
+            .state('conversation', {
+                url: '/conversation',
+                views: {
+                    '': { 
+                        templateUrl: 'views/conversation.html',
+                        controller: 'ConversationCtrl'
+                    },
+                    'header': {
+                        templateUrl: 'views/header.html',
+                        controller: 'MainCtrl'
+                    }
+                }
             });
     })
     .run(function($rootScope,dataServiceProvider,databaseServiceProvider, $window) {
@@ -134,6 +147,9 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     break;
                 case "backup":
                     stateHeader = "Säkerhetskopiering och återställning";
+                    break;
+                case "conversation":
+                    stateHeader = "Konversation";
                     break;
                 default:
                     stateHeader = "";
