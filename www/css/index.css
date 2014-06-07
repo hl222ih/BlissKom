@@ -440,7 +440,7 @@ bk-icon-cancel {
     top: 70%; 
 }
 .notificationBar {
-    display: block;
+    display: inline-block;
     position: absolute;
     bottom: 0;
     left: 0;

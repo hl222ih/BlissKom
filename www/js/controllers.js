@@ -217,11 +217,11 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         }
     };
     $rootScope.showStatusMessage = function (message) {
+        $rootScope.notification = message;
         var notElement = document.getElementsByClassName("notificationBar")[0];
         notElement.classList.remove("showForAWhile");
         notElement.offsetWidth = notElement.offsetWidth; //hack för att nollställa css-animation istället för att ta bort hela elementet och lägga till det igen...
         notElement.classList.add("showForAWhile");
-        $rootScope.notification = message;
     };
     $rootScope.loadGlossUnitSettingsState = function(position) {
         $rootScope.settingGlossUnit = $rootScope.getGlossUnitByPosition(position);
@@ -344,11 +344,13 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         $scope.updateNavigationPage();
     };
     $rootScope.getCurrentBackgroundColor = function () {
-        var cgu = $rootScope.navPage.currentGlossUnit;
-        if (cgu.currentPosition > 0) {
-            return $rootScope.partOfSpeechColors[cgu.glossSubUnitsRight[cgu.currentPosition-1].partOfSpeech];
-        } else if (cgu.currentPosition < 0) {
-            return $rootScope.partOfSpeechColors[cgu.glossSubUnitsLeft[-cgu.currentPosition-1].partOfSpeech];
+        if ($rootScope.navPage.currentGlossUnit) {
+            var cgu = $rootScope.navPage.currentGlossUnit;
+            if (cgu.currentPosition > 0) {
+                return $rootScope.partOfSpeechColors[cgu.glossSubUnitsRight[cgu.currentPosition-1].partOfSpeech];
+            } else if (cgu.currentPosition < 0) {
+                return $rootScope.partOfSpeechColors[cgu.glossSubUnitsLeft[-cgu.currentPosition-1].partOfSpeech];
+            }
         }
     }
 });
@@ -533,7 +535,7 @@ blissKom.controller("BackupCtrl", function($scope, $rootScope, backupService) {
     $scope.doBackup = backupService.doBackup;
     backupService.retrieveListOfBackup();
     $scope.setActiveBackup = function (index) {
-        $rootScope.activeBackup = $rootScope.backupDates[index];
+        $rootScope.activeBackup = $rootScope.backupDates[$rootScope.backupDates.length-1-index];
     };
     $scope.activateBackup = backupService.activateBackup;
 });

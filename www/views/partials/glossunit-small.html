@@ -8,10 +8,10 @@
              data-ng-src="img/custom/{{glossUnit.filename}}" />
         <img class="smallGlossUnitImg"
              data-ng-if="glossUnit.path === 'bliss'"
-             data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{glossUnit.filename}}" />
+             data-ng-src="{{appSettings.onlineBlissUrl}}{{glossUnit.filename}}" />
         <img class="smallGlossUnitImg"
              data-ng-if="glossUnit.path === 'rt'"
-             data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{glossUnit.filename}}" />
+             data-ng-src="{{appSettings.onlineRtUrl}}{{glossUnit.filename}}" />
         <div class="glossUnitTexts">{{glossUnit.text}}</div>
     </a>        
 </div>

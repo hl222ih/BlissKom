@@ -84,7 +84,10 @@
                    ng-model="sgu.pageLinkUrl"
                    autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
         </div>
-        <div class="dropdown" style="position: absolute; top: 24%; left: 52%; width: 20%">
+        <div class="dropdown" 
+             style="position: absolute; top: 24%; left: 52%; width: 20%"
+             hm-swipe-up="$event.stopPropagation();"
+             hm-swipe-down="$event.stopPropagation();">
             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="position: relative; width: 100%;">
                 ordklass: {{sgu.partOfSpeech}} <span class="caret"></span>
             </button>
@@ -96,7 +99,9 @@
                 </li>  
             </ul>
         </div>
-        <div class="dropdown" style="position: absolute; top: 24%; right: 2%; width: 20%">
+        <div class="dropdown" style="position: absolute; top: 24%; right: 2%; width: 20%"
+             hm-swipe-up="$event.stopPropagation();"
+             hm-swipe-down="$event.stopPropagation();">
             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="position: relative; width: 100%;">
                 sidlänk <span class="caret"></span>
             </button>

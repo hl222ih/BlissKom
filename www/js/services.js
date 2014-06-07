@@ -158,6 +158,7 @@ blissKom.service("dataServiceProvider", function($rootScope, $http, $q) {
 blissKom.service("backupService", function($rootScope) {
     var allSavedAppSettings = {};
     this.doBackup = function() {
+        $rootScope.showStatusMessage("Påbörjar säkerhetskopiering...");
         var userRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/users/' + $rootScope.user.id);
         //var appSettings = JSON.parse(JSON.stringify($rootScope.appSettings));
         var appSettings = angular.fromJson(angular.toJson($rootScope.appSettings));
@@ -176,11 +177,10 @@ blissKom.service("backupService", function($rootScope) {
         }, function (error) {
             if (!error) {
                 $rootScope.showStatusMessage("Säkerhetskopiering utförd...");
-                //alert("yay");
             } else {
                 $rootScope.showStatusMessage("Säkerhetskopieringen misslyckades...");
-                //alert("non-yay");
             }
+            $rootScope.$digest();
         });
     };
     this.retrieveListOfBackup = function() {
@@ -202,13 +202,19 @@ blissKom.service("backupService", function($rootScope) {
             allSavedAppSettingsArray.push(allSavedAppSettings[setupObjKey]);
         }
         var retrievedSettings = allSavedAppSettingsArray.filter(function (setupObj) {
-            return $rootScope.activeBackup = setupObj.datetime;
+            return $rootScope.activeBackup.getTime() === setupObj.datetime;
         })[0];
         if (retrievedSettings) {
             $rootScope.appSettings = retrievedSettings.appSettings;
             $rootScope.cssTemplates = retrievedSettings.cssTemplates;
             $rootScope.navPages = retrievedSettings.navPages;
             $rootScope.posColors = retrievedSettings.posColors;
+            $rootScope.showStatusMessage("Återställning gjord...");
+            $rootScope.$digest();
+        } else {
+            $rootScope.showStatusMessage("Återställning kunde inte utföras...");
+            $rootScope.$digest();
         }
+        
     };
 });

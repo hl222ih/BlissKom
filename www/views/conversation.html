@@ -10,14 +10,37 @@
                  data-ng-src="img/custom/{{cu.filename}}" />
             <img class="smallGlossUnitImg"
                  data-ng-if="cu.path === 'bliss'"
-                 data-ng-src="http://www.blisskom.besaba.com/bliss/svg/{{cu.filename}}" 
+                 data-ng-src="{{appSettings.onlineBlissUrl}}{{cu.filename}}" 
                  style="height: auto; width: auto;"/>
             <img class="smallGlossUnitImg"
                  data-ng-if="cu.path === 'rt'"
-                 data-ng-src="http://www.blisskom.besaba.com/rt/svg/{{cu.filename}}" />
+                 data-ng-src="{{appSettings.onlineRtUrl}}{{cu.filename}}" />
             <div class="glossUnitTexts">{{cu.text}}</div>
         </a>        
     </div>
+    <button class="btn btn-primary" 
+           style="position: absolute; width: 16%; left: 2%; bottom: 2%;"
+           hm-tap="doBackup()">
+        <s>Spara</s>
+    </button>
+    <button class="btn btn-primary" 
+           style="position: absolute; width: 16%; left: 22%; bottom: 2%;">
+        <s>Ladda</s>
+    </button>
+    <button class="btn btn-primary" 
+           style="position: absolute; width: 16%; left: 42%; bottom: 2%;">
+        <s>Skriv ut</s>
+    </button>
+    <button class="btn btn-primary" 
+           style="position: absolute; width: 16%; left: 62%; bottom: 2%;">
+        <s>E-posta</s>
+    </button>
+    <button class="btn btn-primary" 
+           style="position: absolute; width: 16%; left: 82%; bottom: 2%;">
+        <s>Rensa</s>
+    </button>
+    
+
     <div class="notificationBar">{{notification}}</div>
     <img class="backgroundImage lightFill" src="img/BlissKomLight.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>
