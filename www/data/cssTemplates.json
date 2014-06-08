@@ -664,5 +664,66 @@
                 "height": 37
             }
         ]
+    },
+    {
+        "name": "four-four",
+        "settings": [
+            {
+                "position": 1,
+                "top": 1,
+                "left": 1,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 2,
+                "top": 1,
+                "left": 24,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 3,
+                "top": 1,
+                "left": 55,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 4,
+                "top": 1,
+                "left": 78,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 5,
+                "top": 78,
+                "left": 1,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 6,
+                "top": 78,
+                "left": 24,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 7,
+                "top": 78,
+                "left": 55,
+                "width": 21,
+                "height": 21
+            },
+            {
+                "position": 8,
+                "top": 78,
+                "left": 78,
+                "width": 21,
+                "height": 21
+            }
+        ]
     }
 ]
