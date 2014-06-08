@@ -69,19 +69,19 @@
              style="position: absolute; width: 46%; right:2%;top:12%; text-align: left;">
             <span class="input-group-addon"
                   style="border-left: 1px solid #ccc; border-radius: 4px 0 0 4px; line-height: 20px; vertical-align: middle;"
-                  hm-tap="chkPageLink = true; $event.stopPropagation();">
+                  hm-tap="toggleChkPageLink(); $event.stopPropagation();">
                     Sidlänk:&nbsp;
                 <div style="position: absolute; top: 0; display: inline-block; height: 100%; border-left: 1px solid #ccc;"></div>
                 <input type="checkbox"
                        ng-model="chkPageLink"
-                       onclick="return false;"
-                       style="display: inline-block; height: 20px; width: 20px; vertical-align: middle; margin-left: 15px; padding-right: 5px; ">
+                       style="pointer-events: none; display: inline-block; height: 20px; width: 20px; vertical-align: middle; margin-left: 15px; padding-right: 5px; ">
             </span>
-
             <input type="text" 
                    class="form-control form-control-sm" 
                    name="pageLink" 
                    ng-model="sgu.pageLinkUrl"
+                   ng-class="{'inactiveTextbox': !chkPageLink}"
+                   ng-disabled="!chkPageLink"
                    autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"/>
         </div>
         <div class="dropdown" 
@@ -99,16 +99,16 @@
                 </li>  
             </ul>
         </div>
-        <div class="dropdown" style="position: absolute; top: 24%; right: 2%; width: 20%"
+        <div class="dropdown" style="position: absolute; top: 24%; right: 2%; width: 25%"
              hm-swipe-up="$event.stopPropagation();"
              hm-swipe-down="$event.stopPropagation();">
             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="position: relative; width: 100%;">
                 sidlänk <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" style="max-width: 200px" >
-                <li ng-repeat="navPage in navPages" 
-                        hm-tap="sgu.pageLinkUrl = navPage.pageUrl; sgu.activeText = navPage.pageName;">
-                    <a href>{{navPage.pageName}}</a>
+            <ul class="dropdown-menu" style="max-width: 250px" ng-style="{'max-height': appHeight*0.52 + 'px'}">
+                <li ng-repeat="np in navPages" 
+                        hm-tap="changePageLinkUrl(np);">
+                    <a href>{{np.pageName}}</a>
                 </li>  
             </ul>
         </div>
