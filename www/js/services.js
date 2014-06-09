@@ -157,6 +157,7 @@ blissKom.service("dataServiceProvider", function($rootScope, $http, $q) {
 
 blissKom.service("backupService", function($rootScope) {
     var allSavedAppSettings = {};
+    var that = this;
     this.doBackup = function() {
         $rootScope.showStatusMessage("Påbörjar säkerhetskopiering...");
         var userRef = new Firebase('https://incandescent-fire-1738.firebaseio.com/users/' + $rootScope.user.id);
@@ -180,6 +181,7 @@ blissKom.service("backupService", function($rootScope) {
             } else {
                 $rootScope.showStatusMessage("Säkerhetskopieringen misslyckades...");
             }
+            that.retrieveListOfBackup();
             $rootScope.$digest();
         });
     };
