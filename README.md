@@ -12,3 +12,5 @@ http://homepage.lnu.se/student/hl222ih/kurs/1IK419/Slutuppgift/blisskom.apk
 
 Demonstrationsfilm på Youtube:
 http://youtu.be/XkdHm71oD9I
+
+Inga missade gästföreläsningar.
