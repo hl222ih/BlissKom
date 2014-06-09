@@ -14,3 +14,5 @@ Demonstrationsfilm på Youtube:
 http://youtu.be/XkdHm71oD9I
 
 Inga missade gästföreläsningar.
+
+Slutrapport i roten av detta repo.
