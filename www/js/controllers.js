@@ -1,140 +1,144 @@
-blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document, $state, $firebase, ngDialog, glossFactory, backupService, navPageService, dataServiceProvider) { 
+blissKom.controller("HeaderCtrl", function ($rootScope, $scope, $state, appDataService) {
+    $scope.settings = appDataService.appSettings;
+    $scope.isLogging = function () { return $scope.settings.logging; };
+    $scope.navTree = appDataService.navTree;
+    $scope.isMenuVisible = false;
+    $scope.isEditMode = function () { 
+        return $scope.settings.editMode;
+    };
+    
+    //activates/deactivates logging of communication.
+    $scope.toggleLogging = function () {
+        appDataService.toggleLogging();
+    };
 
-    if (!$rootScope.conversation) {
-        $rootScope.conversation = [];
-    }
+    //$rootScope.editMode = false;
+    $scope.toggleEditMode = function() {
+        appDataService.toggleEditMode();
+//        if ($rootScope.editMode) {
+//            $rootScope.editMode = false;
+//        } else {
+//            $rootScope.editMode = true;
+//        }
+    };
 
+    $scope.navToStartPage = function() {
+        appDataService.setNavTreePosition(0);
+        $state.go('main');
+    };
+    $scope.loadAboutState = function() {
+        $state.go('about');
+    };
+    $scope.loadTestState = function() {
+        $state.go('test');
+    };
+    $scope.loadBackupState = function() {
+        $state.go('backup');
+    };
+    $scope.loadConversationState = function() {
+        $state.go('conversation');
+    };
+});
+
+blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document, $state, $firebase, ngDialog, glossFactory, navPageFactory, backupService, navPageService, dataServiceProvider, appDataService) { 
+    $scope.settings = appDataService.appSettings;
+    $scope.isLogging = function () { return $scope.settings.logging; };
+    $scope.pos = appDataService.partOfSpeechColorsData;
+    $scope.conversation = appDataService.getConversation;
+    $scope.navTree = appDataService.navTree;
+    $scope.isEditMode = function () { 
+        return $scope.settings.editMode;
+    };
+    
     //Function which updates the content of a navigation page
     //based on the page-url.
     //Is normally invoked by a tap of a glossUnit-link or
     //a tap of an enlarged glossUnit image as confirmation.
-    $scope.updateNavigationPage = function(pageUrl) {
-        $rootScope.showEnlargedGlossUnit = false;
+    var tryUpdateNavPage = function(pageUrl) {
         var isNavigatingToNewPage = true;
-     
-        if (!pageUrl && $rootScope.navPage) {
-            pageUrl = $rootScope.navPage.pageUrl;
+
+        $scope.showEnlargedGlossUnit = false;
+         
+        if (!pageUrl && $scope.navPage) {
+            pageUrl = $scope.navPage.pageUrl;
             isNavigatingToNewPage = false;
         }
 
-        //Get the navigation page with page-url from the collection of
-        //all navigation pages.
-        if ($rootScope.navPages) {
-            var currentNavPage = $rootScope.navPages.filter(function (nObj) {
-                return nObj.pageUrl === pageUrl;
-            })[0];
+        try {
+            $scope.navPage = navPageFactory.createNavPage(pageUrl);
+        } catch (error) {
+            if (error.name === "PageNotFoundException") {
+                isNavigatingToNewPage = false;
+                $rootScope.showStatusMessage("Sidan saknas...");
+            } else {
+                throw error;
+            }            
         }
-        //If no navigation page with given page-url was found, return
-        //without doing anything. Show alert message.
-        if (!currentNavPage) {
-            isNavigatingToNewPage = false;
-            return isNavigatingToNewPage;
-        }
-
-        if ($rootScope.cssTemplates) {
-            var currentCssTemplate = $rootScope.cssTemplates.filter(function (cssObj) {
-                return cssObj.name === currentNavPage.pageCss;
-            })[0];
-        }
-
-        //Generate navigation-page-specific CSS which will be automatically
-        //loaded into the current navigation page. (navstyle.html)
-        var unitStyles = navPageService.getPageCss(currentNavPage.pageCss);
-        
-        //From gloss-data array saved as JSON for the current navigation page, 
-        //creating an array of full GlossUnit objects.
-        var glossUnits = glossFactory.createGlossUnits(currentNavPage.glossData);
-        
-        //Create an object for the navigation page, with properties bindable
-        //by the code.
-        //if (!$rootScope.navPage || $rootScope.navPage.pageUrl !== pageUrl) {
-            $rootScope.navPage = {
-                 pageName: currentNavPage.pageName,
-                 pageUrl: currentNavPage.pageUrl,
-                 glossUnits: glossUnits,
-                 pageCss: currentNavPage.pageCss, //complete css insertable in html code.
-                 cssTemplate: currentCssTemplate, //css template object
-                 unitStyles: unitStyles,
-                 currentGlossUnit: null
-            };
-        //}
                 
         return isNavigatingToNewPage;
     };
 
-    //Displays the navigation page with url "startsida", the main navigation page.
-    //Should remove the 'startsida' hard coding to allow several parallel
-    //navigation setups.
+    tryUpdateNavPage(appDataService.navTree.pages[appDataService.navTree.position].url);
     
-    $scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position]);
-
     $scope.glossUnitClick = function (glossUnit) {
         if (glossUnit.isPageLink()) {
-            if ($scope.updateNavigationPage(glossUnit.pageLinkUrl)) {
-                if ($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position] === $rootScope.appSettings.defaultPageUrl) {
-                    $rootScope.currentNavTree = {
-                        "treePageUrls": [$rootScope.appSettings.defaultPageUrl],
-                        "treePageNames": [$rootScope.appSettings.defaultPageName],
-                        "position": 0
-                    };                     
-                }
-                $rootScope.currentNavTree.treePageUrls.push(glossUnit.pageLinkUrl);
-                $rootScope.currentNavTree.treePageNames.push(glossUnit.text);
-                $rootScope.currentNavTree.position++;
+            if (tryUpdateNavPage(glossUnit.pageLinkUrl)) {
+                appDataService.pushToNavTree(glossUnit.pageLinkUrl, glossUnit.text);
             } else {
-                $rootScope.showStatusMessage("Sidan saknas...");
             }
         } else {
-            $rootScope.showEnlargedGlossUnit = true;
-            $rootScope.navPage.currentGlossUnit = jQuery.extend(true, {}, glossUnit); //deepcopy glossUnit
-            $rootScope.navPage.currentGlossUnit.currentFilename = $rootScope.navPage.currentGlossUnit.filename;
-            $rootScope.navPage.currentGlossUnit.currentPath = $rootScope.navPage.currentGlossUnit.path;
-            $rootScope.navPage.currentGlossUnit.currentText = $rootScope.navPage.currentGlossUnit.text;
-            $rootScope.navPage.currentGlossUnit.currentComment = $rootScope.navPage.currentGlossUnit.comment;
-            $rootScope.navPage.currentGlossUnit.currentPartOfSpeech = $rootScope.navPage.currentGlossUnit.partOfSpeech;
-            $rootScope.navPage.currentGlossUnit.currentPosition = 0;
+            $scope.showEnlargedGlossUnit = true;
+            $scope.navPage.currentGlossUnit = jQuery.extend(true, {}, glossUnit); //deepcopy glossUnit
+            $scope.navPage.currentGlossUnit.currentFilename = $scope.navPage.currentGlossUnit.filename;
+            $scope.navPage.currentGlossUnit.currentPath = $scope.navPage.currentGlossUnit.path;
+            $scope.navPage.currentGlossUnit.currentText = $scope.navPage.currentGlossUnit.text;
+            $scope.navPage.currentGlossUnit.currentComment = $scope.navPage.currentGlossUnit.comment;
+            $scope.navPage.currentGlossUnit.currentPartOfSpeech = $scope.navPage.currentGlossUnit.partOfSpeech;
+            $scope.navPage.currentGlossUnit.currentPosition = 0;
         }
     };
     $scope.cancelEnlargedGlossUnit = function () {
-        $rootScope.showEnlargedGlossUnit = false;
-        //$rootScope.navPage.currentGlossUnit.showComment = false;
-    }
+        $scope.showEnlargedGlossUnit = false;
+    };
     $scope.confirmEnlargedGlossUnit = function (text) {
-        //$rootScope.navPage.currentGlossUnit.showComment = false;
-        if ($rootScope.isLogActive) {
-            var gu = jQuery.extend(true, {}, $rootScope.navPage.currentGlossUnit);
+        if ($scope.isLogging()) {
+            var gu = jQuery.extend(true, {}, $scope.navPage.currentGlossUnit);
             if (text) {
                 gu.text = text;
             }
-            $rootScope.conversation.push(gu);
+            appDataService.pushToConversation(gu);
         }
-        $rootScope.currentNavTree.position = 0;
-        $scope.updateNavigationPage($rootScope.appSettings.defaultPageUrl);
-    }
-    $scope.isMenuVisible = false;
+        appDataService.resetNavTree();
+        tryUpdateNavPage();
+    };
     $scope.toggleMenu = function() { $scope.isMenuVisible = !$scope.isMenuVisible; };
+
     $scope.navToPrevPage = function() {
-        if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position - 1])) {
-            $rootScope.currentNavTree.position--;
+        var url = appDataService.getPreviousPageUrl();
+        if (url && tryUpdateNavPage(url))
+        {
+            appDataService.navTree.position--;
         } else {
             $rootScope.showStatusMessage("Sidan saknas...");
         }
     };
 
     $scope.navToNextPage = function() {
-        if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[$rootScope.currentNavTree.position + 1])) {
-            $rootScope.currentNavTree.position++;
+        var url = appDataService.getNextPageUrl();
+        if (url && tryUpdateNavPage(url))
+        {
+            appDataService.navTree.position++;
         } else {
             $rootScope.showStatusMessage("Sidan saknas...");
         }
     };
 
     $scope.navToPage = function(position) {
-        if ($scope.updateNavigationPage($rootScope.currentNavTree.treePageUrls[position])) {
+        if (tryUpdateNavPage($rootScope.currentNavTree.treePageUrls[position])) {
+//appDataService.navTree.position
+            appDataService.setNavTreePosition(position);
             $rootScope.currentNavTree.position = position;
             $state.go('main');
-        } else {
-            $rootScope.showStatusMessage("Sidan saknas...");
         }
     };
 
@@ -151,7 +155,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         $rootScope.bodyHeight = windowHeight;
     };
     $scope.showLeftImageOfGlossUnit = function() {
-        var cgu = $rootScope.navPage.currentGlossUnit;
+        var cgu = $scope.navPage.currentGlossUnit;
         var pos = cgu.currentPosition;
 
         if (pos <= 0) {  
@@ -179,8 +183,34 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
             cgu.currentPosition--;
         }
     };
+    
+    $rootScope.loadGlossUnitSettingsState = function(position) {
+        $rootScope.settingGlossUnit = $rootScope.getGlossUnitByPosition(position);
+
+        if (!$rootScope.settingGlossUnit) {
+            var tempSettingGlossUnit = {
+                "position": position,
+                "text": "test",
+                "path": "bliss",
+                "filename": "",
+                "glossId": new Date().getTime(),
+                "glossText": "",
+                "comment": "",
+                "partOfSpeech": "noun",
+                "pageLinkUrl": "",
+                "glossSubUnitsLeft": [],
+                "glossSubUnitsRight": []        
+            };
+
+            $rootScope.addGlossUnitByPosition(tempSettingGlossUnit, position); //add to navPages (not navPage)
+            $scope.navPage.glossUnits.push(tempSettingGlossUnit); //add to navPage
+            $rootScope.settingGlossUnit = tempSettingGlossUnit;
+        };
+        $state.go('glossunitsettings');
+    };
+
     $scope.showRightImageOfGlossUnit = function() {
-        var cgu = $rootScope.navPage.currentGlossUnit;
+        var cgu = $scope.navPage.currentGlossUnit;
         var pos = cgu.currentPosition;
 
         if (pos >= 0) {
@@ -208,14 +238,6 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
             cgu.currentPosition++;
         }
     };
-    $scope.toggleLogActivity = function () {
-        $rootScope.isLogActive = !$rootScope.isLogActive;
-        if ($rootScope.isLogActive) {
-            $rootScope.showStatusMessage("Anteckningar aktiverat...");
-        } else {
-            $rootScope.showStatusMessage("Anteckningar inaktiverat...");
-        }
-    };
     $rootScope.showStatusMessage = function (message) {
         $rootScope.notification = message;
         var notElement = document.getElementsByClassName("notificationBar")[0];
@@ -223,53 +245,15 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         notElement.offsetWidth = notElement.offsetWidth; //hack för att nollställa css-animation istället för att ta bort hela elementet och lägga till det igen...
         notElement.classList.add("showForAWhile");
     };
-    $rootScope.loadGlossUnitSettingsState = function(position) {
-        $rootScope.settingGlossUnit = $rootScope.getGlossUnitByPosition(position);
 
-        if (!$rootScope.settingGlossUnit) {
-            var tempSettingGlossUnit = {
-                "position": position,
-                "text": "test",
-                "path": "bliss",
-                "filename": "",
-                "glossId": new Date().getTime(),
-                "glossText": "",
-                "comment": "",
-                "partOfSpeech": "noun",
-                "pageLinkUrl": "",
-                "glossSubUnitsLeft": [],
-                "glossSubUnitsRight": []        
-            }
+    
 
-            $rootScope.addGlossUnitByPosition(tempSettingGlossUnit, position); //add to navPages (not navPage)
-            $rootScope.navPage.glossUnits.push(tempSettingGlossUnit); //add to navPage
-            $rootScope.settingGlossUnit = tempSettingGlossUnit;
-        }
-        $state.go('glossunitsettings');
-    };
-    $rootScope.loadAboutState = function() {
-        $state.go('about');
-    };
-    $rootScope.loadBackupState = function() {
-        $state.go('backup');
-    };
-    $rootScope.loadConversationState = function() {
-        $state.go('conversation');
-    };
-    $rootScope.editMode = false;
-    $rootScope.toggleEditMode = function() {
-        if ($rootScope.editMode) {
-            $rootScope.editMode = false;
-        } else {
-            $rootScope.editMode = true;
-        }
-    };
     $rootScope.getGlossUnitByPosition = function (position) { 
         var i = 0,
-        gus = $rootScope.navPage.glossUnits;
+        gus = $scope.navPage.glossUnits;
         for (; i < gus.length; i++) {
             if (position === gus[i].position) {
-                gus[i].pageUrl = $rootScope.navPage.pageUrl;
+                gus[i].pageUrl = $scope.navPage.pageUrl;
                 return gus[i];
             }
         }
@@ -306,30 +290,30 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     $scope.$on('ngDialog.closed', function(e, $dialog) {
         if ($rootScope.dialogResult) {
             $rootScope.removeGlossUnitByPosition($rootScope.activePosition);
-            $scope.updateNavigationPage();
+            tryUpdateNavPage();
             $rootScope.showStatusMessage("Rutans innehåll borttaget...");
         }
     });
     $rootScope.removeGlossUnitByPosition = function (position, pageUrl) {
         if (!pageUrl) {
-            pageUrl = $rootScope.navPage.pageUrl;
+            pageUrl = $scope.navPage.pageUrl;
         }
-        var navPage = $rootScope.navPages.filter(function (np) {
+        var navPage = $scope.navPages.filter(function (np) {
             return np.pageUrl === pageUrl;
         })[0];
         var glossUnit = navPage.glossData.filter(function (gu) {
             return gu.position === position;
         })[0];
         var index = navPage.glossData.indexOf(glossUnit);
-        if (index != -1) {
+        if (index !== -1) {
             navPage.glossData.splice(index, 1);
         }
     };
     $rootScope.addGlossUnitByPosition = function (glossUnit, position, pageUrl) {
         if (!pageUrl) {
-            pageUrl = $rootScope.navPage.pageUrl;
+            pageUrl = $scope.navPage.pageUrl;
         }
-        var navPage = $rootScope.navPages.filter(function (np) {
+        var navPage = $scope.navPages.filter(function (np) {
             return np.pageUrl === pageUrl;
         })[0];
         glossUnit.position = position;
@@ -354,22 +338,23 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
             $rootScope.addGlossUnitByPosition(switchGlossUnit, fromPosition, fromPageUrl);
         }
         $rootScope.movedGlossUnit = null;
-        $scope.updateNavigationPage();
+        tryUpdateNavPage();
     };
     $rootScope.pasteGlossUnit = function (position) {
         $rootScope.addGlossUnitByPosition(jQuery.extend(true, {}, $rootScope.copiedGlossUnit), position);
-        $scope.updateNavigationPage();
+        tryUpdateNavPage();
     };
     $rootScope.getCurrentBackgroundColor = function () {
-        if ($rootScope.navPage.currentGlossUnit) {
-            var cgu = $rootScope.navPage.currentGlossUnit;
+        //Varför anropas denna innan $rootScope.navPage har skapats??
+        if ($scope.navPage.currentGlossUnit) {
+            var cgu = $scope.navPage.currentGlossUnit;
             if (cgu.currentPosition > 0) {
                 return $rootScope.partOfSpeechColors[cgu.glossSubUnitsRight[cgu.currentPosition-1].partOfSpeech];
             } else if (cgu.currentPosition < 0) {
                 return $rootScope.partOfSpeechColors[cgu.glossSubUnitsLeft[-cgu.currentPosition-1].partOfSpeech];
             }
         }
-    }
+    };
 });
 
 blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
@@ -378,7 +363,7 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         $rootScope.sgu.activeComment = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.comment : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].comment : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].comment);
         $rootScope.sgu.activeFilename = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.filename : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].filename : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].filename);
         $rootScope.sgu.activePartOfSpeech = $rootScope.sgu.activeLeftRightPosition === 0 ? $rootScope.sgu.partOfSpeech : ($rootScope.sgu.activeLeftRightPosition < 0 ? $rootScope.sgu.glossSubUnitsLeft[-$rootScope.sgu.activeLeftRightPosition-1].partOfSpeech : $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].partOfSpeech);
-    }
+    };
     if (!$rootScope.settingGlossUnit.activeLeftRightPosition) {
         $rootScope.settingGlossUnit.activeLeftRightPosition = 0;
     }
@@ -427,7 +412,7 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         } else {
             $rootScope.showStatusMessage("Kan bara ha tre sidobilder...");
         }
-    }
+    };
     $scope.addLeftImage = function () {
         if ($rootScope.sgu.glossSubUnitsLeft.length < 3) {        
             $rootScope.sgu.glossSubUnitsLeft.push({text: $rootScope.sgu.text, comment: ''});
@@ -435,11 +420,11 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         } else {
             $rootScope.showStatusMessage("Kan bara ha tre sidobilder...");
         }
-    }
+    };
     $scope.activateImage = function (leftRightPosition) {
         $rootScope.sgu.activeLeftRightPosition = leftRightPosition;
         $scope.update();
-    }
+    };
     $scope.getActiveFullPath = function () {
         var gu = {};
         if ($rootScope.sgu.activeLeftRightPosition === 0) {
@@ -451,13 +436,13 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         }    
 
         if (gu.path === "bliss") {
-            return $rootScope.appSettings.onlineBlissUrl + $rootScope.sgu.activeFilename;
+            return $scope.settings.onlineBlissUrl + $rootScope.sgu.activeFilename;
         } else if (gu.path === "rt") {
-            return $rootScope.appSettings.onlineRtUrl + $rootScope.sgu.activeFilename;
+            return $scope.settings.onlineRtUrl + $rootScope.sgu.activeFilename;
         } else {
             return false; //shows web browsers standard "image missing" icon.
         }
-    }
+    };
     $rootScope.chkPageLink = !!$rootScope.sgu.pageLinkUrl;
     $rootScope.toggleChkPageLink = function () {
         $rootScope.chkPageLink = !$rootScope.chkPageLink;
@@ -471,7 +456,7 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         } else {
             return $rootScope.sgu.glossSubUnitsRight[$rootScope.sgu.activeLeftRightPosition-1].path;
         }    
-    }
+    };
     $scope.$on("$destroy", function(){
         var nps = $rootScope.navPages;
         var glossUnitsToUpdate = [];
@@ -522,7 +507,7 @@ blissKom.controller("GlossUnitCtrl", function($scope, $rootScope, $state) {
         }
         $scope.updateSguText();
         $scope.updateSguComment();
-    }
+    };
     $scope.returnToNav = function () {
         $state.go('main');
     };
@@ -575,6 +560,9 @@ blissKom.controller("SelectImageCtrl", function($scope, $rootScope, $state, data
 });
 blissKom.controller("AboutCtrl", function() {
 });
+blissKom.controller("TestCtrl", function() {
+    
+});
 blissKom.controller("BackupCtrl", function($scope, $rootScope, backupService) {
     $scope.doBackup = backupService.doBackup;
     backupService.retrieveListOfBackup();
@@ -584,8 +572,9 @@ blissKom.controller("BackupCtrl", function($scope, $rootScope, backupService) {
     $scope.activateBackup = backupService.activateBackup;
 });
 
-blissKom.controller("ConversationCtrl", function($scope, $rootScope) {
-    
+blissKom.controller("ConversationCtrl", function($scope, $rootScope, appDataService) {
+    $scope.settings = appDataService.appSettings;
+    $scope.conversation = appDataService.getConversation();
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});

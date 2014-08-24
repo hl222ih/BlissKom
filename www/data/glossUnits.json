@@ -1,0 +1,2407 @@
+[{
+    "id": 1408063791107,
+    "text": "hej",
+    "path": "bliss",
+    "filename": "hello,greetings.svg",
+    "glossId": 14702,
+    "glossText": "hej, goddag",
+    "comment": "test",
+    "partOfSpeech": "expression",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "hej",
+            "path": "rt",
+            "filename": "hej.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064824538,
+    "text": "adjektiv",
+    "path": "bliss",
+    "filename": "feeling,emotion,sensation.svg",
+    "glossId": 14164,
+    "glossText": "känsla",
+    "comment": "sidlänk",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "adjektiv",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064838189,
+    "text": "att göra",
+    "path": "bliss",
+    "filename": "do,act-(to).svg",
+    "glossId": 13860,
+    "glossText": "göra",
+    "comment": "sidlänk",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "attgora",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064845462,
+    "text": "fordon",
+    "path": "bliss",
+    "filename": "vehicle,carriage,railway_car.svg",
+    "glossId": 18010,
+    "glossText": "fordon, vagn",
+    "comment": "sidlänk",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "fordon",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064856635,
+    "text": "platser",
+    "path": "bliss",
+    "filename": "place,area,location,space.svg",
+    "glossId": 16193,
+    "glossText": "plats, ställe",
+    "comment": "sidlänk",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "platser",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064863444,
+    "text": "personer",
+    "path": "bliss",
+    "filename": "person,human_being,individual,human.svg",
+    "glossId": 16161,
+    "glossText": "person, människa",
+    "comment": "sidlänk",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "personer",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064870419,
+    "text": "familj",
+    "path": "bliss",
+    "filename": "family_(cohabiting).svg",
+    "glossId": 14145,
+    "glossText": "familj, makar, sambopar (könsneutral)",
+    "comment": "sidlänk",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "familj",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064878828,
+    "text": "tidsbegrepp",
+    "path": "bliss",
+    "filename": "time.svg",
+    "glossId": 17732,
+    "glossText": "tid",
+    "comment": "sidlänk",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "tidsbegrepp",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064886971,
+    "text": "personfoton",
+    "path": "bliss",
+    "filename": "photograph,photo,pic.svg",
+    "glossId": 16169,
+    "glossText": "foto, kort",
+    "comment": "sidlänk",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "personfoton",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064893220,
+    "text": "småord/funktionsord",
+    "path": "bliss",
+    "filename": "word.svg",
+    "glossId": 18272,
+    "glossText": "ord",
+    "comment": "sidlänk",
+    "partOfSpeech": "expression",
+    "pageLinkUrl": "smaordfunktionsord",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064899849,
+    "text": "saker",
+    "path": "bliss",
+    "filename": "thing,object.svg",
+    "glossId": 17717,
+    "glossText": "sak, föremål",
+    "comment": "sidlänk",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "saker",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064909052,
+    "text": "mat och dryck",
+    "path": "bliss",
+    "filename": "food.svg",
+    "glossId": 14377,
+    "glossText": "mat, livsmedel",
+    "comment": "sidlänk",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "matochdryck",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064938024,
+    "text": "gå",
+    "path": "bliss",
+    "filename": "walk,go-(to).svg",
+    "glossId": 18031,
+    "glossText": "gå",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "gå",
+            "path": "rt",
+            "filename": "gå.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064946352,
+    "text": "åka",
+    "path": "bliss",
+    "filename": "ride-(to).svg",
+    "glossId": 16509,
+    "glossText": "åka",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "åka",
+            "path": "rt",
+            "filename": "åka.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064946352,
+    "text": "äta",
+    "path": "bliss",
+    "filename": "eat-(to).svg",
+    "glossId": 13906,
+    "glossText": "äta",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "äta",
+            "path": "rt",
+            "filename": "äta.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064955339,
+    "text": "dricka",
+    "path": "bliss",
+    "filename": "drink-(to).svg",
+    "glossId": 13882,
+    "glossText": "dricka",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "dricka",
+            "path": "rt",
+            "filename": "dricka.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064966665,
+    "text": "städa",
+    "path": "bliss",
+    "filename": "clean-(to).svg",
+    "glossId": 13357,
+    "glossText": "städa, göra ren",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "städa",
+            "path": "rt",
+            "filename": "städa.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064975803,
+    "text": "diska",
+    "path": "bliss",
+    "filename": "wash_up,do_the_dishes-(to).svg",
+    "glossId": 23705,
+    "glossText": "diska",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "diska",
+            "path": "rt",
+            "filename": "diska.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064983859,
+    "text": "byta",
+    "path": "bliss",
+    "filename": "exchange,substitute,trade-(to).svg",
+    "glossId": 14118,
+    "glossText": "byta",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "byta",
+            "path": "rt",
+            "filename": "byta.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064991331,
+    "text": "duscha",
+    "path": "bliss",
+    "filename": "shower-(to).svg",
+    "glossId": 16969,
+    "glossText": "duscha",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "duscha",
+            "path": "rt",
+            "filename": "duscha.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408064998217,
+    "text": "baka",
+    "path": "bliss",
+    "filename": "bake,cook,roast-(to).svg",
+    "glossId": 12619,
+    "glossText": "baka, grädda, steka (i ugn)",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "baka",
+            "path": "rt",
+            "filename": "baka.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065005187,
+    "text": "laga mat",
+    "path": "bliss",
+    "filename": "cook-(to).svg",
+    "glossId": 13408,
+    "glossText": "laga mat",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "laga mat",
+            "path": "rt",
+            "filename": "laga mat 3.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065013858,
+    "text": "köpa",
+    "path": "bliss",
+    "filename": "buy,purchase-(to).svg",
+    "glossId": 13099,
+    "glossText": "köpa, handla",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "köpa",
+            "path": "rt",
+            "filename": "köpa.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065021120,
+    "text": "bada, tvätta",
+    "path": "bliss",
+    "filename": "wash,bathe,bath-(to).svg",
+    "glossId": 18038,
+    "glossText": "bada, tvätta",
+    "comment": "",
+    "partOfSpeech": "action",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "tvätta",
+            "path": "rt",
+            "filename": "tvätta.svg",
+            "comment": ""
+        },
+        {
+            "text": "bada",
+            "path": "rt",
+            "filename": "bada.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065045169,
+    "text": "glad",
+    "path": "bliss",
+    "filename": "happy,glad,gladly,happily.svg",
+    "glossId": 14676,
+    "glossText": "glad, lycklig",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "glad",
+            "path": "rt",
+            "filename": "glad.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065055235,
+    "text": "ledsen",
+    "path": "bliss",
+    "filename": "sad,sadly,unhappily,unhappy.svg",
+    "glossId": 16702,
+    "glossText": "ledsen, olycklig",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "ledsen",
+            "path": "rt",
+            "filename": "ledsen.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065063276,
+    "text": "ny",
+    "path": "bliss",
+    "filename": "new.svg",
+    "glossId": 15710,
+    "glossText": "ny",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "ny",
+            "path": "rt",
+            "filename": "ny.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065070333,
+    "text": "gammal",
+    "path": "bliss",
+    "filename": "old,elderly.svg",
+    "glossId": 15916,
+    "glossText": "gammal, äldre (motsats ung)",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "gammal",
+            "path": "rt",
+            "filename": "gammal.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065077946,
+    "text": "arg",
+    "path": "bliss",
+    "filename": "angry,angrily,mad.svg",
+    "glossId": 12337,
+    "glossText": "arg, ilsken",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "arg",
+            "path": "rt",
+            "filename": "arg.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065085668,
+    "text": "trasig",
+    "path": "bliss",
+    "filename": "broken.svg",
+    "glossId": 12907,
+    "glossText": "trasig, sönder, avbruten",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "trasig",
+            "path": "rt",
+            "filename": "trasig.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065093221,
+    "text": "frisk",
+    "path": "bliss",
+    "filename": "healthy,well.svg",
+    "glossId": 14691,
+    "glossText": "frisk, kry",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "frisk",
+            "path": "rt",
+            "filename": "frisk.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065100180,
+    "text": "sjuk",
+    "path": "bliss",
+    "filename": "sick,ill.svg",
+    "glossId": 16973,
+    "glossText": "sjuk",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "sjuk",
+            "path": "rt",
+            "filename": "sjuk.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065106504,
+    "text": "hungrig",
+    "path": "bliss",
+    "filename": "hungry.svg",
+    "glossId": 14912,
+    "glossText": "hungrig",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "hungrig",
+            "path": "rt",
+            "filename": "hungrig.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065114169,
+    "text": "törstig",
+    "path": "bliss",
+    "filename": "thirsty.svg",
+    "glossId": 17719,
+    "glossText": "köpa, handla",
+    "comment": "",
+    "partOfSpeech": "description",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "törstig",
+            "path": "rt",
+            "filename": "törstig.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402154726103,
+    "text": "Greger",
+    "path": "custom",
+    "filename": "character1.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402154736148,
+    "text": "Peter",
+    "path": "custom",
+    "filename": "character2.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402154745808,
+    "text": "Nils",
+    "path": "custom",
+    "filename": "character3.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402187613378,
+    "text": "Roffe",
+    "path": "custom",
+    "filename": "character4.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402187628580,
+    "text": "Greta",
+    "path": "custom",
+    "filename": "character5.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402187638953,
+    "text": "Jossan",
+    "path": "custom",
+    "filename": "character6.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402187647302,
+    "text": "Erik",
+    "path": "custom",
+    "filename": "character7.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402187655287,
+    "text": "Snöa",
+    "path": "custom",
+    "filename": "character8.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402187663047,
+    "text": "Pernilla",
+    "path": "custom",
+    "filename": "character9.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1402187670521,
+    "text": "Charlotte",
+    "path": "custom",
+    "filename": "character10.png",
+    "comment": "",
+    "partOfSpeech": "",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065431836,
+    "text": "bil",
+    "path": "bliss",
+    "filename": "car,automobile,motor_vehicle.svg",
+    "glossId": 13121,
+    "glossText": "bil",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "bil",
+            "path": "rt",
+            "filename": "bil.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065440406,
+    "text": "buss",
+    "path": "bliss",
+    "filename": "bus,coach.svg",
+    "glossId": 13089,
+    "glossText": "buss",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "buss",
+            "path": "rt",
+            "filename": "buss.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065447460,
+    "text": "taxi",
+    "path": "bliss",
+    "filename": "taxi,cab.svg",
+    "glossId": 17509,
+    "glossText": "taxi, hyrbil",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "taxi",
+            "path": "rt",
+            "filename": "taxi.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065459958,
+    "text": "cykel",
+    "path": "bliss",
+    "filename": "bicycle.svg",
+    "glossId": 12834,
+    "glossText": "",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "cykel",
+            "path": "rt",
+            "filename": "cykel.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065467579,
+    "text": "flygplan",
+    "path": "bliss",
+    "filename": "airplane,aeroplane,plane.svg",
+    "glossId": 12357,
+    "glossText": "flygplan",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "flygplan",
+            "path": "rt",
+            "filename": "flygplan.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065475927,
+    "text": "motorcykel",
+    "path": "bliss",
+    "filename": "motorcycle,scooter.svg",
+    "glossId": 21810,
+    "glossText": "moped, motorcykel, skoter",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "motorcykel",
+            "path": "rt",
+            "filename": "motorcykel.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065483888,
+    "text": "ambulans",
+    "path": "bliss",
+    "filename": "ambulance.svg",
+    "glossId": 12369,
+    "glossText": "ambulans",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "ambulans",
+            "path": "rt",
+            "filename": "ambulans.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065491440,
+    "text": "rullstol",
+    "path": "bliss",
+    "filename": "wheelchair.svg",
+    "glossId": 18233,
+    "glossText": "rullstol",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "rullstol",
+            "path": "rt",
+            "filename": "rullstol.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065500261,
+    "text": "båt",
+    "path": "bliss",
+    "filename": "boat,ship.svg",
+    "glossId": 12869,
+    "glossText": "båt, fartyg, skepp",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "båt",
+            "path": "rt",
+            "filename": "båt.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065506562,
+    "text": "tåg",
+    "path": "bliss",
+    "filename": "train.svg",
+    "glossId": 17767,
+    "glossText": "",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "tåg",
+            "path": "rt",
+            "filename": "tåg.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065513711,
+    "text": "brandbil",
+    "path": "bliss",
+    "filename": "fire_truck,fire_engine.svg",
+    "glossId": 14186,
+    "glossText": "",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "brandbil",
+            "path": "rt",
+            "filename": "brandbil.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065543877,
+    "text": "hus",
+    "path": "bliss",
+    "filename": "house,building,dwelling,residence.svg",
+    "glossId": 14905,
+    "glossText": "hus, byggnad",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "hus",
+            "path": "rt",
+            "filename": "hus.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065550733,
+    "text": "lägenhet",
+    "path": "bliss",
+    "filename": "apartment,flat,unit.svg",
+    "glossId": 12403,
+    "glossText": "lägenhet",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "lägenhet",
+            "path": "rt",
+            "filename": "lägenhet.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065557086,
+    "text": "restaurang",
+    "path": "bliss",
+    "filename": "restaurant,cafeteria.svg",
+    "glossId": 16498,
+    "glossText": "restaurang, matställe",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "restaurang",
+            "path": "rt",
+            "filename": "restaurang.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065566092,
+    "text": "pizzeria",
+    "path": "bliss",
+    "filename": "pizza.svg",
+    "glossId": 1402147139161,
+    "glossText": "pizza",
+    "comment": "Egentligen symbolen för pizza.",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "pizza",
+            "path": "rt",
+            "filename": "pizza.svg",
+            "comment": "Teckna pizza + restaurang."
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065573972,
+    "text": "bio",
+    "path": "bliss",
+    "filename": "movie_theatre,cinema.svg",
+    "glossId": 15670,
+    "glossText": "bio",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "bio",
+            "path": "rt",
+            "filename": "bio.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065581116,
+    "text": "sjö",
+    "path": "bliss",
+    "filename": "lake,pond.svg",
+    "glossId": 15168,
+    "glossText": "ambulans",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "sjö",
+            "path": "rt",
+            "filename": "sjö.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065587462,
+    "text": "arbetsplats",
+    "path": "bliss",
+    "filename": "workplace.svg",
+    "glossId": 23252,
+    "glossText": "arbetsplats",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "arbete",
+            "path": "rt",
+            "filename": "arbete1.svg",
+            "comment": "Samma tecken för arbete och arbetsplats?"
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065597754,
+    "text": "stad",
+    "path": "bliss",
+    "filename": "town,city_(small).svg",
+    "glossId": 13351,
+    "glossText": "stad, småstad",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "båt",
+            "path": "rt",
+            "filename": "båt.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065604962,
+    "text": "affär",
+    "path": "bliss",
+    "filename": "store,shop.svg",
+    "glossId": 23223,
+    "glossText": "affär, butik",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "affär",
+            "path": "rt",
+            "filename": "affär.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065613065,
+    "text": "skog",
+    "path": "bliss",
+    "filename": "forest,bush,wood,woods.svg",
+    "glossId": 14386,
+    "glossText": "skog",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "skog",
+            "path": "rt",
+            "filename": "skog.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065623933,
+    "text": "hem",
+    "path": "bliss",
+    "filename": "home.svg",
+    "glossId": 14885,
+    "glossText": "hem, bostad",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "hem",
+            "path": "rt",
+            "filename": "hem.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065640029,
+    "text": "jag",
+    "path": "bliss",
+    "filename": "I,me,myself.svg",
+    "glossId": 14916,
+    "glossText": "jag, mig",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "mig",
+            "path": "rt",
+            "filename": "mig.svg",
+            "comment": ""
+        },
+        {
+            "text": "jag",
+            "path": "rt",
+            "filename": "jag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065651327,
+    "text": "du",
+    "path": "bliss",
+    "filename": "you,yourself.svg",
+    "glossId": 18465,
+    "glossText": "du, dig",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "dig",
+            "path": "rt",
+            "filename": "dig.svg",
+            "comment": ""
+        },
+        {
+            "text": "du",
+            "path": "rt",
+            "filename": "du.svg",
+            "comment": ""
+        }
+
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065660541,
+    "text": "taxichaufför",
+    "path": "bliss",
+    "filename": "taxi_driver,cab_driver.svg",
+    "glossId": 17510,
+    "glossText": "taxichaufför",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "chaufför",
+            "path": "rt",
+            "filename": "chaufför.svg",
+            "comment": "Teckna taxi + chaufför"
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065668615,
+    "text": "brandman",
+    "path": "bliss",
+    "filename": "firefighter,fireman.svg",
+    "glossId": 14184,
+    "glossText": "brandman",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "brandman",
+            "path": "rt",
+            "filename": "brandman.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065676999,
+    "text": "sjuksköterska",
+    "path": "bliss",
+    "filename": "nurse.svg",
+    "glossId": 15905,
+    "glossText": "bio",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "sjuksköterska",
+            "path": "rt",
+            "filename": "sjuksköterska.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065684783,
+    "text": "chef",
+    "path": "bliss",
+    "filename": "boss,supervisor.svg",
+    "glossId": 24849,
+    "glossText": "chef, arbetsledare, föreståndare",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "chef",
+            "path": "rt",
+            "filename": "chef.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065691423,
+    "text": "besökare",
+    "path": "bliss",
+    "filename": "visitor,guest.svg",
+    "glossId": 18018,
+    "glossText": "besökare, gäst",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "gäst",
+            "path": "rt",
+            "filename": "gäst.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065701749,
+    "text": "läkare",
+    "path": "bliss",
+    "filename": "doctor,physician.svg",
+    "glossId": 13861,
+    "glossText": "läkare, doktor",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "läkare",
+            "path": "rt",
+            "filename": "läkare.svg",
+            "comment": "Inte exakt. Det egentligliga tecknet liknar detta tecken."
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065775280,
+    "text": "tandläkare",
+    "path": "bliss",
+    "filename": "dentist.svg",
+    "glossId": 13656,
+    "glossText": "tandläkare",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "tandläkare",
+            "path": "rt",
+            "filename": "tandläkare.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065785941,
+    "text": "vikarie",
+    "path": "bliss",
+    "filename": "stand-in,substitute,alternate.svg",
+    "glossId": 24759,
+    "glossText": "vikarie, ersättare (etc)",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065794831,
+    "text": "assistent",
+    "path": "bliss",
+    "filename": "helper,aide,assistant,personal_assistant.svg",
+    "glossId": 14706,
+    "glossText": "assistent, medhjälpare",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "assistent",
+            "path": "rt",
+            "filename": "assistent.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065821694,
+    "text": "man",
+    "path": "bliss",
+    "filename": "man,male.svg",
+    "glossId": 15416,
+    "glossText": "man, karl, gubbe, farbror",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "man",
+            "path": "rt",
+            "filename": "man (person).svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065835011,
+    "text": "kvinna",
+    "path": "bliss",
+    "filename": "woman,female.svg",
+    "glossId": 18269,
+    "glossText": "kvinna, tant",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "kvinna",
+            "path": "rt",
+            "filename": "kvinna.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065842990,
+    "text": "mamma",
+    "path": "bliss",
+    "filename": "mother,mom,mommy,mum.svg",
+    "glossId": 15662,
+    "glossText": "mamma, mor",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "mamma",
+            "path": "rt",
+            "filename": "mamma.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065851662,
+    "text": "pappa",
+    "path": "bliss",
+    "filename": "father,dad,daddy,papa,pa,pop.svg",
+    "glossId": 14157,
+    "glossText": "pappa, far",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "pappa",
+            "path": "rt",
+            "filename": "pappa.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065858293,
+    "text": "son",
+    "path": "bliss",
+    "filename": "son.svg",
+    "glossId": 17209,
+    "glossText": "son",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "son",
+            "path": "rt",
+            "filename": "son.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065864569,
+    "text": "dotter",
+    "path": "bliss",
+    "filename": "daughter.svg",
+    "glossId": 13638,
+    "glossText": "dotter",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "dotter",
+            "path": "rt",
+            "filename": "dotter.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065871727,
+    "text": "barn",
+    "path": "bliss",
+    "filename": "offspring,child.svg",
+    "glossId": 15912,
+    "glossText": "barn, avkomma",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "barn",
+            "path": "rt",
+            "filename": "barn.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065878760,
+    "text": "baby",
+    "path": "bliss",
+    "filename": "baby,infant.svg",
+    "glossId": 12603,
+    "glossText": "baby",
+    "comment": "",
+    "partOfSpeech": "person",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "baby",
+            "path": "rt",
+            "filename": "baby.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065891729,
+    "text": "ute, utanför",
+    "path": "bliss",
+    "filename": "out,exterior,external,outside.svg",
+    "glossId": 15942,
+    "glossText": "ute, utanför",
+    "comment": "",
+    "partOfSpeech": "function",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "ute",
+            "path": "rt",
+            "filename": "ute.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065900361,
+    "text": "i, inne",
+    "path": "bliss",
+    "filename": "in,inside,interior,internal.svg",
+    "glossId": 14932,
+    "glossText": "i, inne, innanför",
+    "comment": "",
+    "partOfSpeech": "function",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "inne",
+            "path": "rt",
+            "filename": "inne.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065909606,
+    "text": "välkommen",
+    "path": "bliss",
+    "filename": "welcome.svg",
+    "glossId": 18223,
+    "glossText": "välkommen",
+    "comment": "",
+    "partOfSpeech": "expression",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "välkommen",
+            "path": "rt",
+            "filename": "välkommen.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065916843,
+    "text": "tack",
+    "path": "bliss",
+    "filename": "thanks,thank_you.svg",
+    "glossId": 17533,
+    "glossText": "tack",
+    "comment": "",
+    "partOfSpeech": "expression",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "tack",
+            "path": "rt",
+            "filename": "tack.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065925104,
+    "text": "var så god",
+    "path": "bliss",
+    "filename": "you_are_welcome,you're_welcome.svg",
+    "glossId": 18466,
+    "glossText": "ingen orsak",
+    "comment": "",
+    "partOfSpeech": "expression",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "var så god",
+            "path": "rt",
+            "filename": "varsågod.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065936012,
+    "text": "jävla skit",
+    "path": "bliss",
+    "filename": "ugh,yuk-(exclamatory).svg",
+    "glossId": 17963,
+    "glossText": "urdålig, botten (etc)",
+    "comment": "",
+    "partOfSpeech": "expression",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065951882,
+    "text": "morgon",
+    "path": "bliss",
+    "filename": "morning_(early).svg",
+    "glossId": 15656,
+    "glossText": "morgon",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "morgon",
+            "path": "rt",
+            "filename": "morgon.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065965058,
+    "text": "dag",
+    "path": "bliss",
+    "filename": "day.svg",
+    "glossId": 13639,
+    "glossText": "dag",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "dag",
+            "path": "rt",
+            "filename": "dag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065977262,
+    "text": "i dag",
+    "path": "bliss",
+    "filename": "today.svg",
+    "glossId": 17744,
+    "glossText": "idag",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "idag",
+            "path": "rt",
+            "filename": "idag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065983776,
+    "text": "i morgon",
+    "path": "bliss",
+    "filename": "tomorrow.svg",
+    "glossId": 17750,
+    "glossText": "imorgon",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "imorgon",
+            "path": "rt",
+            "filename": "imorgon.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065991173,
+    "text": "månader",
+    "path": "bliss",
+    "filename": "month.svg",
+    "glossId": 15649,
+    "glossText": "månad",
+    "comment": "Egentligen symbolen för månad.",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "manader",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408065997249,
+    "text": "årstider",
+    "path": "bliss",
+    "filename": "season.svg",
+    "glossId": 23199,
+    "glossText": "årstid",
+    "comment": "Egentligen symbolen för årstid.",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "arstider",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066005117,
+    "text": "kväll",
+    "path": "bliss",
+    "filename": "evening.svg",
+    "glossId": 13950,
+    "glossText": "kväll",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "kväll",
+            "path": "rt",
+            "filename": "kväll.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066033330,
+    "text": "natt",
+    "path": "bliss",
+    "filename": "night.svg",
+    "glossId": 15719,
+    "glossText": "natt",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "natt",
+            "path": "rt",
+            "filename": "natt.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066043748,
+    "text": "i går",
+    "path": "bliss",
+    "filename": "yesterday.svg",
+    "glossId": 18295,
+    "glossText": "igår",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "igår",
+            "path": "rt",
+            "filename": "igår.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066051637,
+    "text": "högtider",
+    "path": "bliss",
+    "filename": "holiday,festival.svg",
+    "glossId": 14884,
+    "glossText": "helgdag",
+    "comment": "Egentligen symbolen för helgdag.",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "hogtider",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066058764,
+    "text": "måndag",
+    "path": "bliss",
+    "filename": "Monday_(day1).svg",
+    "glossId": 25113,
+    "glossText": "måndag (dag 1)",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "måndag",
+            "path": "rt",
+            "filename": "måndag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066068440,
+    "text": "tisdag",
+    "path": "bliss",
+    "filename": "Tuesday_(day2).svg",
+    "glossId": 25203,
+    "glossText": "tisdag (dag 2)",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "tisdag",
+            "path": "rt",
+            "filename": "tisdag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066079196,
+    "text": "onsdag",
+    "path": "bliss",
+    "filename": "Wednesday_(day3).svg",
+    "glossId": 25214,
+    "glossText": "onsdag (dag 3)",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "onsdag",
+            "path": "rt",
+            "filename": "onsdag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066090722,
+    "text": "torsdag",
+    "path": "bliss",
+    "filename": "Thursday_(day4).svg",
+    "glossId": 25193,
+    "glossText": "torsdag (dag 4)",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "torsdag",
+            "path": "rt",
+            "filename": "torsdag2.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066098198,
+    "text": "fredag",
+    "path": "bliss",
+    "filename": "Friday_(day5).svg",
+    "glossId": 25064,
+    "glossText": "fredag (dag 5)",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "fredag",
+            "path": "rt",
+            "filename": "fredag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066107244,
+    "text": "lördag",
+    "path": "bliss",
+    "filename": "Saturday_(day6).svg",
+    "glossId": 25164,
+    "glossText": "lördag (dag 6)",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "lördag",
+            "path": "rt",
+            "filename": "lördag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066125693,
+    "text": "söndag",
+    "path": "bliss",
+    "filename": "Sunday_(day7).svg",
+    "glossId": 25182,
+    "glossText": "söndag (dag 7)",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "söndag",
+            "path": "rt",
+            "filename": "söndag.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066142059,
+    "text": "låda",
+    "path": "bliss",
+    "filename": "box,cube.svg",
+    "glossId": 12886,
+    "glossText": "låda, kub",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "låda, paket",
+            "path": "rt",
+            "filename": "låda.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066151631,
+    "text": "sak",
+    "path": "bliss",
+    "filename": "thing,object.svg",
+    "glossId": 17717,
+    "glossText": "sak, föremål",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "sak",
+            "path": "rt",
+            "filename": "sak.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066159255,
+    "text": "lampa",
+    "path": "bliss",
+    "filename": "electric_light,lamp.svg",
+    "glossId": 13919,
+    "glossText": "lampa",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "lampa",
+            "path": "rt",
+            "filename": "lampa.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066167295,
+    "text": "brev",
+    "path": "bliss",
+    "filename": "letter,mail,post.svg",
+    "glossId": 15198,
+    "glossText": "brev, post",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "brev",
+            "path": "rt",
+            "filename": "brev.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066175448,
+    "text": "paket",
+    "path": "bliss",
+    "filename": "parcel,package.svg",
+    "glossId": 15966,
+    "glossText": "paket",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "paket, låda",
+            "path": "rt",
+            "filename": "paket.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066184131,
+    "text": "bok",
+    "path": "bliss",
+    "filename": "book.svg",
+    "glossId": 12875,
+    "glossText": "bok",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "bok",
+            "path": "rt",
+            "filename": "bok.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066190943,
+    "text": "möbler",
+    "path": "bliss",
+    "filename": "furniture.svg",
+    "glossId": 14416,
+    "glossText": "möbler",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "mobler",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066197637,
+    "text": "bild, tavla",
+    "path": "bliss",
+    "filename": "picture,image,icon,painting.svg",
+    "glossId": 16172,
+    "glossText": "bild, tavla",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "tavla",
+            "path": "rt",
+            "filename": "tavla.svg",
+            "comment": ""
+        },
+        {
+            "text": "bild",
+            "path": "rt",
+            "filename": "bild.svg",
+            "comment": ""
+        },
+        {
+            "text": "kort, fotografi",
+            "path": "rt",
+            "filename": "kort (substantiv).svg",
+            "comment": "Egentligen en annan blissymbol."
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066205461,
+    "text": "kamera",
+    "path": "bliss",
+    "filename": "camera.svg",
+    "glossId": 13111,
+    "glossText": "kamera",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "kamera",
+            "path": "rt",
+            "filename": "kamera.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066212679,
+    "text": "tv",
+    "path": "bliss",
+    "filename": "television.svg",
+    "glossId": 17519,
+    "glossText": "tv",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "tv",
+            "path": "rt",
+            "filename": "tv.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066221885,
+    "text": "video",
+    "path": "bliss",
+    "filename": "video_recorder.svg",
+    "glossId": 18011,
+    "glossText": "video",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "video",
+            "path": "rt",
+            "filename": "video.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066231038,
+    "text": "dator",
+    "path": "bliss",
+    "filename": "computer.svg",
+    "glossId": 23447,
+    "glossText": "dator",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "dator",
+            "path": "rt",
+            "filename": "dator.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066238680,
+    "text": "telefon",
+    "path": "bliss",
+    "filename": "telephone.svg",
+    "glossId": 17518,
+    "glossText": "telefon",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "telefon",
+            "path": "rt",
+            "filename": "telefon.svg",
+            "comment": ""
+        },
+        {
+            "text": "mobiltelefon",
+            "path": "rt",
+            "filename": "mobiltelefon.svg",
+            "comment": "Har egentligen en annan blissymbol."
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066251651,
+    "text": "kaffe",
+    "path": "bliss",
+    "filename": "coffee.svg",
+    "glossId": 13373,
+    "glossText": "kaffe",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "kaffe",
+            "path": "rt",
+            "filename": "kaffe.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066254210,
+    "text": "smörgås",
+    "path": "bliss",
+    "filename": "sandwich.svg",
+    "glossId": 16718,
+    "glossText": "sandwich, smörgås, baguette",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "smörgås",
+            "path": "rt",
+            "filename": "smörgås.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066262912,
+    "text": "öl",
+    "path": "bliss",
+    "filename": "beer.svg",
+    "glossId": 12653,
+    "glossText": "öl",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066275963,
+    "text": "vatten",
+    "path": "bliss",
+    "filename": "water,fluid,liquid.svg",
+    "glossId": 18209,
+    "glossText": "vatten, vätska",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "vatten",
+            "path": "rt",
+            "filename": "vatten.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066282961,
+    "text": "medicin",
+    "path": "bliss",
+    "filename": "medicine,medication.svg",
+    "glossId": 15448,
+    "glossText": "medicin",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "",
+    "glossSubUnitsLeft": [
+        {
+            "text": "medicin",
+            "path": "rt",
+            "filename": "medicin.svg",
+            "comment": ""
+        }
+    ],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066290941,
+    "text": "drycker",
+    "path": "bliss",
+    "filename": "drink,beverage.svg",
+    "glossId": 13881,
+    "glossText": "dryck",
+    "comment": "Egentligen symbolen för dryck.",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "drycker",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066297582,
+    "text": "frukost",
+    "path": "bliss",
+    "filename": "breakfast.svg",
+    "glossId": 12898,
+    "glossText": "frukost",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "frukost",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066304942,
+    "text": "fika",
+    "path": "bliss",
+    "filename": "tea_break,coffee_break.svg",
+    "glossId": 25502,
+    "glossText": "fikapaus",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "fika",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066311543,
+    "text": "middag",
+    "path": "bliss",
+    "filename": "supper,dinner.svg",
+    "glossId": 17468,
+    "glossText": "middag, kvällsmål",
+    "comment": "",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "middag",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+},
+{
+    "id": 1408066318053,
+    "text": "maträtter",
+    "path": "bliss",
+    "filename": "food.svg",
+    "glossId": 14377,
+    "glossText": "tv",
+    "comment": "Egentligen blissymbolen för mat, livsmedel.",
+    "partOfSpeech": "noun",
+    "pageLinkUrl": "maträtter",
+    "glossSubUnitsLeft": [],
+    "glossSubUnitsRight": []
+}
+]

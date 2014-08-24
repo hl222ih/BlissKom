@@ -3,10 +3,13 @@
     <div data-ng-repeat="glossUnit in navPage.glossUnits">
         <bk-gloss-unit-small />
     </div>
-    <div ng-if="editMode" 
-         class="lightdim" 
+    <div ng-repeat="cssUnit in navPage.cssTemplateData.settings"
+         ng-if="cssUnit.group">
+        <bk-unit-group />
+    </div>
+    <div ng-if="isEditMode() && !cssUnit.group"
          style='position: absolute; border: 2px dotted brown; text-align: center;'
-         ng-repeat="cssUnit in navPage.cssTemplate.settings" 
+         ng-repeat="cssUnit in navPage.cssTemplateData.settings" 
          ng-style="{'height': {{cssUnit.height}} + '%', 'width': {{cssUnit.width}} + '%', 'top': {{cssUnit.top}} + '%', 'left': {{cssUnit.left}} + '%'}"
          class='lightdim unit{{cssUnit.position}}'>
             <bk-icon-edit class="editModeButtonEdit"
@@ -49,11 +52,4 @@
     <div class="notificationBar">{{notification}}</div>
     <img class="backgroundImage" src="img/BlissKom.svg" style='filter: drop-shadow(3px);' ng-style="{'height': appHeight + 'px', 'top': -headerHeight + 'px'}"/>
 </div>
-<!-- <div class="app">
-    <h1>Apache Cordova</h1>
-    <div id="deviceready" class="blink">
-        <p class="event listening">Connecting to Device, hold on! (Main)</p>
-        <p class="event received">Device is Ready, yay!</p>
-    </div>
-</div> -->
 

@@ -12,7 +12,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     },
                     'header': {
                         templateUrl: 'views/header.html',
-                        controller: 'MainCtrl'
+                        controller: 'HeaderCtrl'
                     }
                 }
             })
@@ -30,7 +30,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     },
                     'header': {
                         templateUrl: 'views/header.html',
-                        controller: 'MainCtrl'
+                        controller: 'HeaderCtrl'
                     }
                 }
             })
@@ -43,7 +43,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     },
                     'header': {
                         templateUrl: 'views/header.html',
-                        controller: 'MainCtrl'
+                        controller: 'HeaderCtrl'
                     }
                 }
             })
@@ -56,7 +56,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     },
                     'header': {
                         templateUrl: 'views/header.html',
-                        controller: 'MainCtrl'
+                        controller: 'HeaderCtrl'
                     }
                 }
             })
@@ -69,7 +69,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     },
                     'header': {
                         templateUrl: 'views/header.html',
-                        controller: 'MainCtrl'
+                        controller: 'HeaderCtrl'
                     }
                 }
             })
@@ -82,7 +82,7 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     },
                     'header': {
                         templateUrl: 'views/header.html',
-                        controller: 'MainCtrl'
+                        controller: 'HeaderCtrl'
                     }
                 }
             })
@@ -95,15 +95,26 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
                     },
                     'header': {
                         templateUrl: 'views/header.html',
-                        controller: 'MainCtrl'
+                        controller: 'HeaderCtrl'
+                    }
+                }
+            })
+            .state('test', {
+                url: '/test',
+                views: {
+                    '': { 
+                        templateUrl: 'views/test.html',
+                        controller: 'TestCtrl'
+                    },
+                    'header': {
+                        templateUrl: 'views/header.html',
+                        controller: 'HeaderCtrl'
                     }
                 }
             });
     })
-    .run(function($rootScope,dataServiceProvider,databaseServiceProvider, $window) {
+    .run(function($rootScope, dataServiceProvider, databaseServiceProvider, $window, appDataService) {
         //keep track of current navigation pages' url's/names
-
-        $rootScope.isLogActive = true;
         $rootScope.notification = "";
         $rootScope.headerHeight = 42;
         $rootScope.appHeight = (angular.element($window).height() < angular.element($window).width()) ? angular.element($window).height() : angular.element($window).width();
@@ -118,17 +129,13 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
 
         dataServiceProvider.getInitData()
             .then(function(initData) {
-                $rootScope.cssTemplates = initData.cssTemplates;
-                $rootScope.navPages = initData.navPages;
-                $rootScope.partOfSpeechColors = initData.posColors;
-                $rootScope.appSettings = initData.appSettings;
-                databaseServiceProvider.createAuthAndLogin($rootScope.appSettings.email, $rootScope.appSettings.password);
-
-                $rootScope.currentNavTree = {
-                    "treePageUrls": [$rootScope.appSettings.defaultPageUrl],
-                    "treePageNames": [$rootScope.appSettings.defaultPageName],
-                    "position": 0
-                }; 
+                appDataService.setCssTemplatesData(initData.cssTemplatesData);
+                $rootScope.allGlossUnits = initData.glossUnitsData;
+                appDataService.setNavPagesData(initData.navPagesData);
+                appDataService.setPartOfSpeechColorsData(initData.posColorsData);
+                databaseServiceProvider.createAuthAndLogin(initData.appSettingsData.email, initData.appSettingsData.password);
+                appDataService.setAppSettingsData(initData.appSettingsData);
+                appDataService.resetNavTree();                
             }, function(){
                 alert("Kunde inte ladda data.");
             });
@@ -159,15 +166,4 @@ var blissKom = angular.module("blissKom", ["ui.router", "firebase", "ngTouch", "
             //event.preventDefault();
         });
 
-    });  
-
-//test-code
-//just for testing, does the application react to battery status change?
-//window.addEventListener("batterystatus", onBatteryStatus, false);
-
-//function onBatteryStatus(info) {
-//    window.alert("Level: " + info.level + " isPlugged: " + info.isPlugged);
- //   var testdiv = document.getElementById("test");
-  //  testdiv.innerHTML = "Testet funkade!";
-//};
-
+    });

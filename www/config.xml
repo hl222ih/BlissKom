@@ -10,5 +10,5 @@
     <preference name="fullscreen" value="true"/>
     <preference name="webviewbounce" value="true"/>
     <preference name="orientation" value="landscape" />
-    <preference name="phonegap-version" value="3.4.0" />
+    <preference name="phonegap-version" value="3.5.0" />
 </widget>

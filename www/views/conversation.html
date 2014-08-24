@@ -1,21 +1,21 @@
 <div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
-    <div ng-repeat="cu in conversation"
+    <div ng-repeat="gu in conversation"
          style="position: relative; display: inline-block; width: 20%; height: 30%;" >
-        <a class="unit{{cu.position}} glossUnits {{cu.partOfSpeech}}"
-           ng-class="{pageLink: cu.isPageLink()}"
+        <a class="unit{{gu.position}} glossUnits {{gu.partOfSpeech}}"
+           ng-class="{pageLink: gu.isPageLink()}"
            data-ng-href="#"
            style="display: inline-block; height: 100%; width: 100%;">
             <img class="smallGlossUnitImg"
-                 data-ng-if="cu.path === 'custom'"
-                 data-ng-src="img/custom/{{cu.filename}}" />
+                 data-ng-if="gu.path === 'custom'"
+                 data-ng-src="{{settings.localCustomUrl}}{{gu.filename}}" />
             <img class="smallGlossUnitImg"
-                 data-ng-if="cu.path === 'bliss'"
-                 data-ng-src="{{appSettings.onlineBlissUrl}}{{cu.filename}}" 
+                 data-ng-if="gu.path === 'bliss'"
+                 data-ng-src="{{settings.onlineBlissUrl}}{{gu.filename}}" 
                  style="height: auto; width: auto;"/>
             <img class="smallGlossUnitImg"
-                 data-ng-if="cu.path === 'rt'"
-                 data-ng-src="{{appSettings.onlineRtUrl}}{{cu.filename}}" />
-            <div class="glossUnitTexts">{{cu.text}}</div>
+                 data-ng-if="gu.path === 'rt'"
+                 data-ng-src="{{settings.onlineRtUrl}}{{gu.filename}}" />
+            <div class="glossUnitTexts">{{gu.text}}</div>
         </a>        
     </div>
     <button class="btn btn-primary" 

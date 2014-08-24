@@ -55,7 +55,7 @@ blissKom.directive("bkIconMenu", function() {
     return {
         restrict: 'E',
         templateUrl: 'views/partials/icons/icon-menu.html'
-    }
+    };
 });
 
 blissKom.directive("bkIconEditmode", function() {

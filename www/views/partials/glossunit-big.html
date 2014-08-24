@@ -6,13 +6,13 @@
         ng-style="{'background-color': getCurrentBackgroundColor()}">
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
-             data-ng-src="{{appSettings.localCustomUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
+             data-ng-src="{{settings.localCustomUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'bliss'"
-             data-ng-src="{{appSettings.onlineBlissUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
+             data-ng-src="{{settings.onlineBlissUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
         <img class="largeGlossUnitImg"
              data-ng-if="navPage.currentGlossUnit.currentPath === 'rt'"
-             data-ng-src="{{appSettings.onlineRtUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
+             data-ng-src="{{settings.onlineRtUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
         <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.currentPartOfSpeech}}">
             <div>
                 <bk-icon-ok hm-tap="confirmEnlargedGlossUnit()"></bk-icon-ok>

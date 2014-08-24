@@ -198,6 +198,29 @@ div.lightdim {
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
 }
 
+.unitGroup1,
+.unitGroup2, 
+.unitGroup3,
+.unitGroup4 {
+    display: none;
+    position: absolute !important;
+    text-align: center;
+    overflow: hidden;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    background-color: rgba(255,255,255,0.5) !important;
+    z-index: -1 !important;    
+    border: 4px solid rgba(255,255,255,0.5) !important;
+    background-image: none !important;
+}
+.unitGroupCover {
+    z-index: 10 !important;
+    background-color: rgba(255,255,255,0.0) !important;
+}
+
 .glossUnitTexts {
     display: block;
     width: 100%;
@@ -367,7 +390,7 @@ bk-icon-cancel {
     top: 40px;
     left: 0;
     min-width: 100px;
-    background-color: red;
+    //background-color: red;
     z-index: 10;
 }
 
@@ -503,7 +526,7 @@ bk-icon-cancel {
 .backgroundImage, .backgroundImageStart {
     max-width: 100%; 
     position: absolute;
-    z-index: -1;
+    z-index: -2;
     top: 0;
     bottom: 0;
     left: 5%;

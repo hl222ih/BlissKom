@@ -17,6 +17,7 @@
             <li hm-tap="loadBackupState()"><a href>Säkerhetskopiering</a></li>
             <li class="divider"></li>
             <li hm-tap="loadAboutState()"><a href>Om BlissKom</a></li>
+            <li hm-tap="loadTestState()"><a href>Test</a></li>
         </ul>
         <button type="button" 
                 class="btn btn-header"
@@ -30,14 +31,14 @@
         </button>
         <button type="button" 
                 class="btn btn-header"
-                hm-tap="navToPage(0)">
+                hm-tap="navToStartPage()">
             <bk-icon-home></bk-icon-home>&nbsp;
         </button>
     </div>
     <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">
-        <div ng-if="!stateHeaderText" ng-repeat="pageName in currentNavTree.treePageNames" ng-class="{'activeHeaderUrl': $index === currentNavTree.position, 'headerUrl': true}">
+        <div ng-if="!stateHeaderText" ng-repeat="page in navTree.pages" ng-class="{'activeHeaderUrl': $index === navTree.position, 'headerUrl': true}">
             <div>
-                <div hm-tap="navToPage($index)"><a href>{{pageName}}</a></div>
+                <div hm-tap="navToPage($index)"><a href>{{page.name}}</a></div>
                 <bk-icon-rightarrow ng-if="!$last"></bk-icon-rightarrow>
                 <!--  -->
             </div>
@@ -50,8 +51,8 @@
     </div>
     <div class="btn-group" style="position: absolute; right: 10px;">
         <button type="button" class="btn btn-header" style="position: absolute; right: 40px;">
-            <bk-icon-logactive ng-show="isLogActive" hm-tap="toggleLogActivity()"></bk-icon-logactive>
-            <bk-icon-loginactive ng-show="!isLogActive" hm-tap="toggleLogActivity()"></bk-icon-loginactive>
+            <bk-icon-logactive ng-show="isLogging()" hm-tap="toggleLogging()"></bk-icon-logactive>
+            <bk-icon-loginactive ng-show="!isLogging()" hm-tap="toggleLogging()"></bk-icon-loginactive>
             &nbsp;
         </button>
     </div>
