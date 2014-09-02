@@ -1,7 +1,11 @@
-<div class='unitGroup{{cssUnit.position}}'
-     ng-if='!isEditMode()'>
+<div class='group{{pageCss.position}} groupCover'
+     ng-if='!isEditMode() && !group.isEnlarged'
+     hm-pinch='alert("pinched out!")'
+     hm-tap='zoomInGroup(1)'>
 </div>
-<div class='unitGroup{{cssUnit.position}} unitGroupCover'
-     ng-if='!isEditMode()'
-     onclick='alert("hej")'>
+<div class='group{{pageCss.position}}'
+     hm-tap='zoomInGroup(1)'>
+    <div ng-repeat="glossUnit in group.glossUnits">
+        <bk-gloss-unit-small />
+    </div>
 </div>

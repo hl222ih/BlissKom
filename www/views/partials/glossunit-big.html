@@ -1,38 +1,38 @@
-<div class="dim">
-    <div class="largeGlossUnits {{navPage.currentGlossUnit.currentPartOfSpeech}}" 
-        hm-swipe-right="showLeftImageOfGlossUnit(); $event.stopPropagation();"
-        hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"
-        hm-tap="navPage.currentGlossUnit.showComment = false"
-        ng-style="{'background-color': getCurrentBackgroundColor()}">
-        <img class="largeGlossUnitImg"
-             data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
-             data-ng-src="{{settings.localCustomUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
-        <img class="largeGlossUnitImg"
-             data-ng-if="navPage.currentGlossUnit.currentPath === 'bliss'"
-             data-ng-src="{{settings.onlineBlissUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
-        <img class="largeGlossUnitImg"
-             data-ng-if="navPage.currentGlossUnit.currentPath === 'rt'"
-             data-ng-src="{{settings.onlineRtUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
-        <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.currentPartOfSpeech}}">
-            <div>
-                <bk-icon-ok hm-tap="confirmEnlargedGlossUnit()"></bk-icon-ok>
-                <input data-ng-repeat="text in navPage.currentGlossUnit.currentText | stringToArray" 
-                       class="largeGlossUnitTexts" 
-                       type="button" 
-                       value="{{text}}" 
-                       hm-tap="confirmEnlargedGlossUnit(text)" />
-                <bk-icon-cancel hm-tap="cancelEnlargedGlossUnit()"></bk-icon-cancel>
-            </div>
+<div class="dima" ng-show="showEnlargedGlossUnit">
+</div>
+<div class="largeGlossUnits {{navPage.currentGlossUnit.currentPartOfSpeech}}" 
+    hm-swipe-right="showLeftImageOfGlossUnit(); $event.stopPropagation();"
+    hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"
+    hm-tap="navPage.currentGlossUnit.showComment = false"
+    ng-style="{'background-color': getCurrentBackgroundColor()}">
+    <img class="largeGlossUnitImg"
+         data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
+         data-ng-src="{{settings.localCustomUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
+    <img class="largeGlossUnitImg"
+         data-ng-if="navPage.currentGlossUnit.currentPath === 'bliss'"
+         data-ng-src="{{settings.onlineBlissUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
+    <img class="largeGlossUnitImg"
+         data-ng-if="navPage.currentGlossUnit.currentPath === 'rt'"
+         data-ng-src="{{settings.onlineRtUrl}}{{navPage.currentGlossUnit.currentFilename}}" />
+    <div class="largeGlossUnitTextAreas {{navPage.currentGlossUnit.currentPartOfSpeech}}">
+        <div>
+            <bk-icon-ok hm-tap="confirmEnlargedGlossUnit()"></bk-icon-ok>
+            <input data-ng-repeat="text in navPage.currentGlossUnit.currentText | stringToArray" 
+                   class="largeGlossUnitTexts" 
+                   type="button" 
+                   value="{{text}}" 
+                   hm-tap="confirmEnlargedGlossUnit(text)" />
+            <bk-icon-cancel hm-tap="cancelEnlargedGlossUnit()"></bk-icon-cancel>
         </div>
-        <div class="glossUnitCommentArea">
-            <bk-icon-comment ng-show="navPage.currentGlossUnit.currentComment" hm-tap="navPage.currentGlossUnit.showComment = !navPage.currentGlossUnit.showComment; $event.stopPropagation();"></bk-icon-comment>
-            <div class="glossUnitComment" ng-show="navPage.currentGlossUnit.showComment">{{navPage.currentGlossUnit.currentComment}}</div>
-        </div>
-        <bk-icon-bigleftarrow ng-show="((navPage.currentGlossUnit.currentPosition <= 0 && navPage.currentGlossUnit.glossSubUnitsLeft[-navPage.currentGlossUnit.currentPosition]) || navPage.currentGlossUnit.currentPosition >= 1)"
-                              hm-tap="showLeftImageOfGlossUnit();"
-                              ng-style="{'top': bigArrowTop + 'px'}"></bk-icon-bigleftarrow>
-        <bk-icon-bigrightarrow ng-show="((navPage.currentGlossUnit.currentPosition >= 0 && navPage.currentGlossUnit.glossSubUnitsRight[navPage.currentGlossUnit.currentPosition]) || navPage.currentGlossUnit.currentPosition <= -1)"
-                               hm-tap="showRightImageOfGlossUnit();"
-                               ng-style="{'top': bigArrowTop + 'px'}"></bk-icon-bigrightarrow>
     </div>
+    <div class="glossUnitCommentArea">
+        <bk-icon-comment ng-show="navPage.currentGlossUnit.currentComment" hm-tap="navPage.currentGlossUnit.showComment = !navPage.currentGlossUnit.showComment; $event.stopPropagation();"></bk-icon-comment>
+        <div class="glossUnitComment" ng-show="navPage.currentGlossUnit.showComment">{{navPage.currentGlossUnit.currentComment}}</div>
+    </div>
+    <bk-icon-bigleftarrow ng-show="((navPage.currentGlossUnit.currentPosition <= 0 && navPage.currentGlossUnit.glossSubUnitsLeft[-navPage.currentGlossUnit.currentPosition]) || navPage.currentGlossUnit.currentPosition >= 1)"
+                          hm-tap="showLeftImageOfGlossUnit();"
+                          ng-style="{'top': bigArrowTop + 'px'}"></bk-icon-bigleftarrow>
+    <bk-icon-bigrightarrow ng-show="((navPage.currentGlossUnit.currentPosition >= 0 && navPage.currentGlossUnit.glossSubUnitsRight[navPage.currentGlossUnit.currentPosition]) || navPage.currentGlossUnit.currentPosition <= -1)"
+                           hm-tap="showRightImageOfGlossUnit();"
+                           ng-style="{'top': bigArrowTop + 'px'}"></bk-icon-bigrightarrow>
 </div>

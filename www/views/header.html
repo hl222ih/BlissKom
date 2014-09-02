@@ -1,11 +1,11 @@
-<div id="navHeader" ng-style="{'height': headerHeight + 'px'}" ng-class="{'hidden-element': isHeaderHidden}">
+<div class="navHeader" ng-style="{'height': dim.headerHeight + 'px'}" ng-class="{'hidden-element': isHeaderHidden()}">
    <div class="btn-group">
         <button type="button" class="btn btn-header dropdown-toggle" data-toggle="dropdown">
             <bk-icon-menu></bk-icon-menu>&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="caret"></span>
             <!--<bk-icon-menu hm-tap="toggleMenu()">-->
         </button>
-        <ul class="dropdown-menu" ng-style="{'max-height': bodyHeight}">
+        <ul class="dropdown-menu" ng-style="{'max-height': dim.bodyHeight}">
             <li hm-tap="navToPage(0)"><a href>Navigering</a></li>
             <li class="divider"></li>
             <li hm-tap="loadGlossUnitSettingsState()"><a href>Rutinställningar</a></li>
@@ -35,7 +35,7 @@
             <bk-icon-home></bk-icon-home>&nbsp;
         </button>
     </div>
-    <div id="pageNav" ng-style="{'width': pageNavWidth + 'px'}">
+    <div class="pageNav" ng-style="{'width': dim.pageNavWidth + 'px'}">
         <div ng-if="!stateHeaderText" ng-repeat="page in navTree.pages" ng-class="{'activeHeaderUrl': $index === navTree.position, 'headerUrl': true}">
             <div>
                 <div hm-tap="navToPage($index)"><a href>{{page.name}}</a></div>
@@ -60,6 +60,6 @@
     <bk-icon-disconnected ng-if="!user"></bk-icon-disconnected>
 </div>
 <div id="menu" ng-show="isMenuVisible">
-    <ul ng-style="{'height':menuHeight, 'font-size':menuItemFontSize}">
+    <ul ng-style="{'height': dim.menuHeight, 'font-size': dim.menuItemFontSize}">
     </ul>
 </div>

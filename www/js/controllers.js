@@ -1,4 +1,4 @@
-blissKom.controller("HeaderCtrl", function ($rootScope, $scope, $state, appDataService) {
+blissKom.controller("HeaderCtrl", function ($scope, $state, appDataService) {
     $scope.settings = appDataService.appSettings;
     $scope.isLogging = function () { return $scope.settings.logging; };
     $scope.navTree = appDataService.navTree;
@@ -6,20 +6,16 @@ blissKom.controller("HeaderCtrl", function ($rootScope, $scope, $state, appDataS
     $scope.isEditMode = function () { 
         return $scope.settings.editMode;
     };
+    $scope.dim = appDataService.dimensions;
+    $scope.isHeaderHidden = function () { return appDataService.isHeaderHidden(); };
     
     //activates/deactivates logging of communication.
     $scope.toggleLogging = function () {
         appDataService.toggleLogging();
     };
 
-    //$rootScope.editMode = false;
     $scope.toggleEditMode = function() {
         appDataService.toggleEditMode();
-//        if ($rootScope.editMode) {
-//            $rootScope.editMode = false;
-//        } else {
-//            $rootScope.editMode = true;
-//        }
     };
 
     $scope.navToStartPage = function() {
@@ -40,7 +36,7 @@ blissKom.controller("HeaderCtrl", function ($rootScope, $scope, $state, appDataS
     };
 });
 
-blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document, $state, $firebase, ngDialog, glossFactory, navPageFactory, backupService, navPageService, dataServiceProvider, appDataService) { 
+blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $timeout, $document, $state, $firebase, ngDialog, glossFactory, navPageFactory, backupService, navPageService, dataServiceProvider, appDataService) {
     $scope.settings = appDataService.appSettings;
     $scope.isLogging = function () { return $scope.settings.logging; };
     $scope.pos = appDataService.partOfSpeechColorsData;
@@ -48,6 +44,39 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
     $scope.navTree = appDataService.navTree;
     $scope.isEditMode = function () { 
         return $scope.settings.editMode;
+    };
+    $scope.dim = appDataService.dimensions;
+    $scope.isHeaderHidden = function () { return appDataService.isHeaderHidden(); };
+    $scope.navBodyCss = appDataService.navBodyCss;
+//    $scope.zoomInGroup = function (groupPosition) {
+//        appDataService.zoomInGroup(groupPosition);
+//    };
+
+    var enlargedGroupCss = {
+        width: '80%',
+        height: '80%',
+        top: '10%',
+        left: '10%',
+        'z-index': 4
+    };
+    var minifiedGroupCss = {
+        'z-index': 2
+    };
+    $scope.toggleGroupEnlargement = function (group) {
+        if (group.isEnlarged) {
+            minifiedGroupCss.zIndex = 4;
+            group.css = jQuery.extend({}, minifiedGroupCss);
+            //timeout 500ms to not hide bk-gloss-unit element during transition
+            //corresponds to css transition of same period of time. (.bk-gloss-unit).
+            $timeout(function() {
+                group.css.zIndex = 2;
+            }, 500);
+            group.isEnlarged = false;
+        } else {
+            minifiedGroupCss = jQuery.extend(minifiedGroupCss, group.css);
+            group.css = jQuery.extend({}, enlargedGroupCss);
+            group.isEnlarged = true;
+        }
     };
     
     //Function which updates the content of a navigation page
@@ -125,8 +154,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
 
     $scope.navToNextPage = function() {
         var url = appDataService.getNextPageUrl();
-        if (url && tryUpdateNavPage(url))
-        {
+        if (url && tryUpdateNavPage(url)) {
             appDataService.navTree.position++;
         } else {
             $rootScope.showStatusMessage("Sidan saknas...");
@@ -135,24 +163,17 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
 
     $scope.navToPage = function(position) {
         if (tryUpdateNavPage($rootScope.currentNavTree.treePageUrls[position])) {
-//appDataService.navTree.position
             appDataService.setNavTreePosition(position);
             $rootScope.currentNavTree.position = position;
             $state.go('main');
         }
     };
 
-    $rootScope.showHeader = function() {
-        $rootScope.isHeaderHidden = false;
-        var windowHeight = angular.element($window).height();
-        $rootScope.headerHeight = 42;
-        $rootScope.bodyHeight = windowHeight - 42;
+    $scope.showHeader = function() {
+        appDataService.showHeader();
     };
-    $rootScope.hideHeader = function() {
-        $rootScope.isHeaderHidden = true;
-        var windowHeight = angular.element($window).height();
-        $rootScope.headerHeight = 0;
-        $rootScope.bodyHeight = windowHeight;
+    $scope.hideHeader = function() {
+        appDataService.hideHeader();
     };
     $scope.showLeftImageOfGlossUnit = function() {
         var cgu = $scope.navPage.currentGlossUnit;
@@ -245,8 +266,6 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $document,
         notElement.offsetWidth = notElement.offsetWidth; //hack för att nollställa css-animation istället för att ta bort hela elementet och lägga till det igen...
         notElement.classList.add("showForAWhile");
     };
-
-    
 
     $rootScope.getGlossUnitByPosition = function (position) { 
         var i = 0,

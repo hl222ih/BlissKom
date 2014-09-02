@@ -22,11 +22,88 @@ blissKom.factory("navPageFactory", function($rootScope, appDataService, glossFac
                 navPageData.glossData[i] = newData;
             };
         };
+        for (var j = 0; j < navPageData.groups.length; j++) {
+            for (var k = 0; k < navPageData.groups[j].glossData.length; k++) {
+                var gd = navPageData.groups[j].glossData[k];
+                var newData = $rootScope.allGlossUnits.filter(function (gu) {
+                    return gu.id === gd.id;
+                })[0];
+                if (newData) {
+                    newData = JSON.parse(JSON.stringify(newData));
+                    newData.position = navPageData.groups[j].glossData[k].position;
+                    navPageData.groups[j].glossData[k] = newData;
+                };
+            };            
+        }
+
         this.pageName = navPageData.pageName;
         this.pageUrl = navPageData.pageUrl;
         this.cssTemplateData = getCssTemplateData(navPageData.pageCss);
-        this.unitStyles = getNavPageCss(this.cssTemplateData);
+        //this.unitStyles = getNavPageCss(this.cssTemplateData);
         this.glossUnits = glossFactory.createGlossUnits(navPageData.glossData);
+        this.groups = [];
+        for (var i = 0; i < navPageData.groups.length; i++) {
+            this.groups[i] = {};
+            this.groups[i].glossUnits = glossFactory.createGlossUnits(navPageData.groups[i].glossData);
+            this.groups[i].position = navPageData.groups[i].position;
+        }
+        //add css to navPage's objects.
+        for (var i = 0; i < this.groups.length; i++) {
+            //vill ha css:en för varje grupp - 
+            var that = this;
+            var tempGroupCss = this.cssTemplateData.groups.filter(function (groupCssObj) {
+                return groupCssObj.position === that.groups[i].position;
+            })[0];
+            //ge gruppobjektet grupp-cssen
+            this.groups[i].css = {
+                top: tempGroupCss.top + '%',
+                left: tempGroupCss.left + '%',
+                width: tempGroupCss.width + '%',
+                height: tempGroupCss.height + '%'
+            };
+//            this.groups[i].top = tempCss.top;
+//            this.groups[i].left = tempCss.left;
+//            this.groups[i].width = tempCss.width;
+//            this.groups[i].height = tempCss.height;
+            //ge gruppobjectets ev. glossUnits gu-css:en
+            for (var j = 0; j < this.groups[i].glossUnits.length; j++) {
+                //vill ha css:en för varje glossUnit -
+                var that = this;
+                var tempGroupTemplateData = getCssTemplateData(this.cssTemplateData.groups[i].groupCss);
+
+                var tempCss = tempGroupTemplateData.units.filter(function (cssObj) {
+                    return cssObj.position === that.groups[i].glossUnits[j].position;
+                })[0];
+                //ge glossUnit-objektet unit-cssen
+                if (tempCss) {
+                    this.groups[i].glossUnits[j].css = {
+                        top: tempCss.top + '%',
+                        left: tempCss.left + '%',
+                        width: tempCss.width + '%',
+                        height: tempCss.height + '%'
+                    };
+                }
+            }
+        }
+        //ge glossUnits på navPage gu-css:en
+        for (var i = 0; i < this.glossUnits.length; i++) {
+            //vill ha css:en för varje glossUnit -
+            var that = this;
+            var tempCss = this.cssTemplateData.units.filter(function (cssObj) {
+                return cssObj.position === that.glossUnits[i].position;
+            })[0];
+            //ge glossUnit-objektet unit-cssen
+            this.glossUnits[i].css = {
+                top: tempCss.top + '%',
+                left: tempCss.left + '%',
+                width: tempCss.width + '%',
+                height: tempCss.height + '%'
+            };
+//            this.glossUnits[i].css.top = tempCss.top + '%';
+//            this.glossUnits[i].css.left = tempCss.left + '%';
+//            this.glossUnits[i].css.width = tempCss.width + '%';
+//            this.glossUnits[i].css.height = tempCss.height + '%';
+        }
     };
 
     var getCssTemplateData = function (cssTemplateName) {
@@ -36,20 +113,46 @@ blissKom.factory("navPageFactory", function($rootScope, appDataService, glossFac
         return cssTemplateData;
     };
     var getNavPageCss = function(cssTemplateData) {
-        //var cssTemplateData = getCssTemplateData(cssTemplateName) || {"settings": []},
             cssCode = "",
             currentObj = {},
             partialCssCode = "",
             cssClass = "";
-    
-        for (var i = 0; i < cssTemplateData.settings.length; i++) {
-            currentObj = cssTemplateData.settings[i];
-            
-            if (currentObj.group) {
-                cssClass = ".unitGroup";
-            } else {
-                cssClass = ".unit";
+
+        for (var i = 0; i < cssTemplateData.groups.length; i++) {
+            currentObj = cssTemplateData.groups[i];
+            cssClass = ".group";
+
+            partialCssCode = "\n    " + cssClass + currentObj.position + " {\n"
+            + "        display: block;\n"
+            + "        width: " + currentObj.width + "%;\n"
+            + "        height: " + currentObj.height + "%;\n"
+            + "        left: " + currentObj.left + "%;\n"
+            + "        top: " + currentObj.top + "%;\n"
+            + "        }\n";
+            cssCode += partialCssCode;
+
+            if (!cssTemplateData.groups[i].units) {
+                cssTemplateData.groups[i].units = [];
             }
+            for (var j = 0; j < cssTemplateData.groups[i].units.length; j++) {
+                currentObj = cssTemplateData.groups[i].units[j];
+                cssClass = ".unit"; //behöver ändras
+
+                partialCssCode = "\n    " + cssClass + currentObj.position + " {\n"
+                + "        display: block;\n"
+                + "        width: " + currentObj.width + "%;\n"
+                + "        height: " + currentObj.height + "%;\n"
+                + "        left: " + currentObj.left + "%;\n"
+                + "        top: " + currentObj.top + "%;\n"
+                + "        }\n";
+                cssCode += partialCssCode;
+            };
+
+        };
+        
+        for (var i = 0; i < cssTemplateData.units.length; i++) {
+            currentObj = cssTemplateData.units[i];
+            cssClass = ".unit";
 
             partialCssCode = "\n    " + cssClass + currentObj.position + " {\n"
             + "        display: block;\n"
@@ -60,13 +163,14 @@ blissKom.factory("navPageFactory", function($rootScope, appDataService, glossFac
             + "        }\n";
             cssCode += partialCssCode;
         };
+
         return cssCode;        
     };
 
     return {
         createNavPage: function(pageUrl) {
             return new NavPage(pageUrl);
-        }
+        }        
     };
 });
 
@@ -103,7 +207,10 @@ blissKom.factory("glossFactory", function() {
     };
 
     GlossUnit.prototype = {
-        isPageLink: function() { return !!this.pageLinkUrl; }, //returns true if pageLinkUrl is truthy
+        isPageLink: function() { 
+            var isP = !!this.pageLinkUrl; 
+            return isP;
+        }, //returns true if pageLinkUrl is truthy
         hasModifiedText: function() { this.glossText !== this.text; },
         createArrayOfGlossSubUnits: function(dataArray) {
             var glossSubUnits = [],
@@ -118,7 +225,6 @@ blissKom.factory("glossFactory", function() {
         }
     };
 
-    //factory's all functions
     return {
         createGlossUnit: function(glossData) { 
             return new GlossUnit(glossData); 
@@ -156,14 +262,18 @@ blissKom.service("navPageService", function($http, $rootScope, appDataService) {
     };
 });
 
-blissKom.service("appDataService", function ($rootScope) {
-    //'logging' refers to logging of bliss conversations
-    //to be able to save/print the conversation etc.
-    //(it does not refer to logging app activity or similar)
-    //Logging can be turned on/off tapping the "log" (pen in square) icon.
-    
-    var conversation = [];  //array of glossUnits
-    
+blissKom.service("appDataService", function ($rootScope, $window) {
+    var conversation = [],  //array of glossUnits
+    //position 0 = no group is zoomed in
+        zoomedInGroup = {
+            "position": 0,
+            "top": 0,
+            "left": 0,
+            "width": 40,
+            "height": 44                
+        };
+
+
     return {
         toggleLogging: function() {
             this.appSettings.logging = !this.appSettings.logging;
@@ -241,21 +351,70 @@ blissKom.service("appDataService", function ($rootScope) {
                 return nObj.pageUrl === pageUrl;
             })[0];
             return navPage;
+        },
+        setDimensionsData: function () {
+            //a few too many constants here
+            var tempAppWidth = angular.element($window).width();
+            var tempAppHeight = (angular.element($window).height() < angular.element($window).width()) ? angular.element($window).height() : angular.element($window).width();
+
+            //forced landscape orientation for the time being...
+            var appHeight = tempAppHeight < tempAppWidth ? tempAppHeight : tempAppWidth;
+            var appWidth =  tempAppWidth > tempAppHeight ? tempAppWidth : tempAppHeight;
+            var expandedHeaderHeight = 42;
+            var bodyHeight = appHeight - 42;
+            var menuHeight = Math.floor(bodyHeight * 0.1) * 8;
+            var menuItemHeight = menuHeight / 8;
+
+            this.dimensions = {
+                "headerHeight": expandedHeaderHeight,
+                "expandedHeaderHeight": expandedHeaderHeight,
+                "collapsedHeaderHeight": 0,
+                "appHeight": appHeight,
+                "bodyHeight": bodyHeight,
+                "bodyHeightMinusKeyboard": appHeight * 0.3,
+                "menuHeight": menuHeight,
+                "menuItemHeight": menuItemHeight,
+                "menuItemFontSize": menuItemHeight * 0.5,
+                "pageNavWidth": appWidth - 362,
+                "bigArrowTop": bodyHeight / 2 - 62 - 0.05 * bodyHeight,
+                "smallIconSize": Math.floor(appHeight / 160) * 10
+            };
+            this.navBodyCss = {
+                'height': this.dimensions.bodyHeight + 'px',
+                'top': this.dimensions.headerHeight + 'px'
+            };
+        },
+        showHeader: function() {
+            this.navBodyCss.top = this.dimensions.headerHeight = this.dimensions.expandedHeaderHeight;
+            this.navBodyCss.height = this.dimensions.bodyHeight = this.dimensions.appHeight - this.dimensions.expandedHeaderHeight;
+        },
+        hideHeader: function() {
+            this.navBodyCss.top = this.dimensions.headerHeight = this.dimensions.collapsedHeaderHeight;
+            this.navBodyCss.height = this.dimensions.bodyHeight = this.dimensions.appHeight - this.dimensions.collapsedHeaderHeight;
+        },
+        isHeaderHidden: function() {
+            return this.dimensions.headerHeight === this.dimensions.collapsedHeaderHeight;
+        },
+        zoomInGroup: function(groupNumber) {
+            zoomedInGroup = {
+                "position": groupNumber,
+                "top": 0,
+                "left": 0,
+                "width": 40,
+                "height": 44                
+            };
+            if (!zoomedInGroup.position) {
+                this.navBodyCss.width = 100 + '%';
+                this.navBodyCss.height = this.dimensions.bodyHeight + 'px';
+                this.navBodyCss.top = this.dimensions.headerHeight + 'px';
+            } else {
+                this.navBodyCss.width = 100 / (zoomedInGroup.width * 0.01) * 0.9 + '%';
+                this.navBodyCss.height = this.dimensions.bodyHeight / (zoomedInGroup.height * 0.01) * 0.9 + 'px';
+                this.navBodyCss.top = this.dimensions.headerHeight + this.dimensions.bodyHeight * 0.05 + 'px';
+                this.navBodyCss.left = '5%';
+            };                
         }
     };
-    
-//        $rootScope.notification = "";
-//        $rootScope.headerHeight = 42;
-//        $rootScope.appHeight = (angular.element($window).height() < angular.element($window).width()) ? angular.element($window).height() : angular.element($window).width();
-//        $rootScope.bodyHeightMinusKeyboard = $rootScope.appHeight * 0.3;
-//        $rootScope.bodyHeight = $rootScope.appHeight - 42;
-//        $rootScope.menuHeight = Math.floor($rootScope.bodyHeight * 0.1) * 8;
-//        $rootScope.menuItemHeight = $rootScope.menuHeight / 8;
-//        $rootScope.menuItemFontSize = $rootScope.menuItemHeight * 0.5;
-//        $rootScope.pageNavWidth = angular.element($window).width() - 362;
-//        $rootScope.bigArrowTop = $rootScope.bodyHeight / 2 - 62 - 0.05 * $rootScope.bodyHeight;
-//        $rootScope.smallIconSize = Math.floor($rootScope.appHeight / 160) * 10;
-
 });
 
 blissKom.service("databaseServiceProvider", function ($q, $rootScope) {
