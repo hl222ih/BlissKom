@@ -298,6 +298,12 @@ bk-unit-group {
 /*  top, left, width, height, z-index: dynamically assigned */
 }
 
+/* don't show scrollbar (fix for bleeding textarea .glossUnitTexts) */
+::-webkit-scrollbar { 
+    visibility: hidden;
+    width: 0 !important;
+}
+
 .glossUnitTexts {
     display: block;
     width: 100%;
@@ -308,6 +314,8 @@ bk-unit-group {
     color: rgba(0, 0, 0, 0.6);
     text-align: left;
     text-indent: 6%;
+/* fix for bleeding textarea .glossUnitTexts */
+    overflow-x: hidden;
 }
 
 .pageLink > .glossUnitTexts {
