@@ -70,10 +70,20 @@ blissKom.factory("navPageFactory", function($rootScope, appDataService, glossFac
                 //vill ha css:en för varje glossUnit -
                 var that = this;
                 var tempGroupTemplateData = getCssTemplateData(this.cssTemplateData.groups[i].groupCss);
+                tempGroupTemplateEnlargedData = null;
+                var tempGroupTemplateEnlargedData = getCssTemplateData(this.cssTemplateData.groups[i].enlargedGroupCss);
 
                 var tempCss = tempGroupTemplateData.units.filter(function (cssObj) {
                     return cssObj.position === that.groups[i].glossUnits[j].position;
                 })[0];
+                if (tempGroupTemplateEnlargedData) {
+                    var tempCssEnlarged = tempGroupTemplateEnlargedData.units.filter(function (cssObj) {
+                        return cssObj.position === that.groups[i].glossUnits[j].position;
+                    })[0];
+                } else {
+                    tempCssEnlarged = null;
+                }
+                
                 //ge glossUnit-objektet unit-cssen
                 if (tempCss) {
                     this.groups[i].glossUnits[j].css = {
@@ -82,6 +92,14 @@ blissKom.factory("navPageFactory", function($rootScope, appDataService, glossFac
                         width: tempCss.width + '%',
                         height: tempCss.height + '%'
                     };
+                }
+                if (tempCssEnlarged) {
+                    this.groups[i].glossUnits[j].enlargedCss = {
+                        top: tempCssEnlarged.top + '%',
+                        left: tempCssEnlarged.left + '%',
+                        width: tempCssEnlarged.width + '%',
+                        height: tempCssEnlarged.height + '%'
+                    };                    
                 }
             }
         }
@@ -204,6 +222,8 @@ blissKom.factory("glossFactory", function() {
         this.pageLinkUrl = data.pageLinkUrl; //only for pagelinks
         this.glossSubUnitsLeft = this.createArrayOfGlossSubUnits(data.glossSubUnitsLeft); //optional
         this.glossSubUnitsRight = this.createArrayOfGlossSubUnits(data.glossSubUnitsRight); //optional
+        this.colorGlossColorCode = data.colorGlossColorCode; //optional
+        this.colorGlossBackgroundColorCode = data.colorGlossBackgroundColorCode; //optional
     };
 
     GlossUnit.prototype = {
@@ -262,7 +282,7 @@ blissKom.service("navPageService", function($http, $rootScope, appDataService) {
     };
 });
 
-blissKom.service("appDataService", function ($rootScope, $window) {
+blissKom.service("appDataService", function ($rootScope, $window, $log) {
     var conversation = [],  //array of glossUnits
     //position 0 = no group is zoomed in
         zoomedInGroup = {
@@ -270,11 +290,22 @@ blissKom.service("appDataService", function ($rootScope, $window) {
             "top": 0,
             "left": 0,
             "width": 40,
-            "height": 44                
+            "height": 44
         };
 
-
     return {
+        getImageUrl: function(glossUnit) {
+            var url = glossUnit.filename;
+            var path;
+            if (glossUnit.path === 'custom') {
+                path = this.appSettings.localCustomUrl;
+            } else if (glossUnit.path === 'bliss') {
+                path = this.appSettings.onlineBlissUrl;
+            } else if (glossUnit.path === 'rt') {
+                path = this.appSettings.onlineRtUrl;
+            }
+            return path + url;
+        },
         toggleLogging: function() {
             this.appSettings.logging = !this.appSettings.logging;
             if (this.appSettings.logging) {
@@ -330,6 +361,9 @@ blissKom.service("appDataService", function ($rootScope, $window) {
             if (pageUrl === this.navTree.pages[0].url) {
                 this.resetNavTree();
             } else {
+                while (this.navTree.position < this.navTree.pages.length - 1) {
+                    this.navTree.pages.pop();
+                }
                 this.navTree.pages.push({"url": pageUrl, "name": pageName});
                 this.navTree.position++;
             }

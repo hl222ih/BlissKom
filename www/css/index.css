@@ -106,7 +106,7 @@ body div {
 
 .navBody {
     background-color: #333;
-    z-index: -3; 
+    z-index: 0; 
     position: absolute; 
     left: 0;
     width: 100%;
@@ -154,66 +154,56 @@ img.smallGlossUnitImg, img.largeGlossUnitImg, svg, img.selectedImageImg {
     max-height: 100%;
     max-width: 100%;
     top: 0;
-    bottom: 0;
+    bottom: 0%;
     left: 0;
     right: 0;
     margin: auto;
 }
 
 img.largeGlossUnitImg {
-
+    max-height: 95%;
+    bottom: 5%;
 }
 
-.dima {
+.colorGlossUnit {
+    pointer-events: none;
+    width: 100%;
+    height: 25%;
+    top: 10%;
+    position: absolute;
+    //background-color set dynamically    
+}
+
+/*.dima {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.85);
     width: 100%;
     height: 100%;
     z-index: 4;    
-}
+}*/
 .dim {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.85);
     width: 100%;
     height: 100%;
-    z-index: 3;
+    z-index: 4;
+    opacity: 0;
 }
 
-.dim.ng-hide-add {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-    background-color: rgba(0, 0, 0, 0.85);
-}
-
-.dim.ng-hide-add.ng-hide-add-active {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.dim.ng-hide-remove {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-    background-color: rgba(0, 0, 0, 0);
-    
-}
-.dima.ng-hide-remove {
+/*.dima.ng-hide-remove {
     //fade-in möter fade-out, cubix-beizer(0,0,0,1) verkar motsvara inversen av linear.
     -webkit-transition:all cubic-bezier(0,0,0,1) 0.5s;
     transition:all cubic-bezier(0,0,0,1) 0.5s;
+    -webkit-transform: translateZ(0);
     background-color: rgba(0, 0, 0, 0);
 }
 
-.dim.ng-hide-remove.ng-hide-remove-active {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-    background-color: rgba(0, 0, 0, 0.85);    
-}
 .dima.ng-hide-remove.ng-hide-remove-active {
     -webkit-transition:all cubic-bezier(0,0,0,1) 0.5s;
     transition:all cubic-bezier(0,0,0,1) 0.5s;
+    -webkit-transform: translateZ(0);
     background-color: rgba(0, 0, 0, 0.85);
-}
+}*/
 
 .lightdim {
     position: absolute;
@@ -246,6 +236,10 @@ img.largeGlossUnitImg {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 5px;
+/*    transition-property: width, height, top, left;
+    transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
+    transition-timing-function: ease-in-out;
+    -webkit-transform: translateZ(0);*/
 }
 
 .glossUnits, .largeGlossUnits {
@@ -280,7 +274,8 @@ img.largeGlossUnitImg {
     background-color: #ddd;
 }
 .groupCover {
-    opacity: 0;
+    opacity: 1;
+    background-color: rgba(0,0,0,0);
     z-index: 3;
 /* used together with .groupX */
 /* condition: only when group is small */
@@ -291,9 +286,10 @@ bk-unit-group {
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;*/
     /*transition: all 2.5s ease-in-out;*/
-    transition-property: width, height, top, left;
+/*    transition-property: width, height, top, left;
     transition-duration: 0.5s, 0.5s, 0.5s, 0.5s;
     transition-timing-function: ease-in-out;
+    -webkit-transform: translateZ(0);*/
     display: block;
     position: absolute;
     border: 2px solid white;
@@ -320,6 +316,9 @@ bk-unit-group {
     background-color: black;
 }
 
+.pageLink {
+    border: 2px solid black;
+}
 .largeGlossUnitTextAreas {
     display: block;
     height: 15%;
@@ -511,7 +510,7 @@ bk-icon-cancel {
     position: absolute; 
     height: 64px; 
     width: 64px;
-    /*top: calc(50% - 62px); /*50%  - (half height + full padding)*/
+    top: calc(50% - 62px); /*50%  - (half height + full padding)*/
     right: -82px;
     padding: 30px;
 }
@@ -521,7 +520,7 @@ bk-icon-cancel {
     position: absolute; 
     height: 64px; 
     width: 64px;
-    /*top: calc(50% - 62px); /*50%  - (half height + full padding)*/
+    top: calc(50% - 62px); /*50%  - (half height + full padding)*/
     left: -82px;
     padding: 30px;
 }
@@ -722,4 +721,8 @@ bk-icon-logactive, bk-icon-loginactive {
 
 .inactiveTextbox {
     color: #aaa;    
+}
+
+.groupborder, .glossborder {
+    border: 2px solid red;
 }

@@ -1,17 +1,22 @@
-<div id="navBody" ng-style="{'width': '100%', 'height': bodyHeight + 'px', 'top': headerHeight + 'px'}" style="background-color: #d9edf7;" hm-swipe-up="hideHeader()" hm-swipe-down="showHeader()">
+<div id="navBody" 
+     ng-style="navBodyCss" 
+     style="background-color: #d9edf7;" 
+     hm-swipe-up="hideHeader()" 
+     hm-swipe-down="showHeader()">
     <div ng-repeat="gu in conversation"
-         style="position: relative; display: inline-block; width: 20%; height: 30%;" >
-        <a class="unit{{gu.position}} glossUnits {{gu.partOfSpeech}}"
+         style="position: relative; display: inline-block; width: 10%; height: 30%;">
+        <a class="unit{{gu.position}} glossUnits "
            ng-class="{pageLink: gu.isPageLink()}"
            data-ng-href="#"
            style="display: inline-block; height: 100%; width: 100%;">
             <img class="smallGlossUnitImg"
                  data-ng-if="gu.path === 'custom'"
-                 data-ng-src="{{settings.localCustomUrl}}{{gu.filename}}" />
+                 data-ng-src="{{settings.localCustomUrl}}{{gu.filename}}"
+                 style="opacity: 1"/>
             <img class="smallGlossUnitImg"
                  data-ng-if="gu.path === 'bliss'"
                  data-ng-src="{{settings.onlineBlissUrl}}{{gu.filename}}" 
-                 style="height: auto; width: auto;"/>
+                 style="height: 100%; width: auto; opacity: 1"/>
             <img class="smallGlossUnitImg"
                  data-ng-if="gu.path === 'rt'"
                  data-ng-src="{{settings.onlineRtUrl}}{{gu.filename}}" />

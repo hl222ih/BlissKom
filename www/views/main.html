@@ -9,16 +9,8 @@
         <bk-gloss-unit-small>
         </bk-gloss-unit-small>
     </div>
-    <div ng-repeat="group in navPage.groups">
-        <div ng-show="group.isEnlarged"
-             class="dim"
-             hm-tap="toggleGroupEnlargement(group)">
-        </div>
-        <bk-unit-group 
-            ng-style="group.css"
-            hm-tap="toggleGroupEnlargement(group)">
-        </bk-unit-group>
-    </div>
+    <div class="dim" hm-tap="restore()"></div>
+    <bk-unit-group ng-repeat="group in navPage.groups" ng-style="group.css"></bk-unit-group>
     <div ng-if="isEditMode()"
          style='position: absolute; border: 2px dotted brown; text-align: center;'
          ng-repeat="cssUnit in navPage.cssTemplateData.units" 

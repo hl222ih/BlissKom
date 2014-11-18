@@ -5,6 +5,10 @@
     hm-swipe-left="showRightImageOfGlossUnit(); $event.stopPropagation();"
     hm-tap="navPage.currentGlossUnit.showComment = false"
     ng-style="{'background-color': getCurrentBackgroundColor()}">
+    <div class="largeGlossUnitImg colorGlossUnit"
+         ng-if="navPage.currentGlossUnit.currentColorGlossBackgroundColorCode"
+         ng-style="{'background-color': navPage.currentGlossUnit.currentColorGlossBackgroundColorCode}">
+    </div>
     <img class="largeGlossUnitImg"
          data-ng-if="navPage.currentGlossUnit.currentPath === 'custom'"
          data-ng-src="{{settings.localCustomUrl}}{{navPage.currentGlossUnit.currentFilename}}" />

@@ -6,6 +6,7 @@ blissKom.controller("HeaderCtrl", function ($scope, $state, appDataService) {
     $scope.isEditMode = function () { 
         return $scope.settings.editMode;
     };
+    
     $scope.dim = appDataService.dimensions;
     $scope.isHeaderHidden = function () { return appDataService.isHeaderHidden(); };
     
@@ -22,6 +23,14 @@ blissKom.controller("HeaderCtrl", function ($scope, $state, appDataService) {
         appDataService.setNavTreePosition(0);
         $state.go('main');
     };
+    $scope.navToPage = function(position) {
+        //if (tryUpdateNavPage(appDataService.navTree.treePageUrls[position])) {
+            appDataService.setNavTreePosition(position);
+            //$rootScope.currentNavTree.position = position;
+            //$state.go('main');
+        //}
+    };
+    
     $scope.loadAboutState = function() {
         $state.go('about');
     };
@@ -36,7 +45,7 @@ blissKom.controller("HeaderCtrl", function ($scope, $state, appDataService) {
     };
 });
 
-blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $timeout, $document, $state, $firebase, ngDialog, glossFactory, navPageFactory, backupService, navPageService, dataServiceProvider, appDataService) {
+blissKom.controller("MainCtrl", function($log, $scope, $rootScope, $window, $timeout, $document, $state, $firebase, ngDialog, glossFactory, navPageFactory, backupService, navPageService, dataServiceProvider, appDataService) {
     $scope.settings = appDataService.appSettings;
     $scope.isLogging = function () { return $scope.settings.logging; };
     $scope.pos = appDataService.partOfSpeechColorsData;
@@ -48,34 +57,140 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $timeout, 
     $scope.dim = appDataService.dimensions;
     $scope.isHeaderHidden = function () { return appDataService.isHeaderHidden(); };
     $scope.navBodyCss = appDataService.navBodyCss;
-//    $scope.zoomInGroup = function (groupPosition) {
-//        appDataService.zoomInGroup(groupPosition);
-//    };
+    $scope.$watch( function () { return appDataService.navTree.position; }, function (position) {
+        tryUpdateNavPage(appDataService.navTree.pages[position].url);    
+    });    
 
-    var enlargedGroupCss = {
-        width: '80%',
-        height: '80%',
-        top: '10%',
-        left: '10%',
-        'z-index': 4
+
+    $scope.restore = function () {
+        $scope.showEnlargedGlossUnit = false;
+        var dim = document.getElementsByClassName("dim")[0];
+        var enlargedGroupElem = document.querySelectorAll("bk-unit-group")[0];
+        $log.log("hej");
+        $log.log(enlargedGroupElem);
+        $scope.toggleGroupEnlargement($scope.currentGroup, $scope.currentGroupElement);
     };
-    var minifiedGroupCss = {
-        'z-index': 2
-    };
-    $scope.toggleGroupEnlargement = function (group) {
-        if (group.isEnlarged) {
-            minifiedGroupCss.zIndex = 4;
-            group.css = jQuery.extend({}, minifiedGroupCss);
-            //timeout 500ms to not hide bk-gloss-unit element during transition
-            //corresponds to css transition of same period of time. (.bk-gloss-unit).
-            $timeout(function() {
-                group.css.zIndex = 2;
-            }, 500);
-            group.isEnlarged = false;
-        } else {
-            minifiedGroupCss = jQuery.extend(minifiedGroupCss, group.css);
-            group.css = jQuery.extend({}, enlargedGroupCss);
-            group.isEnlarged = true;
+
+    //used by bkUnitGroup directive
+    $scope.toggleGroupEnlargement = function (group, elem) {
+        $scope.currentGroup = group;
+        $scope.currentGroupElement = elem;
+        var dim = document.getElementsByClassName("dim")[0];
+        if (!group.minifiedGroupCss) {
+            group.minifiedGroupCss = {
+                'z-index': 2
+            };
+            group.minifiedGroupCss = jQuery.extend({}, group.css);
+        }
+        if (!group.enlargedGroupCss) {
+            group.enlargedGroupCss = {
+                width: '80%',
+                height: '80%',
+                top: '10%',
+                left: '10%',
+                'z-index': 4
+            };
+        }
+        if (!group.isBusy) {
+            group.isBusy = true;
+            if (group.isEnlarged) {
+                group.minifiedGroupCss.zIndex = 4;
+                $(dim).velocity(
+                    {
+                        opacity: 0
+                    },
+                    {
+                        duration: 500,
+                        easing: "linear"
+                    });        
+                $(elem).velocity(
+                    {
+                        width: group.minifiedGroupCss.width,
+                        height: group.minifiedGroupCss.height,
+                        top: group.minifiedGroupCss.top,
+                        left: group.minifiedGroupCss.left,
+                        'z-index': 2
+                    },
+                    {
+                        duration: 500,
+                        easing: "linear"
+                    });
+                var guElemsS = $(elem).find(".glossUnits");
+                for (var i = 0; i < group.glossUnits.length; i++) {
+
+                    if (group.glossUnits[i].smallCss) {
+                        $(guElemsS[i]).velocity(
+                            {
+                                width: group.glossUnits[i].smallCss.width,
+                                height: group.glossUnits[i].smallCss.height,
+                                top: group.glossUnits[i].smallCss.top,
+                                left: group.glossUnits[i].smallCss.left
+                            },
+                            {
+                                duration: 500,
+                                easing: "linear"
+                            });
+                        group.glossUnits[i].css = group.glossUnits[i].smallCss;
+                    }
+                }
+
+                $timeout(function() {
+                    group.css = jQuery.extend({}, group.minifiedGroupCss);
+                }, 500);
+                //timeout 500ms to not hide bk-gloss-unit element during transition
+                //corresponds to css transition of same period of time. (.bk-gloss-unit).
+                $timeout(function() {
+                    group.css.zIndex = 2;
+                    group.isEnlarged = false;
+                    group.isBusy = false;
+                    $(dim).css("visibility", "hidden");
+                }, 500);
+            } else {
+                group.css.zIndex = 4;
+                $(dim).css("visibility", "visible");
+                $(dim).velocity(
+                    {
+                        opacity: 1
+                    },
+                    {
+                        duration: 500,
+                        easing: "linear"
+                    });        
+                $(elem).velocity(
+                    {
+                        width: group.enlargedGroupCss.width,
+                        height: group.enlargedGroupCss.height,
+                        top: group.enlargedGroupCss.top,
+                        left: group.enlargedGroupCss.left
+                    },
+                    {
+                        duration: 500,
+                        easing: "linear"
+                    });
+                group.css = jQuery.extend({}, group.enlargedGroupCss);
+                var guElemsS = $(elem).find(".glossUnits");
+                for (var i = 0; i < group.glossUnits.length; i++) {
+                    if (group.glossUnits[i].enlargedCss) {
+                        $(guElemsS[i]).velocity(
+                            {
+                                width: group.glossUnits[i].enlargedCss.width,
+                                height: group.glossUnits[i].enlargedCss.height,
+                                top: group.glossUnits[i].enlargedCss.top,
+                                left: group.glossUnits[i].enlargedCss.left
+                            },
+                            {
+                                duration: 500,
+                                easing: "linear"
+                            });
+                        group.glossUnits[i].smallCss = group.glossUnits[i].css;                    
+                        group.glossUnits[i].css = group.glossUnits[i].enlargedCss;
+                    }                
+                }
+                $timeout(function() {
+                    group.isEnlarged = true;
+                    group.isBusy = false;
+                }, 500);
+            }
         }
     };
     
@@ -86,6 +201,9 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $timeout, 
     var tryUpdateNavPage = function(pageUrl) {
         var isNavigatingToNewPage = true;
 
+        var dim = document.getElementsByClassName("dim")[0];
+        $(dim).css({"visibility":"hidden","opacity":"0"});
+        
         $scope.showEnlargedGlossUnit = false;
          
         if (!pageUrl && $scope.navPage) {
@@ -123,6 +241,7 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $timeout, 
             $scope.navPage.currentGlossUnit.currentText = $scope.navPage.currentGlossUnit.text;
             $scope.navPage.currentGlossUnit.currentComment = $scope.navPage.currentGlossUnit.comment;
             $scope.navPage.currentGlossUnit.currentPartOfSpeech = $scope.navPage.currentGlossUnit.partOfSpeech;
+            $scope.navPage.currentGlossUnit.currentColorGlossBackgroundColorCode = $scope.navPage.currentGlossUnit.colorGlossBackgroundColorCode;
             $scope.navPage.currentGlossUnit.currentPosition = 0;
         }
     };
@@ -137,8 +256,9 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $timeout, 
             }
             appDataService.pushToConversation(gu);
         }
-        appDataService.resetNavTree();
-        tryUpdateNavPage();
+        //appDataService.resetNavTree();
+        appDataService.navTree.position = 0;
+        tryUpdateNavPage("startsida");
     };
     $scope.toggleMenu = function() { $scope.isMenuVisible = !$scope.isMenuVisible; };
 
@@ -158,14 +278,6 @@ blissKom.controller("MainCtrl", function($scope, $rootScope, $window, $timeout, 
             appDataService.navTree.position++;
         } else {
             $rootScope.showStatusMessage("Sidan saknas...");
-        }
-    };
-
-    $scope.navToPage = function(position) {
-        if (tryUpdateNavPage($rootScope.currentNavTree.treePageUrls[position])) {
-            appDataService.setNavTreePosition(position);
-            $rootScope.currentNavTree.position = position;
-            $state.go('main');
         }
     };
 
@@ -593,7 +705,10 @@ blissKom.controller("BackupCtrl", function($scope, $rootScope, backupService) {
 
 blissKom.controller("ConversationCtrl", function($scope, $rootScope, appDataService) {
     $scope.settings = appDataService.appSettings;
+    $scope.navBodyCss = appDataService.navBodyCss;
     $scope.conversation = appDataService.getConversation();
+    $scope.isHeaderHidden = function () { return appDataService.isHeaderHidden(); };
+
 });
 //test, gör ingenting i nuläget...
 blissKom.controller("DeviceCtrl", function() { console.log("hello");});
